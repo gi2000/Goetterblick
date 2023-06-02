@@ -1,5 +1,76 @@
-# Götterblick
-# 
+# **Götterblick Notizen**
+
+---
+
+Einteilung in Module: Charakter, Meisterschirm, Wiki, Karte (Avespfade), Impressum
+
+## **Charakter**
+
+- Übersicht
+    - Gruppieren
+- Erstellen/Bearbeiten (Toggle Bearbeiten & Leveln)
+    - Regelauswahl
+    - Grundwerte (GP-Start, Eigenschaften Max)
+    - Rasse, Kultur & Varianten
+    - Professionen (BgB & Veteran)
+    - Name, Alter, Erscheinungsbild
+    - Vorauswahl (Verbilligt oder geschenkte Sachen)
+    - Eigenschaften, Vor- & Nachteile, Sonderfertigkeiten & Zauber, Talente
+    - Verbindungen
+    - Einfacher Modus
+        - Nachteile senken
+        - Sonderfertigkeiten, Zauber und Liturgien kaufen
+        - Eigenschaften und Talente Steigern
+        - Kampfwerte verteilen
+        - Inventar Managen
+        - Spätweihe, Karmalqueste, Grosse Meditation
+        - Abenteuer Eintragen
+
+## **Meisterschirm**
+
+- Hausregeln
+- Gruppieren
+- Verwalten der Gruppe (Leben, Ausdauer, Belastung usw.)
+- Probenübersicht (Pro Char oder pro Talent. Modifikationen, Wahrscheinlichkeit)
+    - Zauber, Fernkampf, Nahkampf, Liturgien mehr Erschwernisse
+- NSC Generator & Gegner Generator
+- Würfeltool (d6,d10, d20, d100)
+- Kampfrundentool
+- Alchemie, Beschwörung, Zauberzeichen, Schmiede, Kräutersuche, Jagd, Fischen Umrechen-, Kalender usw. Tool
+- Basar
+    - Items mit Preisen
+    - Preismodifikation
+    - Tiere (Mitsamt Ausbildung und dergleichen)
+- Phex Codescheibe (Chiphre)
+- ~~{[("Online")]}~~
+
+## **Wiki**
+
+- Rassen, Professionen und so weiter
+- Index (wo zu finden, z.B. WdS s43ff)
+    - PDF Link zum Regelwerk
+
+## **Karte**
+
+- Karte von Aventurien
+- Städte, Dörfer, Siedlungen, Oasen
+- Reiche, Politische Gebiete
+- Strassen, Handelslinien
+- Kraftlinien
+- Routenberechnung (Avespfade)
+
+## **Impressum**
+
+- Rechtliche Absicherung
+- Kontaktdaten (Probleme usw.)
+- Lizenzen
+- Ulisses
+
+---
+
+# Götterblick - arc42 #
+
+----
 
 # Introduction and Goals {#section-introduction-and-goals}
 
@@ -9,13 +80,10 @@
 
 ## Stakeholders {#_stakeholders}
 
-+-------------+---------------------------+---------------------------+
-| Role/Name   | Contact                   | Expectations              |
-+=============+===========================+===========================+
-| *\<Role-1>* | *\<Contact-1>*            | *\<Expectation-1>*        |
-+-------------+---------------------------+---------------------------+
-| *\<Role-2>* | *\<Contact-2>*            | *\<Expectation-2>*        |
-+-------------+---------------------------+---------------------------+
+| Role/Name   | Contact        | Expectations       |
+|-------------|----------------|--------------------|
+| *\<Role-1>* | *\<Contact-1>* | *\<Expectation-1>* |
+| *\<Role-2>* | *\<Contact-2>* | *\<Expectation-2>* |
 
 # Architecture Constraints {#section-architecture-constraints}
 
@@ -117,10 +185,10 @@ Important Interfaces
 
 ## \<Runtime Scenario 1> {#__runtime_scenario_1}
 
--   *\<insert runtime diagram or textual description of the scenario>*
+- *\<insert runtime diagram or textual description of the scenario>*
 
--   *\<insert description of the notable aspects of the interactions
-    between the building block instances depicted in this diagram.\>*
+- *\<insert description of the notable aspects of the interactions
+  between the building block instances depicted in this diagram.\>*
 
 ## \<Runtime Scenario 2> {#__runtime_scenario_2}
 
@@ -190,10 +258,8 @@ Mapping of Building Blocks to Infrastructure
 
 # Glossary {#section-glossary}
 
-+-----------------------+-----------------------------------------------+
-| Term                  | Definition                                    |
-+=======================+===============================================+
-| *\<Term-1>*           | *\<definition-1>*                             |
-+-----------------------+-----------------------------------------------+
-| *\<Term-2>*           | *\<definition-2>*                             |
-+-----------------------+-----------------------------------------------+
+| Term        | Definition        |
+|-------------|-------------------|
+| *\<Term-1>* | *\<definition-1>* |
+| *\<Term-2>* | *\<definition-2>* |
+
