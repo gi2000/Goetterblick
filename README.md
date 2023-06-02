@@ -1,1 +1,1 @@
-# Goetterblick
+# Götterblick
