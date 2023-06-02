@@ -1,7 +1,5 @@
 # **Götterblick Notizen**
 
----
-
 Einteilung in Module: Charakter, Meisterschirm, Wiki, Karte (Avespfade), Impressum
 
 ## **Charakter**
@@ -69,8 +67,6 @@ Einteilung in Module: Charakter, Meisterschirm, Wiki, Karte (Avespfade), Impress
 ---
 
 # Götterblick - arc42 #
-
-----
 
 # Introduction and Goals {#section-introduction-and-goals}
 
