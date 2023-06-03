@@ -70,16 +70,15 @@ Einteilung in Module: Charakter, Meisterschirm, Wiki, Karte (Avespfade), Impress
 
 # Introduction and Goals {#section-introduction-and-goals}
 
+The basic goal of the software/tool is to replace all previously existing tools and provide a solution that can handle 
+all tasks and functions while remaining in one tool. The exact functions are described above.
+
 ## Requirements Overview {#_requirements_overview}
 
+A tool that takes care of all the tasks you might need when creating a DSA character or later when leading an adventure.
+It should be clear and easy to use.
+
 ## Quality Goals {#_quality_goals}
-
-## Stakeholders {#_stakeholders}
-
-| Role/Name   | Contact        | Expectations       |
-|-------------|----------------|--------------------|
-| *\<Role-1>* | *\<Contact-1>* | *\<Expectation-1>* |
-| *\<Role-2>* | *\<Contact-2>* | *\<Expectation-2>* |
 
 # Architecture Constraints {#section-architecture-constraints}
 
