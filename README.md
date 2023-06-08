@@ -42,6 +42,8 @@ Einteilung in Module: Charakter, Meisterschirm, Wiki, Karte (Avespfade), Impress
 - Phex Codescheibe (Chiphre)
 - ~~{[("Online")]}~~
 
+- Color palette: https://colorhunt.co/palettes/pastel
+
 ## **Wiki**
 
 - Rassen, Professionen und so weiter
@@ -70,7 +72,7 @@ Einteilung in Module: Charakter, Meisterschirm, Wiki, Karte (Avespfade), Impress
 
 # Introduction and Goals {#section-introduction-and-goals}
 
-The basic goal of the software/tool is to replace all previously existing tools and provide a solution that can handle 
+The basic goal of the software/tool is to replace all previously existing tools and provide a solution that can handle
 all tasks and functions while remaining in one tool. The exact functions are described above.
 
 ## Requirements Overview {#_requirements_overview}
