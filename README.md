@@ -68,31 +68,60 @@ Einteilung in Module: Charakter, Meisterschirm, Wiki, Karte (Avespfade), Impress
 
 ---
 
-# Götterblick - arc42 #
+# Götterblick - arc42
 
-# Introduction and Goals {#section-introduction-and-goals}
+# Introduction and Goals
 
-The basic goal of the software/tool is to replace all previously existing tools and provide a solution that can handle
+The basic goal of this software/tool is to replace all previously existing tools and provide a solution that can handle
 all tasks and functions while remaining in one tool. The exact functions are described above.
 
-## Requirements Overview {#_requirements_overview}
+## Requirements Overview ##
 
-A tool that takes care of all the tasks you might need when creating a DSA character or later when leading an adventure.
-It should be clear and easy to use.
+### What is Götterblick? ### 
 
-## Quality Goals {#_quality_goals}
+- A tool that contains a lot of useful tools for people playing the P&P DSA.
+- This tool is supposed to aid either a player or a dungeon master in their adventure.
+- Together with some exporting-features, this tool is supposed to be covering almost all tools that are currently
+  seperated in the market.
 
-# Architecture Constraints {#section-architecture-constraints}
+### Main features: ###
 
-# System Scope and Context {#section-system-scope-and-context}
+- Character Editor:
+    - Managing characters (create & edit)
+    - Leveling up characters
+    - Grouping characters in the overview
+- Dungeon Master Screen:
+    - Managing gaming sessions (create & edit)
+    - Overview of npcs and enemies
+    - Useful, smaller tools for QOL improvements
+- Map of Aventuria:
+    - All paths, cities and towns (and their names)
+    - Sub-Maps of towns and cities
+    - Calculators for easier traveling
+- Wiki:
+    - Research of enemies, races, items etc.
 
-## Business Context {#_business_context}
+## Quality Goals
+
+| Quality Goal           | Motivation and Explanation                                                                                                                                      |
+|------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Usability              | The tool is supposed to  to use. Users can easily navigate and create their desired scenarios.                                                                  |
+| Compatability          | Given that there are multiple versions of DSA and other programs out there, we want to also include them, as to not restrict the preference of the user.        |
+| Functional Suitability | The tool needs to function correctly by also acknowledging all rulebooks and calculate accordingly and correctly.                                               |
+| Transferability        | The tool along with its data should be easily transferable from either Windows, Mac or Linux.                                                                   | 
+| Maintainability        | Due to the different versions and homebrew rules of DSA the tools should be adaptable in their respective version for character creation and dungeon mastering. |
+
+# Architecture Constraints
+
+# System Scope and Context
+
+## Business Context
 
 **\<Diagram or Table>**
 
 **\<optionally: Explanation of external domain interfaces>**
 
-## Technical Context {#_technical_context}
+## Technical Context
 
 **\<Diagram or Table>**
 
@@ -100,11 +129,11 @@ It should be clear and easy to use.
 
 **\<Mapping Input/Output to Channels>**
 
-# Solution Strategy {#section-solution-strategy}
+# Solution Strategy
 
-# Building Block View {#section-building-block-view}
+# Building Block View
 
-## Whitebox Overall System {#_whitebox_overall_system}
+## Whitebox Overall System
 
 ***\<Overview Diagram>***
 
