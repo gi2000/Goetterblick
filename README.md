@@ -68,12 +68,19 @@ Einteilung in Module: Charakter, Meisterschirm, Wiki, Karte (Avespfade), Impress
 
 ---
 
-# Götterblick - arc42
-
-# Introduction and Goals
+# Götterblick (arc42) - Introduction and Goals
 
 The basic goal of this software/tool is to replace all previously existing tools and provide a solution that can handle
 all tasks and functions while remaining in one tool. The exact functions are described above.
+
+Inspiration for this software has been taken from the following, existing projects:
+
+- [Meistergeister](https://meistergeister.org/)
+- [Heldensoftware](https://www.helden-software.de/)
+- [Heldenblatt](https://www.heldenblatt.ch/)
+- [Optolith](https://optolith.app/de/)
+- [Avespfade](https://avespfade.de/)
+- [Dere-Globus](http://www.dereglobus.org/)
 
 ## Requirements Overview ##
 
@@ -113,21 +120,82 @@ all tasks and functions while remaining in one tool. The exact functions are des
 
 # Architecture Constraints
 
+## Technical Constraints
+
+| Constraint            | Explanation and Background                                                                                                                                                                             |
+|-----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Coding Language: Java | The programm needs to be written in Java, due to the fact that both programmers want to write in / learn that language.                                                                                |
+| Operating System      | Due to the fact, that this software is supposed to be usable on every operating system, special care needs to be taken when dealing with f. ex. filesystems or system-dependent environment variables. |
+| JavaFX / No Swing     | To let the app appear a bit more modern, the app is supposed to be written entirely in JavaFX, not the 'old' Swing library.                                                                            |
+| Licensing             | Some libraries have special licenses or agreements, which have to be taken into account, before using them. Thus special care needs to be taken, when importing dependencies from f. ex. Maven.        |
+
+## Organisational Constraints
+
+| Constraint             | Explanation and Background                                                                                                                                                              |
+|------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Planning with arc42    | Due to a portion of the coders wanting to learn / get into the field of development, we have chosen to work along the arc42 template to document and log process as well as plan in it. |
+| IDE                    | To have a common development-ground, the developers are advised to use the IntelliJ Community Edition, along with the same formatter.                                                   |
+| SceneBuilder           | To construct new windows for the tool, the software "SceneBuilder" is to be used, as the produced .xml files are helpful in the coding process.                                         |
+| Version Control System | To keep track of changes and to allow work between multiple people on this project, GIT as a VCS is used and Github as the platform for the shared code.                                |
+| JUnit Tests            | Testing the tool is mostly done in Java, more specifically in so called "JUnit Tests".                                                                                                  |
+| Open Source Release    | If, and only if, "Ulisses Spiele" permits the development of this tool, then this software shall be open sourced and accessible for everyone.                                           |
+
+## Conventional Constraints
+
+| Constraint           | Explanation and Background                                                                                                                                                                                                                              |
+|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Good Coding Practice | To keep the code easy to read and maintable, we adhere to the good coding practices, as described [in this guide](https://www.developer.com/languages/javascript/java-best-practices/).                                                                 |
+| Language             | The documentation language is supposed to be English, while the 'output' language / the interface is going to be German. This is due to the fact, that most players of DSA are German, while coding can still be done with English speaking developers. |
+
 # System Scope and Context
 
 ## Business Context
 
-**\<Diagram or Table>**
+<img src="src/site/pics/context/business-context.png"></img>
 
-**\<optionally: Explanation of external domain interfaces>**
+### Dungeonmaster (User) ###
+
+The dungeon master utilizes the tool to manage and overview the group they are playing with. They also make use of the
+wiki and map, to follow along in their P&P adventure. Occasionally, they also may create their own character or npc.
+
+### Player (User) ###
+
+The player is an attendant of a P&P group and usually / mostly utilizes the character-section and maybe the map and
+wiki. The dungeon master screen is rarely or never used by them.
+
+### Meistergeister (Third-Party System) ###
+
+A similar tool like Götterblick but with a focus on the dungeon master, while the Götterblick software
+includes both the user's expectations (f. ex. with exporting characters to VTT softwares) and also the dungeon master's.
+With this connection, Götterblick is supposed to give the users the ability to still use "Meistergeister", if they wish
+so.
+
+### Heldensoftware (Third-Party System) ###
+
+A character creation tool for DSA4.1. Characters from that tool should be importable into the Götterblick software, as
+well as the other way around.
+
+### FoundryVTT (Third-Party System) ###
+
+FoundryVTT is a software for "virtual table top", meaning one can play with other users on a virtually a session / round
+of P&P. With the multiple use cases and import as well as export features, the adaptation of that system is supposed to
+be included, too.
+
+### Optolith (Third-Party System) ###
+
+This software is used as a DSA5 character creation tool. Characters from that tool can be exported to FoundryVTT or to a
+file, so that another person can open them in their version of optolith. Their character-file is supposed to be also
+editable in this Götterblick.
 
 ## Technical Context
 
-**\<Diagram or Table>**
+<img src="src/site/pics/context/technical-context.png"></img>
 
-**\<optionally: Explanation of technical interfaces>**
+### All Third-Party-Systems ###
 
-**\<Mapping Input/Output to Channels>**
+As seen above, the third-party-systems are used to help / make it more comfortable for the user to import or export
+characters to these specific softwares. This is done via their respective file format, thus the im- or export is done
+via f. ex. .xml, .json or other formats produced by these softwares.
 
 # Solution Strategy
 
