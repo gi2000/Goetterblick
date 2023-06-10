@@ -1,3 +1,41 @@
+<style>
+    body {
+    counter-reset: h1
+    }
+    
+    h1 {
+    counter-reset: h2
+    }
+    
+    h2 {
+    counter-reset: h3
+    }
+    
+    h3 {
+    counter-reset: h4
+    }
+    
+    h1:before {
+    counter-increment: h1;
+    content: counter(h1) ". "
+    }
+    
+    h2:before {
+    counter-increment: h2;
+    content: counter(h1) "." counter(h2) ". "
+    }
+    
+    h3:before {
+    counter-increment: h3;
+    content: counter(h1) "." counter(h2) "." counter(h3) ". "
+    }
+    
+    h4:before {
+    counter-increment: h4;
+    content: counter(h1) "." counter(h2) "." counter(h3) "." counter(h4) ". "
+    }
+</style>
+
 # **Götterblick Notizen**
 
 Einteilung in Module: Charakter, Meisterschirm, Wiki, Karte (Avespfade), Impressum
@@ -112,7 +150,7 @@ Inspiration for this software has been taken from the following, existing projec
 
 | Quality Goal           | Motivation and Explanation                                                                                                                                      |
 |------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Usability              | The tool is supposed to  to use. Users can easily navigate and create their desired scenarios.                                                                  |
+| Usability              | The tool is supposed to be easy to use. Users can easily navigate and create their desired scenarios.                                                           |
 | Compatability          | Given that there are multiple versions of DSA and other programs out there, we want to also include them, as to not restrict the preference of the user.        |
 | Functional Suitability | The tool needs to function correctly by also acknowledging all rulebooks and calculate accordingly and correctly.                                               |
 | Transferability        | The tool along with its data should be easily transferable from either Windows, Mac or Linux.                                                                   | 
@@ -199,6 +237,52 @@ via f. ex. .xml, .json or other formats produced by these softwares.
 
 # Solution Strategy
 
+## Introduction ##
+
+| Quality Goal                                                        | Approach in Architecture                                                                                                                                                                                                                                                                        |
+|---------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Thorough UX-Testing and Planning (Usability)                        | To mitigate errors directly from the start, planning is the best and least time consuming method before starting to code. Along with testing the UX by presenting it regularly to other people, feedback is going to be presented for further analysation.                                      |
+| Inclusion of most DSA Rulebooks (Compatability)                     | By directly referring to the version-specific rulebooks the inclusion of other versions should be inherently added over time. There may be a starting focus but over time, if there are good ground architectural structures written in code, the adaptation of other version should be doable. |
+| Thorough JUnit Testing of relevant Methods (Functional Suitability) | For the simpler / more mathematical functions, that may come into play in a P&P session, testing is of upmost importance, since the functionalitys correctnees needs to be guaranteed. JUnit tests are perfect for that and will be utilized.                                                   |
+| Testing on other Operating Systems (Transferability)                | When working with the code, one has to keep in mind, that all operating systems should be included to work with this software. Testing along with checking on other operating systems, if the softwares functionality still persists, are the only options, to check for transferability.       |
+| Good coding practices (Maintability)                                | In order to keep up a good codebase, one has to comply with patterns, good coding practices and a good amount of documenting. This lays the ground for future developers to continue the work on this project, if they wish to further develope it on their own.                                |
+
+## Structure ##
+
+Götterblick is a Java program, that continuously consists of these patterns:
+
+- The version specific rulebooks lying underneath, determining the calculating methods
+- The selected module, in which the selected functionalites are presented (f. ex. a map, character creation etc.)
+- The ability to export parts of the software, to continue working or playing in other software
+- The ability to import from other software, to continue working or playing with Götterblick
+
+All these parts can and will be interchangable modules, so that in the future, if new version come out, the
+implementation of these new rulebooks will be similar to all the other versions of DSA. Abstraction being one of the
+utilized methods, to ensure this partitioning of features.
+
+Interfaces will be utilized to create modules, which again produce screens and other sub-screens for either creation of
+characters or the dungeon master screen.
+
+## Connectivity ##
+
+Götterblick utilizes the JavaFX library to visualize the options, the user has, and thus makes it better suitable for
+the day to day tool user. Each window usually presents itself with options to click and to change to a new screen or
+close the tool altogether:
+
+<img src="src/site/pics/mockups/1-Startscreen.png"></img>
+
+---
+
+<img src="src/site/pics/mockups/2-Characterscreen.png"></img>
+
+---
+
+<img src="src/site/pics/mockups/3.1-Characteredit.png"></img>
+
+---
+
+<img src="src/site/pics/mockups/3.2-Characteroverview.png"></img>
+
 # Building Block View
 
 ## Whitebox Overall System
@@ -217,7 +301,7 @@ Important Interfaces
 
 :   *\<Description of important interfaces>*
 
-### \<Name black box 1> {#__name_black_box_1}
+### \<Name black box 1>
 
 *\<Purpose/Responsibility>*
 
@@ -275,7 +359,7 @@ Important Interfaces
 
 *\<white box template>*
 
-# Runtime View {#section-runtime-view}
+# Runtime View
 
 ## \<Runtime Scenario 1> {#__runtime_scenario_1}
 
@@ -340,20 +424,38 @@ Mapping of Building Blocks to Infrastructure
 
 *\<explanation>*
 
-# Architecture Decisions {#section-design-decisions}
+# Architecture Decisions
 
-# Quality Requirements {#section-quality-scenarios}
+Due to the fact that other DSA tools utilize the old Swing look, we decided that the architecture should be build in:
 
-## Quality Tree {#_quality_tree}
+- a typical, JavaFX based Model-View-Controller pattern and
+- a factory pattern, to create the next window or generate the sites content.
 
-## Quality Scenarios {#_quality_scenarios}
+Design choices were made in the process to give the user the best user experience when working with this app: The
+fewest, necessary amount of clicks while also keeping the window to a modest amount of information in a "modern" look.
 
-# Risks and Technical Debts {#section-technical-risks}
+SQLite has been chosen as the database beneath the software to accommodate the entries and other data, while still
+focusing on efficiency.
 
-# Glossary {#section-glossary}
+# Quality Requirements
 
-| Term        | Definition        |
-|-------------|-------------------|
-| *\<Term-1>* | *\<definition-1>* |
-| *\<Term-2>* | *\<definition-2>* |
+## Quality Tree
+
+## Quality Scenarios
+
+# Risks and Technical Debts
+
+| Risk                                                                                                                  | Damage                                                                     | Probability       | Consequence                                                                                                                                | Risk-reduction                                                                                                                                                                      |
+|-----------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------|-------------------|--------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Ulisses won't accept this project being open source.                                                                  | **Medium**<br>Motivational loss but no progress loss                       | Medium            | This project hast to switch from a public repo to a private one and can only be used internally / in private.                              | None, as this is Ulisses' decision to make.                                                                                                                                         |
+| Ulisses accepts this project being open source, but they won't allow rulebook specific details to be openly viewable. | **Low**<br>Some minor plan changes but nothing major.                      | Medium            | Some features such as descriptions in DSA4.1 won't be viewable and will constrain user experience.                                         | None, as this is Ulisses' decision to make.                                                                                                                                         |
+| Github removes the repo from their site.                                                                              | **Low**<br>Some data loss perhaps but mostly just an annoyance.            | Very Low          | We can't push to the same repo anymore and thus have to switch to a different plattform.                                                   | Have a second repo ready to push to and also keep copies of the repo locally.                                                                                                       |
+| Motivation runs out                                                                                                   | **High**<br>No project or data loss but maintainability or usability loss. | Low               | Software won't be maintained and further bug- or feature requests won't be handled.                                                        | Do breaks, take your time with coding and even if there may be a more difficult problem, try to split it up into smaller junks. Talking also mitigates unnecessary social problems. |
+| The nameless one (Der Namenslose) will be released and starts tormenting the real world.                              | **Very High**<br>A major catastrophe with vast amount of damage.           | Almost impossible | This will stop the development of this tool for quite some time. And may cause other problems, too, like demons and other weird phenomena. | Praying to the twelve and help the world rescuing adventurers with a fresh beer or wine.                                                                                            |                                                                                       
+
+# Glossary
+
+| Term | Definition |
+|------|------------|
+
 
