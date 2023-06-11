@@ -61,6 +61,7 @@ Einteilung in Module: Charakter, Meisterschirm, Wiki, Karte (Avespfade), Impress
         - Inventar Managen
         - Spätweihe, Karmalqueste, Grosse Meditation
         - Abenteuer Eintragen
+        - Abenteuer bestritten (Auswahl an LeP, AP, AsP, SE und so weiter)
 
 ## **Meisterschirm**
 
