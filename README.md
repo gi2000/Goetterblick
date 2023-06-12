@@ -45,6 +45,7 @@ Einteilung in Module: Charakter, Meisterschirm, Wiki, Karte (Avespfade), Impress
 - Übersicht
     - Gruppieren
 - Erstellen/Bearbeiten (Toggle Bearbeiten & Leveln)
+    - Archetypen oder eigener Held
     - Regelauswahl
     - Grundwerte (GP-Start, Eigenschaften Max)
     - Rasse, Kultur & Varianten
@@ -62,6 +63,13 @@ Einteilung in Module: Charakter, Meisterschirm, Wiki, Karte (Avespfade), Impress
         - Spätweihe, Karmalqueste, Grosse Meditation
         - Abenteuer Eintragen
         - Abenteuer bestritten (Auswahl an LeP, AP, AsP, SE und so weiter)
+    - Tabs 
+        - Allgemeines: Übersicht, Heldenbogen, Notizen
+        - Eigenschaften: Übersicht
+        - Vor- & Nachteile: Vorteile, Nachteile
+        - Talente: Kampftalente, Allgemeine Talente
+        - Sonderfertigkeiten: Sonderfertigkeiten, Zauber, Liturgien
+        - Inventar: Inventar, Ausrüstung, Begleiter
 
 ## **Meisterschirm**
 
