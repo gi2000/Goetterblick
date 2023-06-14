@@ -90,6 +90,10 @@ Einteilung in Module: Charakter, Meisterschirm, Wiki, Karte (Avespfade), Impress
 - ~~{[("Online")]}~~
 
 - Color palette: https://colorhunt.co/palettes/pastel
+- Dukate = 25 Skrupel
+- Silbertaler = 5 Skrupel
+- Heller = 2.5 Skrupel
+- Kreuzer = 1.25 Skrupel
 
 ## **Wiki**
 
