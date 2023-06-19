@@ -10,7 +10,8 @@ public class Initialisation extends Application
         launch(args);
     }
 
-    public void start(Stage stage) throws Exception
+    @Override
+    public void start(Stage stage)
     {
 
     }

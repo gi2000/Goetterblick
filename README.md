@@ -1,5 +1,10 @@
 # **Götterblick Notizen**
 
+<img src="src/site/pics/mockups/1-Startscreen.png"></img>
+<img src="src/site/pics/mockups/2-Characterscreen.png"></img>
+<img src="src/site/pics/mockups/3.2.1-characterstats_edit.png"></img>
+<img src="src/site/pics/mockups/3.6.2-Inventory.png"></img>
+
 Einteilung in Module: Charakter, Meisterschirm, Wiki, Karte (Avespfade), Impressum
 
 ## **Charakter**
@@ -25,7 +30,7 @@ Einteilung in Module: Charakter, Meisterschirm, Wiki, Karte (Avespfade), Impress
         - Spätweihe, Karmalqueste, Grosse Meditation
         - Abenteuer Eintragen
         - Abenteuer bestritten (Auswahl an LeP, AP, AsP, SE und so weiter)
-    - Tabs 
+    - Tabs
         - Allgemeines: Übersicht, Heldenbogen, Notizen
         - Eigenschaften: Übersicht
         - Vor- & Nachteile: Vorteile, Nachteile
@@ -252,11 +257,41 @@ close the tool altogether:
 
 ---
 
-<img src="src/site/pics/mockups/3.1-Characteredit.png"></img>
+<img src="src/site/pics/mockups/3.1.1-Characteroverview.png"></img>
 
 ---
 
-<img src="src/site/pics/mockups/3.2-Characteroverview.png"></img>
+<img src="src/site/pics/mockups/3.1.1-Characteroverview_edit.png"></img>
+
+---
+
+<img src="src/site/pics/mockups/3.2.1-characterstats.png"></img>
+
+---
+
+<img src="src/site/pics/mockups/3.2.1-characterstats_edit.png"></img>
+
+---
+
+<img src="src/site/pics/mockups/3.3.2-disadvantages.png"></img>
+
+---
+
+<img src="src/site/pics/mockups/3.6.1-Inventory_edit.png"></img>
+
+---
+
+<img src="src/site/pics/mockups/3.6.1-Inventory_edit.png"></img>
+
+---
+
+<img src="src/site/pics/mockups/3.6.2-Inventory.png"></img>
+
+---
+
+<img src="src/site/pics/mockups/3.6.3-Inventory.png"></img>
+
+---
 
 # Building Block View
 
