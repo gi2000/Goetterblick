@@ -1,6 +1,6 @@
 <h1 style="text-align: center;"> Götterblick Notizen </h1>
 
-<img src="src/site/pics/icon/Icon-2048x-Round.png" style="max-width: 512px; margin: auto; display: block;">
+<img src="src/site/pics/icon/Icon-2048x-Round.png" style="max-width: 256px; margin: auto; display: block;">
 <img src="src/site/pics/mockups/1-Startscreen.png">
 <img src="src/site/pics/mockups/2-Characterscreen.png">
 <img src="src/site/pics/mockups/3.2.1-characterstats_edit.png">
