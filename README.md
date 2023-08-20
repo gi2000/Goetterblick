@@ -250,47 +250,103 @@ Götterblick utilizes the JavaFX library to visualize the options, the user has,
 the day to day tool user. Each window usually presents itself with options to click and to change to a new screen or
 close the tool altogether:
 
-<img src="src/site/pics/mockups/tool/1-Startscreen.png"></img>
+### Tools ###
+
+<img src="src/site/pics/mockups/tools/1-Startscreen.png"></img>
 
 ---
 
-<img src="src/site/pics/mockups/tool/2-Characterscreen.png"></img>
+<img src="src/site/pics/mockups/tools/2-Characterscreen.png"></img>
 
 ---
 
-<img src="src/site/pics/mockups/tool/3.1.1-Characteroverview.png"></img>
+<img src="src/site/pics/mockups/tools/3.1.1-Characteroverview.png"></img>
 
 ---
 
-<img src="src/site/pics/mockups/tool/3.1.1-Characteroverview_edit.png"></img>
+<img src="src/site/pics/mockups/tools/3.1.1-Characteroverview_edit.png"></img>
 
 ---
 
-<img src="src/site/pics/mockups/tool/3.2.1-characterstats.png"></img>
+<img src="src/site/pics/mockups/tools/3.2.1-characterstats.png"></img>
 
 ---
 
-<img src="src/site/pics/mockups/tool/3.2.1-characterstats_edit.png"></img>
+<img src="src/site/pics/mockups/tools/3.2.1-characterstats_edit.png"></img>
 
 ---
 
-<img src="src/site/pics/mockups/tool/3.3.2-disadvantages.png"></img>
+<img src="src/site/pics/mockups/tools/3.3.2-disadvantages.png"></img>
 
 ---
 
-<img src="src/site/pics/mockups/tool/3.6.1-Inventory_edit.png"></img>
+<img src="src/site/pics/mockups/tools/3.6.1-Inventory_edit.png"></img>
 
 ---
 
-<img src="src/site/pics/mockups/tool/3.6.1-Inventory_edit.png"></img>
+<img src="src/site/pics/mockups/tools/3.6.1-Inventory_edit.png"></img>
 
 ---
 
-<img src="src/site/pics/mockups/tool/3.6.2-Inventory.png"></img>
+<img src="src/site/pics/mockups/tools/3.6.2-Inventory.png"></img>
 
 ---
 
-<img src="src/site/pics/mockups/tool/3.6.3-Inventory.png"></img>
+<img src="src/site/pics/mockups/tools/4.1.1-Rules.png"></img>
+
+---
+
+<img src="src/site/pics/mockups/tools/4.1.2-Startvalues.png"></img>
+
+---
+
+<img src="src/site/pics/mockups/tools/4.1.3-Presets.png"></img>
+
+---
+
+<img src="src/site/pics/mockups/tools/4.2.1-Race.png"></img>
+
+---
+
+<img src="src/site/pics/mockups/tools/4.2.2-Culture.png"></img>
+
+---
+
+<img src="src/site/pics/mockups/tools/4.3-Selection.png"></img>
+
+---
+
+<img src="src/site/pics/mockups/tools/4.7-Overview.png"></img>
+
+---
+
+### PDF ###
+
+<img src="src/site/pics\mockups\pdf/1-Overview.png"></img>
+
+---
+
+<img src="src/site/pics\mockups\pdf/2-Battle.png"></img>
+
+---
+
+<img src="src/site/pics\mockups\pdf/3-Magic.png"></img>
+
+---
+
+<img src="src/site/pics\mockups\pdf/4-Holy.png"></img>
+
+---
+
+<img src="src/site/pics\mockups\pdf/5-Inventory.png"></img>
+
+---
+
+<img src="src/site/pics\mockups\pdf/6-Companion.png"></img>
+
+---
+
+<img src="src/site/pics\mockups\pdf/7-Notes.png"></img>
 
 ---
 
