@@ -1,8 +1,4 @@
-<p align=center>
-
 # Götterblick Notizen
-
-</p>
 
 <p align="center">
     <img src="src/site/pics/icon/Icon-2048x-Round.png" width="40%" align="center"></img>
