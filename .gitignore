@@ -104,3 +104,4 @@ fabric.properties
 
 # LibreOffice
 .~lock.*
+/target/classes/fonts/martian-mono/
