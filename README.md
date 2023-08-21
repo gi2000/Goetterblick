@@ -1,10 +1,10 @@
 <h1 style="text-align: center;"> Götterblick Notizen </h1>
 
-<img src="src/site/pics/icon/Icon-2048x-Round.png" style="max-width: 40%; margin: auto; display: block; padding-bottom: 20px;"></img>
-<img src="src/site/pics/mockups/tools/1-Startscreen.png" style="margin: auto; display: block;"></img>
-<img src="src/site/pics/mockups/tools/2-Characterscreen.png" style="margin: auto; display: block;"></img>
-<img src="src/site/pics/mockups/tools/3.2.1-characterstats_edit.png" style="margin: auto; display: block;"></img>
-<img src="src/site/pics/mockups/tools/3.6.2-Inventory.png" style="margin: auto; display: block;"></img>
+<img src="src/site/pics/icon/Icon-2048x-Round.png" width="40%"></img>
+<img src="src/site/pics/mockups/tools/1-Startscreen.png"></img>
+<img src="src/site/pics/mockups/tools/2-Characterscreen.png"></img>
+<img src="src/site/pics/mockups/tools/3.2.1-characterstats_edit.png"></img>
+<img src="src/site/pics/mockups/tools/3.6.2-Inventory.png"></img>
 
 Einteilung in Module: Charakter, Meisterschirm, Wiki, Karte (Avespfade), Impressum
 
