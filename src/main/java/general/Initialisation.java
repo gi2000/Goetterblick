@@ -49,7 +49,6 @@ public class Initialisation extends Application
 
             // Path to fxml
             URL fxmlURL = getClass().getClassLoader().getResource(fxmlName);
-            System.out.println();
             if (fxmlURL == null)
             {
                 // If not found, exit the program.
