@@ -31,6 +31,14 @@ public interface IController
     boolean switchToModule(IModule module);
 
     /**
+     * The hook method to implement all resize changes, once the window resizes.
+     *
+     * @param sizeFactor The factor of how much the window was set to smaller or bigger. F. ex. -2.0 means 2x smaller and 3.0 means
+     *                   3x bigger.
+     */
+    void resizeElements(double sizeFactor);
+
+    /**
      * The relevant model for this implementation of the MVC pattern.
      *
      * @return The model, holding this screen's data.

@@ -1,0 +1,19 @@
+.root
+{
+	-fx-font-size: 16pt;
+    -fx-font-family: "Courier New";
+	-fx-text-fill: #ffffff;
+    -fx-background: #18141d;
+}
+
+.button
+{
+	-fx-text-fill: #ffffff;
+	-fx-border-color: #ffffff;
+	-fx-background-color: rgba(0,0,0,0);
+	-fx-border-radius: 5px;
+}
+
+.button:pressed {
+	-fx-background-color: rgba(0,0,0,10);
+}

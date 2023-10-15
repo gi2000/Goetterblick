@@ -1,25 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.layout.*?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0"
-            prefWidth="1080.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/20.0.1"
+            xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <GridPane hgap="5.0" vgap="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                  AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-            <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints maxHeight="325.0" minHeight="10.0" prefHeight="76.0" vgrow="SOMETIMES"/>
-                <RowConstraints maxHeight="616.0" minHeight="335.0" prefHeight="532.0" vgrow="SOMETIMES"/>
-                <RowConstraints maxHeight="130.0" minHeight="10.0" prefHeight="102.0" vgrow="SOMETIMES"/>
-            </rowConstraints>
-            <children>
-                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+        <BorderPane layoutY="82.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                    AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <center>
+                <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0"
+                            prefWidth="200.0">
                     <children>
-                        <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                        <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                                  AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
                                   AnchorPane.topAnchor="0.0">
                             <columnConstraints>
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
@@ -31,7 +27,8 @@
                             <children>
                                 <AnchorPane>
                                     <children>
-                                        <GridPane fx:id="paneVersions" hgap="10.0" vgap="10.0"
+                                        <GridPane fx:id="paneVersions" hgap="20.0" maxHeight="1.7976931348623157E308"
+                                                  maxWidth="1.7976931348623157E308" vgap="20.0"
                                                   AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
                                                   AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <columnConstraints>
@@ -41,96 +38,134 @@
                                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                                             </columnConstraints>
                                             <rowConstraints>
-                                                <RowConstraints maxHeight="125.0" minHeight="10.0" prefHeight="50.0"
-                                                                vgrow="SOMETIMES"/>
-                                                <RowConstraints maxHeight="125.0" minHeight="10.0" prefHeight="50.0"
-                                                                vgrow="SOMETIMES"/>
+                                                <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES"/>
+                                                <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES"/>
                                             </rowConstraints>
                                             <children>
                                                 <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                                     <children>
-                                                        <Button fx:id="radioDSA1" mnemonicParsing="false" text="DSA 1"
-                                                                AnchorPane.bottomAnchor="0.0"
+                                                        <Button fx:id="radioDSA1" mnemonicParsing="false"
+                                                                styleClass="btn" text="DSA 1" textAlignment="CENTER"
+                                                                wrapText="true" AnchorPane.bottomAnchor="0.0"
                                                                 AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                                                                AnchorPane.topAnchor="0.0"/>
+                                                                AnchorPane.topAnchor="0.0">
+                                                            <cursor>
+                                                                <Cursor fx:constant="HAND"/>
+                                                            </cursor>
+                                                        </Button>
                                                     </children>
                                                 </AnchorPane>
                                                 <AnchorPane prefHeight="200.0" prefWidth="200.0"
                                                             GridPane.columnIndex="1">
                                                     <children>
-                                                        <Button fx:id="radioDSA2" mnemonicParsing="false" text="DSA 2"
-                                                                AnchorPane.bottomAnchor="0.0"
+                                                        <Button fx:id="radioDSA2" mnemonicParsing="false"
+                                                                styleClass="btn" text="DSA 2" textAlignment="CENTER"
+                                                                wrapText="true" AnchorPane.bottomAnchor="0.0"
                                                                 AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                                                                AnchorPane.topAnchor="0.0"/>
+                                                                AnchorPane.topAnchor="0.0">
+                                                            <cursor>
+                                                                <Cursor fx:constant="HAND"/>
+                                                            </cursor>
+                                                        </Button>
                                                     </children>
                                                 </AnchorPane>
                                                 <AnchorPane prefHeight="200.0" prefWidth="200.0"
                                                             GridPane.columnIndex="2">
                                                     <children>
-                                                        <Button fx:id="radioDSA3" mnemonicParsing="false" text="DSA 3"
-                                                                AnchorPane.bottomAnchor="0.0"
+                                                        <Button fx:id="radioDSA3" mnemonicParsing="false"
+                                                                styleClass="btn" text="DSA 3" textAlignment="CENTER"
+                                                                wrapText="true" AnchorPane.bottomAnchor="0.0"
                                                                 AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                                                                AnchorPane.topAnchor="0.0"/>
+                                                                AnchorPane.topAnchor="0.0">
+                                                            <cursor>
+                                                                <Cursor fx:constant="HAND"/>
+                                                            </cursor>
+                                                        </Button>
                                                     </children>
                                                 </AnchorPane>
                                                 <AnchorPane prefHeight="200.0" prefWidth="200.0"
                                                             GridPane.columnIndex="3">
                                                     <children>
-                                                        <Button fx:id="radioDSA4" mnemonicParsing="false" text="DSA4"
-                                                                AnchorPane.bottomAnchor="0.0"
+                                                        <Button fx:id="radioDSA4" mnemonicParsing="false"
+                                                                styleClass="btn" text="DSA 4" textAlignment="CENTER"
+                                                                wrapText="true" AnchorPane.bottomAnchor="0.0"
                                                                 AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                                                                AnchorPane.topAnchor="0.0"/>
+                                                                AnchorPane.topAnchor="0.0">
+                                                            <cursor>
+                                                                <Cursor fx:constant="HAND"/>
+                                                            </cursor>
+                                                        </Button>
                                                     </children>
                                                 </AnchorPane>
                                                 <AnchorPane prefHeight="200.0" prefWidth="200.0"
                                                             GridPane.columnIndex="1" GridPane.rowIndex="1">
                                                     <children>
                                                         <Button fx:id="radioDSA5" layoutX="33.0" layoutY="6.0"
-                                                                mnemonicParsing="false" text="DSA 5"
-                                                                AnchorPane.bottomAnchor="0.0"
+                                                                mnemonicParsing="false" styleClass="btn" text="DSA 5"
+                                                                textAlignment="CENTER" AnchorPane.bottomAnchor="0.0"
                                                                 AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                                                                AnchorPane.topAnchor="0.0"/>
+                                                                AnchorPane.topAnchor="0.0">
+                                                            <cursor>
+                                                                <Cursor fx:constant="HAND"/>
+                                                            </cursor>
+                                                        </Button>
                                                     </children>
                                                 </AnchorPane>
                                                 <AnchorPane prefHeight="200.0" prefWidth="200.0"
                                                             GridPane.columnIndex="2" GridPane.rowIndex="1">
                                                     <children>
                                                         <Button fx:id="radioDSK" layoutX="14.0" layoutY="22.0"
-                                                                mnemonicParsing="false" text="Die Schwarze Katze"
-                                                                AnchorPane.bottomAnchor="0.0"
+                                                                mnemonicParsing="false" styleClass="btn"
+                                                                text="Die Schwarze Katze" textAlignment="CENTER"
+                                                                wrapText="true" AnchorPane.bottomAnchor="0.0"
                                                                 AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                                                                AnchorPane.topAnchor="0.0"/>
+                                                                AnchorPane.topAnchor="0.0">
+                                                            <cursor>
+                                                                <Cursor fx:constant="HAND"/>
+                                                            </cursor>
+                                                        </Button>
                                                     </children>
                                                 </AnchorPane>
                                                 <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                                                     <children>
                                                         <Button fx:id="radioDSA4d1" layoutX="24.0" layoutY="-7.0"
-                                                                mnemonicParsing="false" text="DSA4.1"
+                                                                mnemonicParsing="false" styleClass="btn" text="DSA 4.1"
+                                                                textAlignment="CENTER" wrapText="true"
                                                                 AnchorPane.bottomAnchor="0.0"
                                                                 AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                                                                AnchorPane.topAnchor="0.0"/>
+                                                                AnchorPane.topAnchor="0.0">
+                                                            <cursor>
+                                                                <Cursor fx:constant="HAND"/>
+                                                            </cursor>
+                                                        </Button>
                                                     </children>
                                                 </AnchorPane>
                                                 <AnchorPane prefHeight="200.0" prefWidth="200.0"
                                                             GridPane.columnIndex="3" GridPane.rowIndex="1">
                                                     <children>
                                                         <Button fx:id="radioMyranor" layoutX="26.0" layoutY="34.0"
-                                                                mnemonicParsing="false" text="Myranor"
+                                                                mnemonicParsing="false" styleClass="btn" text="Myranor"
+                                                                textAlignment="CENTER" wrapText="true"
                                                                 AnchorPane.bottomAnchor="0.0"
                                                                 AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                                                                AnchorPane.topAnchor="0.0"/>
+                                                                AnchorPane.topAnchor="0.0">
+                                                            <cursor>
+                                                                <Cursor fx:constant="HAND"/>
+                                                            </cursor>
+                                                        </Button>
                                                     </children>
                                                 </AnchorPane>
                                             </children>
                                             <padding>
-                                                <Insets bottom="10.0" left="100.0" right="100.0" top="30.0"/>
+                                                <Insets bottom="30.0" left="100.0" right="100.0" top="30.0"/>
                                             </padding>
                                         </GridPane>
                                     </children>
                                 </AnchorPane>
                                 <AnchorPane GridPane.rowIndex="1">
                                     <children>
-                                        <GridPane fx:id="paneModules" hgap="10.0" vgap="10.0"
+                                        <GridPane fx:id="paneModules" hgap="20.0" maxHeight="1.7976931348623157E308"
+                                                  maxWidth="1.7976931348623157E308" vgap="20.0"
                                                   AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
                                                   AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <columnConstraints>
@@ -147,41 +182,62 @@
                                                 <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                                     <children>
                                                         <Button fx:id="buttonModuleChar" mnemonicParsing="false"
-                                                                text="Charakter" AnchorPane.bottomAnchor="0.0"
+                                                                styleClass="btn" text="Charakter" textAlignment="CENTER"
+                                                                wrapText="true" AnchorPane.bottomAnchor="0.0"
                                                                 AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                                                                AnchorPane.topAnchor="0.0"/>
+                                                                AnchorPane.topAnchor="0.0">
+                                                            <cursor>
+                                                                <Cursor fx:constant="HAND"/>
+                                                            </cursor>
+                                                        </Button>
                                                     </children>
                                                 </AnchorPane>
                                                 <AnchorPane prefHeight="200.0" prefWidth="200.0"
                                                             GridPane.columnIndex="1">
                                                     <children>
                                                         <Button fx:id="buttonModuleGM" mnemonicParsing="false"
-                                                                text="Meisterschirm" AnchorPane.bottomAnchor="0.0"
+                                                                styleClass="btn" text="Meisterschirm"
+                                                                textAlignment="CENTER" wrapText="true"
+                                                                AnchorPane.bottomAnchor="0.0"
                                                                 AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                                                                AnchorPane.topAnchor="0.0"/>
+                                                                AnchorPane.topAnchor="0.0">
+                                                            <cursor>
+                                                                <Cursor fx:constant="HAND"/>
+                                                            </cursor>
+                                                        </Button>
                                                     </children>
                                                 </AnchorPane>
                                                 <AnchorPane prefHeight="200.0" prefWidth="200.0"
                                                             GridPane.columnIndex="2">
                                                     <children>
                                                         <Button fx:id="buttonModuleMap" mnemonicParsing="false"
-                                                                text="Karte" AnchorPane.bottomAnchor="0.0"
+                                                                styleClass="btn" text="Karte" textAlignment="CENTER"
+                                                                wrapText="true" AnchorPane.bottomAnchor="0.0"
                                                                 AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                                                                AnchorPane.topAnchor="0.0"/>
+                                                                AnchorPane.topAnchor="0.0">
+                                                            <cursor>
+                                                                <Cursor fx:constant="HAND"/>
+                                                            </cursor>
+                                                        </Button>
                                                     </children>
                                                 </AnchorPane>
                                                 <AnchorPane prefHeight="200.0" prefWidth="200.0"
                                                             GridPane.columnIndex="3">
                                                     <children>
                                                         <Button fx:id="buttonModuleWiki" mnemonicParsing="false"
-                                                                text="Wiki" AnchorPane.bottomAnchor="0.0"
+                                                                styleClass="btn" text="Wiki" textAlignment="CENTER"
+                                                                wrapText="true" AnchorPane.bottomAnchor="0.0"
                                                                 AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                                                                AnchorPane.topAnchor="0.0"/>
+                                                                AnchorPane.topAnchor="0.0">
+                                                            <cursor>
+                                                                <Cursor fx:constant="HAND"/>
+                                                            </cursor>
+                                                        </Button>
                                                     </children>
                                                 </AnchorPane>
                                             </children>
                                             <padding>
-                                                <Insets bottom="10.0" left="100.0" right="100.0" top="30.0"/>
+                                                <Insets bottom="20.0" left="100.0" right="100.0" top="30.0"/>
                                             </padding>
                                         </GridPane>
                                     </children>
@@ -190,53 +246,34 @@
                         </GridPane>
                     </children>
                 </AnchorPane>
-                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
+            </center>
+            <bottom>
+                <HBox alignment="CENTER" BorderPane.alignment="CENTER">
                     <children>
-                        <GridPane hgap="10.0" vgap="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                                  AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                            <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="50.0"
-                                                   prefWidth="150.0"/>
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                            </columnConstraints>
-                            <rowConstraints>
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                            </rowConstraints>
-                            <children>
-                                <AnchorPane GridPane.columnIndex="1">
-                                    <children>
-                                        <Button fx:id="buttonModuleLegalNotice" mnemonicParsing="false" text="Impressum"
-                                                AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                                                AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
-                                    </children>
-                                </AnchorPane>
-                                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
-                                    <children>
-                                        <GridPane layoutX="47.0" layoutY="-31.0" AnchorPane.bottomAnchor="0.0"
-                                                  AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                                                  AnchorPane.topAnchor="0.0">
-                                            <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                                            </columnConstraints>
-                                            <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                                            </rowConstraints>
-                                        </GridPane>
-                                    </children>
-                                </AnchorPane>
-                            </children>
-                            <padding>
-                                <Insets bottom="40.0" left="20.0" right="20.0" top="20.0"/>
-                            </padding>
-                        </GridPane>
+                        <Button fx:id="buttonModuleLegalNotice" alignment="CENTER" contentDisplay="CENTER"
+                                maxHeight="75.0" maxWidth="400.0" minHeight="-Infinity" minWidth="-Infinity"
+                                mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" styleClass="btn"
+                                text="Impressum" wrapText="true">
+                            <cursor>
+                                <Cursor fx:constant="HAND"/>
+                            </cursor>
+                        </Button>
                     </children>
-                </AnchorPane>
-                <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                    <BorderPane.margin>
+                        <Insets/>
+                    </BorderPane.margin>
+                    <padding>
+                        <Insets bottom="50.0" top="20.0"/>
+                    </padding>
+                </HBox>
+            </bottom>
+            <top>
+                <AnchorPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="100.0"
+                            BorderPane.alignment="CENTER">
                     <children>
-                        <GridPane prefHeight="79.0" prefWidth="1080.0" AnchorPane.bottomAnchor="0.0"
-                                  AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <GridPane maxHeight="150.0" maxWidth="1.7976931348623157E308" prefHeight="100.0"
+                                  prefWidth="1080.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                                  AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <columnConstraints>
                                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="1015.0" minWidth="100.0"
                                                    prefWidth="100.0"/>
@@ -252,38 +289,23 @@
                             <children>
                                 <AnchorPane prefHeight="128.0" prefWidth="359.0" GridPane.columnIndex="3">
                                     <children>
-                                        <GridPane layoutY="10.0" maxHeight="150.0" maxWidth="150.0" minHeight="50.0"
-                                                  minWidth="50.0" AnchorPane.bottomAnchor="0.0"
-                                                  AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                                                  AnchorPane.topAnchor="0.0">
-                                            <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
-                                            </columnConstraints>
-                                            <rowConstraints>
-                                                <RowConstraints maxHeight="77.0" minHeight="10.0" prefHeight="77.0"
-                                                                vgrow="SOMETIMES"/>
-                                            </rowConstraints>
-                                            <children>
-                                                <AnchorPane>
-                                                    <children>
-                                                        <Button fx:id="buttonModuleSettings" mnemonicParsing="false"
-                                                                text="Settings" AnchorPane.bottomAnchor="0.0"
-                                                                AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                                                                AnchorPane.topAnchor="0.0"/>
-                                                    </children>
-                                                </AnchorPane>
-                                            </children>
-                                            <padding>
-                                                <Insets bottom="20.0" left="20.0" right="5.0" top="5.0"/>
-                                            </padding>
-                                        </GridPane>
+                                        <Button fx:id="buttonModuleSettings" minHeight="50.0" minWidth="50.0"
+                                                mnemonicParsing="false" text="STG" textAlignment="CENTER"
+                                                wrapText="true" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <cursor>
+                                                <Cursor fx:constant="HAND"/>
+                                            </cursor>
+                                        </Button>
                                     </children>
                                 </AnchorPane>
                             </children>
+                            <padding>
+                                <Insets left="5.0" right="5.0" top="5.0"/>
+                            </padding>
                         </GridPane>
                     </children>
                 </AnchorPane>
-            </children>
-        </GridPane>
+            </top>
+        </BorderPane>
     </children>
 </AnchorPane>

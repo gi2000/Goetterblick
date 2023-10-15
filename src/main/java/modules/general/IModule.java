@@ -2,7 +2,8 @@ package modules.general;
 
 import javafx.stage.Stage;
 
-import java.nio.file.Path;
+import java.net.URL;
+import java.util.List;
 
 /**
  * The interface for sub-areas such as the character creation, dungeon master, settings screen and so on.
@@ -59,5 +60,12 @@ public interface IModule
      *
      * @return The relative path to the FXML file.
      */
-    Path getFXMLPath();
+    URL getFXMLPath();
+
+    /**
+     * The relative path to the CSS files.
+     *
+     * @return A list of all relative paths to the CSS files.
+     */
+    List<String> getCSSPath();
 }
