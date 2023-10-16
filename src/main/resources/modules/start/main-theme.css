@@ -1,11 +1,29 @@
+/* Vectors and icons by SVG Repo: https://www.svgrepo.com */
+/* Martian Mono by Evil Martians: https://github.com/evilmartians/mono */
+
+/* Import Martian Mono Regular */
+@font-face 
+{
+    font-family: 'Martian Mono Cn Lt';
+    src: url("fonts/martian-mono/MartianMono-CnLt.ttf");
+}
+/* Import Martian Mono Bold */
+@font-face
+{
+    font-family: 'Martian Mono Cn Bd';
+    src: url("fonts/martian-mono/MartianMono-CnBd.ttf");
+}
+
+/* Root CSS for every element */
 .root
 {
 	-fx-font-size: 16pt;
-    -fx-font-family: "Courier New";
+    -fx-font-family: "Martian Mono Cn Lt";
 	-fx-text-fill: #ffffff;
     -fx-background: #18141d;
 }
 
+/* Root CSS for every button */
 .button
 {
 	-fx-text-fill: #ffffff;
@@ -13,7 +31,7 @@
 	-fx-background-color: rgba(0,0,0,0);
 	-fx-border-radius: 5px;
 }
-
-.button:pressed {
+.button:pressed 
+{
 	-fx-background-color: rgba(0,0,0,10);
 }

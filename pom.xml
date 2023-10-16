@@ -78,11 +78,11 @@
             <version>1.0.4</version>
         </dependency>
 
-        <!-- BootstrapFX -->
+        <!-- Java Reflections -->
         <dependency>
-            <groupId>org.kordamp.bootstrapfx</groupId>
-            <artifactId>bootstrapfx-core</artifactId>
-            <version>0.4.0</version>
+            <groupId>org.reflections</groupId>
+            <artifactId>reflections</artifactId>
+            <version>0.10.2</version>
         </dependency>
 
         <!-- Logback and SLF4J for logging -->

@@ -21,7 +21,7 @@
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
                             </columnConstraints>
                             <rowConstraints>
-                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES"/>
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                             </rowConstraints>
                             <children>
@@ -44,9 +44,9 @@
                                             <children>
                                                 <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                                     <children>
-                                                        <Button fx:id="radioDSA1" mnemonicParsing="false"
-                                                                styleClass="btn" text="DSA 1" textAlignment="CENTER"
-                                                                wrapText="true" AnchorPane.bottomAnchor="0.0"
+                                                        <Button fx:id="radioDSA1" mnemonicParsing="false" text="DSA 1"
+                                                                textAlignment="CENTER" wrapText="true"
+                                                                AnchorPane.bottomAnchor="0.0"
                                                                 AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
                                                                 AnchorPane.topAnchor="0.0">
                                                             <cursor>
@@ -58,9 +58,9 @@
                                                 <AnchorPane prefHeight="200.0" prefWidth="200.0"
                                                             GridPane.columnIndex="1">
                                                     <children>
-                                                        <Button fx:id="radioDSA2" mnemonicParsing="false"
-                                                                styleClass="btn" text="DSA 2" textAlignment="CENTER"
-                                                                wrapText="true" AnchorPane.bottomAnchor="0.0"
+                                                        <Button fx:id="radioDSA2" mnemonicParsing="false" text="DSA 2"
+                                                                textAlignment="CENTER" wrapText="true"
+                                                                AnchorPane.bottomAnchor="0.0"
                                                                 AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
                                                                 AnchorPane.topAnchor="0.0">
                                                             <cursor>
@@ -72,9 +72,9 @@
                                                 <AnchorPane prefHeight="200.0" prefWidth="200.0"
                                                             GridPane.columnIndex="2">
                                                     <children>
-                                                        <Button fx:id="radioDSA3" mnemonicParsing="false"
-                                                                styleClass="btn" text="DSA 3" textAlignment="CENTER"
-                                                                wrapText="true" AnchorPane.bottomAnchor="0.0"
+                                                        <Button fx:id="radioDSA3" mnemonicParsing="false" text="DSA 3"
+                                                                textAlignment="CENTER" wrapText="true"
+                                                                AnchorPane.bottomAnchor="0.0"
                                                                 AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
                                                                 AnchorPane.topAnchor="0.0">
                                                             <cursor>
@@ -86,9 +86,9 @@
                                                 <AnchorPane prefHeight="200.0" prefWidth="200.0"
                                                             GridPane.columnIndex="3">
                                                     <children>
-                                                        <Button fx:id="radioDSA4" mnemonicParsing="false"
-                                                                styleClass="btn" text="DSA 4" textAlignment="CENTER"
-                                                                wrapText="true" AnchorPane.bottomAnchor="0.0"
+                                                        <Button fx:id="radioDSA4" mnemonicParsing="false" text="DSA 4"
+                                                                textAlignment="CENTER" wrapText="true"
+                                                                AnchorPane.bottomAnchor="0.0"
                                                                 AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
                                                                 AnchorPane.topAnchor="0.0">
                                                             <cursor>
@@ -101,7 +101,7 @@
                                                             GridPane.columnIndex="1" GridPane.rowIndex="1">
                                                     <children>
                                                         <Button fx:id="radioDSA5" layoutX="33.0" layoutY="6.0"
-                                                                mnemonicParsing="false" styleClass="btn" text="DSA 5"
+                                                                mnemonicParsing="false" text="DSA 5"
                                                                 textAlignment="CENTER" AnchorPane.bottomAnchor="0.0"
                                                                 AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
                                                                 AnchorPane.topAnchor="0.0">
@@ -115,9 +115,9 @@
                                                             GridPane.columnIndex="2" GridPane.rowIndex="1">
                                                     <children>
                                                         <Button fx:id="radioDSK" layoutX="14.0" layoutY="22.0"
-                                                                mnemonicParsing="false" styleClass="btn"
-                                                                text="Die Schwarze Katze" textAlignment="CENTER"
-                                                                wrapText="true" AnchorPane.bottomAnchor="0.0"
+                                                                mnemonicParsing="false" text="Die Schwarze Katze"
+                                                                textAlignment="CENTER" wrapText="true"
+                                                                AnchorPane.bottomAnchor="0.0"
                                                                 AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
                                                                 AnchorPane.topAnchor="0.0">
                                                             <cursor>
@@ -129,7 +129,7 @@
                                                 <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                                                     <children>
                                                         <Button fx:id="radioDSA4d1" layoutX="24.0" layoutY="-7.0"
-                                                                mnemonicParsing="false" styleClass="btn" text="DSA 4.1"
+                                                                mnemonicParsing="false" text="DSA 4.1"
                                                                 textAlignment="CENTER" wrapText="true"
                                                                 AnchorPane.bottomAnchor="0.0"
                                                                 AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
@@ -144,7 +144,7 @@
                                                             GridPane.columnIndex="3" GridPane.rowIndex="1">
                                                     <children>
                                                         <Button fx:id="radioMyranor" layoutX="26.0" layoutY="34.0"
-                                                                mnemonicParsing="false" styleClass="btn" text="Myranor"
+                                                                mnemonicParsing="false" text="Myranor"
                                                                 textAlignment="CENTER" wrapText="true"
                                                                 AnchorPane.bottomAnchor="0.0"
                                                                 AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
@@ -175,15 +175,14 @@
                                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                                             </columnConstraints>
                                             <rowConstraints>
-                                                <RowConstraints maxHeight="200.0" minHeight="10.0" prefHeight="30.0"
-                                                                vgrow="SOMETIMES"/>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                                             </rowConstraints>
                                             <children>
-                                                <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                                <AnchorPane prefHeight="300.0" prefWidth="200.0">
                                                     <children>
                                                         <Button fx:id="buttonModuleChar" mnemonicParsing="false"
-                                                                styleClass="btn" text="Charakter" textAlignment="CENTER"
-                                                                wrapText="true" AnchorPane.bottomAnchor="0.0"
+                                                                text="Charakter" textAlignment="CENTER" wrapText="true"
+                                                                AnchorPane.bottomAnchor="0.0"
                                                                 AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
                                                                 AnchorPane.topAnchor="0.0">
                                                             <cursor>
@@ -196,9 +195,8 @@
                                                             GridPane.columnIndex="1">
                                                     <children>
                                                         <Button fx:id="buttonModuleGM" mnemonicParsing="false"
-                                                                styleClass="btn" text="Meisterschirm"
-                                                                textAlignment="CENTER" wrapText="true"
-                                                                AnchorPane.bottomAnchor="0.0"
+                                                                text="Meisterschirm" textAlignment="CENTER"
+                                                                wrapText="true" AnchorPane.bottomAnchor="0.0"
                                                                 AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
                                                                 AnchorPane.topAnchor="0.0">
                                                             <cursor>
@@ -211,8 +209,8 @@
                                                             GridPane.columnIndex="2">
                                                     <children>
                                                         <Button fx:id="buttonModuleMap" mnemonicParsing="false"
-                                                                styleClass="btn" text="Karte" textAlignment="CENTER"
-                                                                wrapText="true" AnchorPane.bottomAnchor="0.0"
+                                                                text="Karte" textAlignment="CENTER" wrapText="true"
+                                                                AnchorPane.bottomAnchor="0.0"
                                                                 AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
                                                                 AnchorPane.topAnchor="0.0">
                                                             <cursor>
@@ -225,8 +223,8 @@
                                                             GridPane.columnIndex="3">
                                                     <children>
                                                         <Button fx:id="buttonModuleWiki" mnemonicParsing="false"
-                                                                styleClass="btn" text="Wiki" textAlignment="CENTER"
-                                                                wrapText="true" AnchorPane.bottomAnchor="0.0"
+                                                                text="Wiki" textAlignment="CENTER" wrapText="true"
+                                                                AnchorPane.bottomAnchor="0.0"
                                                                 AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
                                                                 AnchorPane.topAnchor="0.0">
                                                             <cursor>
@@ -252,8 +250,8 @@
                     <children>
                         <Button fx:id="buttonModuleLegalNotice" alignment="CENTER" contentDisplay="CENTER"
                                 maxHeight="75.0" maxWidth="400.0" minHeight="-Infinity" minWidth="-Infinity"
-                                mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" styleClass="btn"
-                                text="Impressum" wrapText="true">
+                                mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="Impressum"
+                                wrapText="true">
                             <cursor>
                                 <Cursor fx:constant="HAND"/>
                             </cursor>
