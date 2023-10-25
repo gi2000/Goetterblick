@@ -107,3 +107,4 @@ fabric.properties
 /target/classes/fonts/martian-mono/
 /src/site/documents/rulesets/dsa-4.1/~$dsa-4.1.xlsx
 /src/site/documents/sql-tables/.plan/~$Tableplan.ods
+/target/

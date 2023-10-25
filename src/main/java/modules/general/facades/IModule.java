@@ -5,7 +5,8 @@ import javafx.stage.Stage;
 import java.net.URL;
 
 /**
- * The interface for sub-areas such as the character creation, dungeon master, settings screen and so on.
+ * The interface for sub-areas such as the character creation, dungeon master, settings screen and so on. Implement the abstract class
+ * {@code AbstractModule} instead of this interface for easier integration.
  */
 public interface IModule
 {
@@ -13,7 +14,7 @@ public interface IModule
     /**
      * Initializes this module's screen with everything necessary.
      *
-     * @param stage       The main stage / scene / window, where everything will be displayed in.
+     * @param stage       The main stage / window, where everything will be displayed in.
      * @param screenTitle The main windows title, displayed at the top of the window frame.
      * @return The root node of the FXML.
      */

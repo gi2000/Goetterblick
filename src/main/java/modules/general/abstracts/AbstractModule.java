@@ -14,6 +14,10 @@ import java.lang.invoke.MethodHandles;
 import java.net.URL;
 import java.util.List;
 
+/**
+ * The abstract class for sub-areas such as the character creation, dungeon master, settings screen and so on. Implement this class
+ * instead of the {@code IModule} interface for easier integration.
+ */
 public abstract class AbstractModule implements IModule
 {
 
@@ -26,37 +30,31 @@ public abstract class AbstractModule implements IModule
 
     private String screenTitle;
 
-
-    public AbstractModule()
-    {
-
-    }
-
     @Override
     public boolean initScreen(Stage stage, String screenTitle)
     {
-        // Initialize stage and title
         setStage(stage);
         setScreenTitle(screenTitle);
 
-        // Load initial FXML and set it as the current root
+        return loadFiles() && initController() && displayScreen();
+    }
+
+    /**
+     * Loads all relevant files for the window to be displayed.
+     *
+     * @return Whether everything was loaded successfully.
+     */
+    protected boolean loadFiles()
+    {
         Parent root = loadFXML();
         if (root == null)
         {
-            LOG.error("Couldn't load the FXML in module \"" + getName() + "\".");
-            return false;
-        }
-
-        // Load up the controller (in which also the view and model are loaded)
-        if (!initController(stage))
-        {
-            LOG.error("Couldn't load the controller in module \"" + getName() + "\".");
             return false;
         }
 
         // Update the root node and display the screen.
         getStage().getScene().setRoot(root);
-        return displayScreen();
+        return loadCSS();
     }
 
     /**
@@ -79,12 +77,6 @@ public abstract class AbstractModule implements IModule
         {
             // Insert the fxml contents into current stage
             parent = FXMLLoader.load(fxmlUrl);
-
-            // If the scene is already set, then change the scene to this newly loaded fxml scene.
-            if (getStage().getScene() != null)
-            {
-                getStage().getScene().rootProperty().setValue(parent);
-            }
         }
         catch (IOException e)
         {
@@ -116,26 +108,15 @@ public abstract class AbstractModule implements IModule
     protected boolean loadCSS()
     {
         // Apply css styles from external stylesheet
-        List<String> cssPaths = getCSSPaths();
+        List<URL> cssPaths = getCSSPaths();
         getStage().getScene().getStylesheets().clear();
 
-        for (String cssPath : cssPaths)
+        for (URL cssURL : cssPaths)
         {
-            URL cssURL = getClass().getClassLoader().getResource(cssPath);
-
-            // If file was found, apply css
-            if (cssURL != null)
-            {
-                // Turns the URL into a String representation
-                String css = cssURL.toExternalForm();
-                getStage().getScene().getStylesheets().add(css);
-                LOG.debug("Loaded css file \"" + cssPath + "\" for current module \"" + getName() + "\"");
-            }
-            else
-            {
-                LOG.error("Couldn't load the CSS stylesheet \"" + cssPath + "\" for current module \"" + getName() + "\"");
-                return false;
-            }
+            // Turns the URL into a String representation
+            String css = cssURL.toExternalForm();
+            getStage().getScene().getStylesheets().add(css);
+            LOG.debug("Loaded css file \"" + cssURL.getFile() + "\" for current module \"" + getName() + "\"");
         }
 
         return true;
@@ -153,26 +134,37 @@ public abstract class AbstractModule implements IModule
     // ################
 
     /**
-     * Initializes this module's controller and with it the relevant view and model.
+     * Initializes this module's controller and with it the relevant view and model. This does not need to be implemented, if the
+     * developer decides to include a controller in the FXML file. If the developer decides to not include on, this is the method to
+     * call for FXML injection and controller initialisation.
      *
-     * @param stage The main stage / scene / window, where everything will be displayed in.
      * @return Whether the controller was successfully created.
      */
-    protected abstract boolean initController(Stage stage);
+    protected abstract boolean initController();
 
     /**
-     * The relative path to the FXML file.
+     * The absolute path to the FXML file.
      *
-     * @return The relative path to the FXML file.
+     * @return The absolute path to the FXML file.
      */
     protected abstract URL getFXMLPath();
 
     /**
-     * The relative path to the CSS files.
+     * The absolute path to the CSS files.
      *
-     * @return A list of all relative paths to the CSS files.
+     * @return A list of all absolute paths to the CSS files.
      */
-    protected abstract List<String> getCSSPaths();
+    protected abstract List<URL> getCSSPaths();
+
+    /**
+     * This hook-method directly and <b>only</b> loads the css via the following code:<br>
+     * <code>return getClass().getResource(cssPath);</code><br>
+     * This line of code needs to be implemented in each module, since the files can't be found otherwise when compiled to a jar.
+     *
+     * @param cssPath The path to the css file.
+     * @return The URL to the given css path.
+     */
+    protected abstract URL loadCSS(String cssPath);
 
     // ###############
     // Getter & Setter

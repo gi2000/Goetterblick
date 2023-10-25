@@ -9,11 +9,9 @@ public interface IController
 {
     /**
      * Prepares and initializes this controller. Here the model and view get prepared, too.
-     *
-     * @return Whether the initialization was successful.
      */
     @FXML
-    boolean initialize();
+    void initialize();
 
     /**
      * Tears everything down from the current module.

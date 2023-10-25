@@ -9,9 +9,8 @@ import org.slf4j.LoggerFactory;
  * <br>
  * {@code private static final Logger LOG = LoggerHandler.getLogger(MethodHandles.lookup().lookupClass());}
  */
-public abstract class LoggerHandler
+public class LoggerHandler extends AbstractHandler
 {
-
     private LoggerHandler()
     {
         // Do nothing

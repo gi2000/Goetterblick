@@ -4,57 +4,41 @@ import data.annotations.Module;
 import data.consts.ConstScreen;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import modules.general.abstracts.AbstractModule;
+import modules.general.facades.IController;
 import org.slf4j.Logger;
 import utils.general.Utils;
 import utils.handler.LoggerHandler;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.lang.invoke.MethodHandles;
 import java.net.URL;
 import java.util.List;
+import java.util.stream.Collectors;
 
-@Module(name = "start")
+@Module(name = "start", isDisplayedInHome = false)
 @SuppressWarnings(value = "unused")
 public class StartModule extends AbstractModule
 {
 
-    private              Parent root;
     private static final Logger LOG = LoggerHandler.getLogger(MethodHandles.lookup().lookupClass());
+
+    private Parent      root;
+    private IController controller;
 
     @Override
     public boolean initScreen(Stage stage, String screenTitle)
     {
-        // Initialize stage and title
         setStage(stage);
         setScreenTitle(screenTitle);
-        Parent root = loadFXML();
 
-        // If the current root isn't set yet, then the entire window doesn't exist yet -> Build it from grounds up.
-        if (getRoot() == null)
-        {
-            setRoot(root);
-            loadIcons();
-            loadScene();
-        }
-
-        // Load up the controller (in which also the view and model are loaded) and then the window itself.
-        if (!initController(getStage()))
-        {
-            LOG.error("Couldn't load the controller for module \"" + getName() + "\".");
-            return false;
-        }
-
-        // Load initial FXML and set it as the current root
-        getStage().getScene().setRoot(getRoot());
-        return displayScreen();
+        // Load content from external files and load up controller
+        loadFiles(getRoot(), loadFXML());
+        return initController();
     }
 
     @Override
-    protected boolean initController(Stage stage)
+    protected boolean initController()
     {
         return true;
     }
@@ -62,6 +46,7 @@ public class StartModule extends AbstractModule
     @Override
     public boolean deconstructScreen()
     {
+        getController().deconstruct();
         return false;
     }
 
@@ -74,13 +59,8 @@ public class StartModule extends AbstractModule
     @Override
     public boolean displayScreen()
     {
-        // Load CSS and display it, if successfully loaded.
-        boolean out = loadCSS();
-        if (out)
-        {
-            getStage().show();
-        }
-        return out;
+        getStage().show();
+        return true;
     }
 
     /**
@@ -106,32 +86,48 @@ public class StartModule extends AbstractModule
      */
     private void loadIcons()
     {
-        // Get all icon paths in descending order.
-        List<String> icons = Utils.toList(
+        // Get all icon paths in descending order and loads them to the current icon cache
+        getStage().getIcons().addAll(Utils.loadImagesFromResources(getClass(),
                 ConstScreen.FXML_START_ICON_512,
                 ConstScreen.FXML_START_ICON_256,
                 ConstScreen.FXML_START_ICON_128,
-                ConstScreen.FXML_START_ICON_64
-        );
-
-        // Iterate over all icon paths to load them into the available icon cache
-        for (String iconPath : icons)
-        {
-            try (InputStream stream = getClass().getClassLoader().getResourceAsStream(iconPath))
-            {
-                if (stream != null)
-                {
-                    getStage().getIcons().add(new Image(stream));
-                    LOG.debug("Added icon: \"" + iconPath + "\"");
-                }
-            }
-            catch (IOException e)
-            {
-                LOG.error("Couldn't load an icon: \"" + iconPath + "\"");
-                e.printStackTrace();
-            }
-        }
+                ConstScreen.FXML_START_ICON_64));
     }
+
+    /**
+     * Loads in the fxml and css files.
+     *
+     * @param oldRoot The old root pane. May be null.
+     * @param newRoot The new root pane, replacing the old one. Not null.
+     */
+    private void loadFiles(Parent oldRoot, Parent newRoot)
+    {
+        if (oldRoot == null || oldRoot.getScene() == null)
+        {
+            // If the current root isn't set yet, then the entire window doesn't exist yet -> Build it from grounds up.
+            setRoot(newRoot);
+            loadIcons();
+            loadScene();
+        }
+        else
+        {
+            // If the scene is already set, then change the scene to this newly loaded fxml scene.
+            setRoot(newRoot);
+            getStage().getScene().setRoot(getRoot());
+        }
+
+        loadCSS();
+    }
+
+    @Override
+    protected URL loadCSS(String cssPath)
+    {
+        return getClass().getResource(cssPath);
+    }
+
+    // ###############
+    // Getter & Setter
+    // ###############
 
     public Parent getRoot()
     {
@@ -145,12 +141,15 @@ public class StartModule extends AbstractModule
 
     public URL getFXMLPath()
     {
-        return getClass().getClassLoader().getResource(ConstScreen.FXML_START_WINDOW);
+        return getClass().getResource(ConstScreen.FXML_START_WINDOW);
     }
 
-    public List<String> getCSSPaths()
+    public List<URL> getCSSPaths()
     {
-        return Utils.toList(ConstScreen.FXML_START_CSS);
+        return Utils.toList(ConstScreen.FXML_START_CSS)
+                .stream()
+                .map(StartModule.class::getResource)
+                .collect(Collectors.toList());
     }
 
     public URL getModuleImage()

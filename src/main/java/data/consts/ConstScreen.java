@@ -1,5 +1,7 @@
 package data.consts;
 
+import utils.handler.AbstractHandler;
+
 public interface ConstScreen
 {
     // ###########################
@@ -17,27 +19,41 @@ public interface ConstScreen
     // ############
     // Start-Module
     // ############
-    String FXML_START_WINDOW      = "modules/start/main-window.fxml";
-    String FXML_START_CSS         = "modules/start/main-theme.css";
-    String FXML_START_ICON_FOLDER = "modules/start/icons/";
-    String FXML_START_ICON_64     = FXML_START_ICON_FOLDER + "icon-square-64.png";
-    String FXML_START_ICON_128    = FXML_START_ICON_FOLDER + "icon-square-128.png";
-    String FXML_START_ICON_256    = FXML_START_ICON_FOLDER + "icon-square-256.png";
-    String FXML_START_ICON_512    = FXML_START_ICON_FOLDER + "icon-square-512.png";
+    String FXML_START_WINDOW = "main-window.fxml";
+    String FXML_START_CSS    = "main-theme.css";
 
-    // ################
+    String FXML_START_ICON_DIR = "icons";
+
+    String FXML_START_ICON_64  = join(FXML_START_ICON_DIR, "icon-square-64.png");
+    String FXML_START_ICON_128 = join(FXML_START_ICON_DIR, "icon-square-128.png");
+    String FXML_START_ICON_256 = join(FXML_START_ICON_DIR, "icon-square-256.png");
+    String FXML_START_ICON_512 = join(FXML_START_ICON_DIR, "icon-square-512.png");
+
+    // #################
+    // Charcreate-Module
+    // #################
+
+    // #################
     // GM-Screen-Module
-    // ################
+    // #################
 
-    // ################
+    // #################
     // Map-Module
-    // ################
+    // #################
 
-    // ################
+    // #################
     // Wiki-Module
-    // ################
+    // #################
 
-    // ################
-    // Map-Module
-    // ################
+    // Helping Methods
+
+    static String join(String... paths)
+    {
+        return String.join("/", paths);
+    }
+
+    static String s()
+    {
+        return AbstractHandler.s();
+    }
 }
