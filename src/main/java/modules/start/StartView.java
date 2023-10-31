@@ -1,5 +1,16 @@
 package modules.start;
 
-public class StartView
+import modules.general.abstracts.AbstractView;
+
+public class StartView extends AbstractView
 {
+    public boolean initialize()
+    {
+        return false;
+    }
+
+    public boolean deconstruct()
+    {
+        return false;
+    }
 }

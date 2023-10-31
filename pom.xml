@@ -106,6 +106,20 @@
             <artifactId>ikonli-bootstrapicons-pack</artifactId>
             <version>12.3.1</version>
         </dependency>
+
+        <!-- Apache Commons Configuration -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-configuration2</artifactId>
+            <version>2.9.0</version>
+        </dependency>
+        <!-- Apache Commons BeanUtils -->
+        <!-- ! Needed for loading an existing cfg file !-->
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>1.9.4</version>
+        </dependency>
     </dependencies>
 
     <build>

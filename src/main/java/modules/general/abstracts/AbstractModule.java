@@ -69,7 +69,7 @@ public abstract class AbstractModule implements IModule
         URL fxmlUrl = getFXMLPath();
         if (fxmlUrl == null)
         {
-            LOG.error("Couldn't load FXML file for current module: \"" + getName() + "\"", new RuntimeException());
+            LOG.error("Couldn't load FXML file for current module: " + getName(), new RuntimeException());
             return null;
         }
 
@@ -80,11 +80,11 @@ public abstract class AbstractModule implements IModule
         }
         catch (IOException e)
         {
-            LOG.error("Couldn't load FXML file for current module: \"" + getName() + "\"", e);
+            LOG.error("Couldn't load FXML file for current module: " + getName(), e);
             return null;
         }
 
-        LOG.debug("Loaded FXML file for current module: \"" + getName() + "\"");
+        LOG.debug("Loaded FXML file for current module: " + getName());
         return parent;
     }
 
@@ -116,7 +116,7 @@ public abstract class AbstractModule implements IModule
             // Turns the URL into a String representation
             String css = cssURL.toExternalForm();
             getStage().getScene().getStylesheets().add(css);
-            LOG.debug("Loaded css file \"" + cssURL.getFile() + "\" for current module \"" + getName() + "\"");
+            LOG.debug("Loaded css file \"" + cssURL.getFile() + "\" for current module \"" + getName() + "\".");
         }
 
         return true;

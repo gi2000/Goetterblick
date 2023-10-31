@@ -2,7 +2,7 @@
 /* Martian Mono by Evil Martians: https://github.com/evilmartians/mono */
 
 /* Import Martian Mono Regular */
-@font-face 
+@font-face
 {
     font-family: 'Martian Mono Cn Lt';
     src: url("fonts/martian-mono/MartianMono-CnLt.ttf");
@@ -14,7 +14,7 @@
     src: url("fonts/martian-mono/MartianMono-CnBd.ttf");
 }
 
-/* Root CSS for every element */
+/* CSS for every element */
 .root
 {
 	-fx-font-size: 16pt;
@@ -23,7 +23,7 @@
     -fx-background: #18141d;
 }
 
-/* Root CSS for every button */
+/* CSS for every button */
 .button
 {
 	-fx-text-fill: #ffffff;
@@ -31,12 +31,14 @@
 	-fx-background-color: rgba(0,0,0,0);
 	-fx-border-radius: 5px;
 }
-.button:pressed 
+.button:pressed
 {
 	-fx-background-color: rgba(0,0,0,20);
 }
 
+/* CSS for every tooltip */
 .tooltip
 {
     -fx-font-size: 10pt;
+	-fx-border-radius: 5px;
 }

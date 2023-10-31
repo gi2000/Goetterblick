@@ -271,15 +271,15 @@
                 <AnchorPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="100.0"
                             BorderPane.alignment="CENTER">
                     <children>
-                        <GridPane maxHeight="150.0" maxWidth="1.7976931348623157E308" prefHeight="100.0"
-                                  prefWidth="1080.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                        <GridPane alignment="CENTER" maxHeight="150.0" maxWidth="1.7976931348623157E308"
+                                  prefHeight="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
                                   AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1015.0" minWidth="100.0"
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="100.0"
                                                    prefWidth="100.0"/>
-                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1015.0" minWidth="10.0"
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0"
                                                    prefWidth="783.0"/>
-                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="161.0" minWidth="150.0"
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="150.0"
                                                    prefWidth="161.0"/>
                                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="90.0" prefWidth="90.0"/>
                             </columnConstraints>

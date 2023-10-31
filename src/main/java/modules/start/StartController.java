@@ -2,10 +2,8 @@ package modules.start;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Tooltip;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.util.Duration;
 import modules.general.facades.IController;
 import modules.general.facades.IModel;
 import modules.general.facades.IModule;
@@ -50,20 +48,19 @@ public class StartController implements IController
     @FXML
     private AnchorPane root;
 
+    private StartView  startView;
+    private StartModel startModel;
+
     @FXML
     @Override
     public void initialize()
     {
-        Tooltip tip = new Tooltip("Wählt DSA 5 für alle Module aus.");
-        tip.setShowDuration(Duration.INDEFINITE);
-        tip.setShowDelay(Duration.seconds(0.5));
 
-        radioDSA5.setTooltip(tip);
     }
 
     public boolean deconstruct()
     {
-        return false;
+        return startView.deconstruct() && startModel.deconstruct();
     }
 
     public boolean switchToModule(IModule module)
@@ -78,11 +75,11 @@ public class StartController implements IController
 
     public IModel getModel()
     {
-        return null;
+        return startModel;
     }
 
     public IView getView()
     {
-        return null;
+        return startView;
     }
 }

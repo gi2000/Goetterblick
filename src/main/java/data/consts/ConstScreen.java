@@ -1,20 +1,25 @@
 package data.consts;
 
+import data.general.Tuple;
 import utils.handler.AbstractHandler;
 
 public interface ConstScreen
 {
-    // ###########################
-    //     General Properties
-    // Export later to a .cfg file
-    // ###########################
+    // ##################
+    // General Properties
+    // ##################
     String FXML_MAIN_TITLE = "Götterblick";
 
-    int SCREEN_HEIGHT = 720;
-    int SCREEN_WIDTH  = 1080;
+    // ################################
+    // TODO Export later to a .cfg file
+    // ################################
+    Tuple<String, Integer> DEFAULT_SCREEN_HEIGHT = new Tuple<>("ui.screens.height", 720);
+    Tuple<String, Integer> DEFAULT_SCREEN_WIDTH  = new Tuple<>("ui.screens.width", 1080);
 
-    int SCREEN_MIN_HEIGHT = 480;
-    int SCREEN_MIN_WIDTH  = 720;
+    Tuple<String, Integer> DEFAULT_SCREEN_MIN_HEIGHT = new Tuple<>("ui.screens.min-height", 480);
+    Tuple<String, Integer> DEFAULT_SCREEN_MIN_WIDTH  = new Tuple<>("ui.screens.min-width", 720);
+
+    Tuple<String, Boolean> DEFAULT_TOGGLE_FULLSCREEN = new Tuple<>("ui.screens.start-maximized", false);
 
     // ############
     // Start-Module
@@ -47,11 +52,22 @@ public interface ConstScreen
 
     // Helping Methods
 
+    /**
+     * Joins all strings together in a path with the system dependent symbol.
+     *
+     * @param paths The paths to connect as one.
+     * @return The fully connected path string.
+     */
     static String join(String... paths)
     {
-        return String.join("/", paths);
+        return String.join(s(), paths);
     }
 
+    /**
+     * Returns the operating system dependent file separator.
+     *
+     * @return The OS specific file separator.
+     */
     static String s()
     {
         return AbstractHandler.s();

@@ -1,6 +1,6 @@
 package utils.handler;
 
-import java.io.File;
+import utils.general.Utils;
 
 public abstract class AbstractHandler
 {
@@ -11,6 +11,16 @@ public abstract class AbstractHandler
      */
     public static String s()
     {
-        return File.separator;
+        return Utils.s();
+    }
+
+    /**
+     * Returns the operating system dependent line separator.
+     *
+     * @return The os specific line separator.
+     */
+    public static String n()
+    {
+        return Utils.n();
     }
 }

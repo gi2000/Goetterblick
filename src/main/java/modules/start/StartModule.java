@@ -7,8 +7,10 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import modules.general.abstracts.AbstractModule;
 import modules.general.facades.IController;
+import org.apache.commons.configuration2.Configuration;
 import org.slf4j.Logger;
 import utils.general.Utils;
+import utils.handler.ConfigHandler;
 import utils.handler.LoggerHandler;
 
 import java.lang.invoke.MethodHandles;
@@ -68,15 +70,22 @@ public class StartModule extends AbstractModule
      */
     private void loadScene()
     {
-        int minWidth = ConstScreen.SCREEN_MIN_WIDTH;
-        int minHeight = ConstScreen.SCREEN_MIN_HEIGHT;
+        Configuration cfg = ConfigHandler.getMainConfig();
+
+        int minWidth = cfg.getInt(ConstScreen.DEFAULT_SCREEN_MIN_WIDTH.getVal1(), ConstScreen.DEFAULT_SCREEN_MIN_WIDTH.getVal2());
+        int minHeight = cfg.getInt(ConstScreen.DEFAULT_SCREEN_MIN_HEIGHT.getVal1(), ConstScreen.DEFAULT_SCREEN_MIN_HEIGHT.getVal2());
+        int width = cfg.getInt(ConstScreen.DEFAULT_SCREEN_WIDTH.getVal1(), ConstScreen.DEFAULT_SCREEN_WIDTH.getVal2());
+        int height = cfg.getInt(ConstScreen.DEFAULT_SCREEN_HEIGHT.getVal1(), ConstScreen.DEFAULT_SCREEN_HEIGHT.getVal2());
+        boolean startMaximized = cfg.getBoolean(ConstScreen.DEFAULT_TOGGLE_FULLSCREEN.getVal1(),
+                ConstScreen.DEFAULT_TOGGLE_FULLSCREEN.getVal2());
 
         Stage stage = getStage();
-        Scene scene = new Scene(getRoot(), ConstScreen.SCREEN_WIDTH, ConstScreen.SCREEN_HEIGHT);
+        Scene scene = new Scene(getRoot(), width, height);
 
         stage.setMinWidth(minWidth);
         stage.setMinHeight(minHeight);
         stage.setScene(scene);
+        stage.setMaximized(startMaximized);
 
         LOG.debug("Starting up window with minimum sizes: min-width = " + minWidth + "p, min-height = " + minHeight + "p");
     }
@@ -139,11 +148,13 @@ public class StartModule extends AbstractModule
         this.root = root;
     }
 
+    @Override
     public URL getFXMLPath()
     {
         return getClass().getResource(ConstScreen.FXML_START_WINDOW);
     }
 
+    @Override
     public List<URL> getCSSPaths()
     {
         return Utils.toList(ConstScreen.FXML_START_CSS)
@@ -152,11 +163,13 @@ public class StartModule extends AbstractModule
                 .collect(Collectors.toList());
     }
 
+    @Override
     public URL getModuleImage()
     {
         return null;
     }
 
+    @Override
     public String getName()
     {
         return "Start";
