@@ -1,5 +1,7 @@
 package utils.handler;
 
+import utils.general.Utils;
+
 import java.nio.file.Path;
 import java.sql.Connection;
 
@@ -12,6 +14,6 @@ public class DBHandler extends AbstractHandler
 
     public static Path getDBWorkingDir()
     {
-        return ConfigHandler.getCurrentWorkingDir().resolve("db" + s() + "main.db");
+        return Utils.getCurrentWorkingDir().resolve("db").resolve("main.db");
     }
 }

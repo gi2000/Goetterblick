@@ -3,7 +3,6 @@ package utils.general;
 import general.Start;
 import javafx.scene.image.Image;
 import org.slf4j.Logger;
-import utils.handler.ConfigHandler;
 import utils.handler.LoggerHandler;
 
 import java.io.File;
@@ -112,10 +111,10 @@ public abstract class Utils
     public static boolean isNotRunningInJar()
     {
         // Retrieve this class from built code. If the file-path starts with "jar:file:" instead of "file:", it is run in jar.
-        URL url = ConfigHandler.class.getResource("ConfigHandler.class");
+        URL url = Utils.class.getResource("Utils.class");
         if (url == null)
         {
-            throw new RuntimeException("Couldn't find \"ConfigHandler.class\".");
+            throw new RuntimeException("Couldn't find \"Utils.class\".");
         }
 
         return !url.toString().startsWith("jar:");

@@ -1,20 +1,14 @@
 package data.consts;
 
-import data.general.CfgValue;
-import utils.handler.ConfigHandler;
+import utils.general.Utils;
 
 public interface ConstTranslation
 {
     // #########################
     //   Path to translations
     // #########################
-    // TODO Export to .cfg later
-    // #########################
 
-    CfgValue<String> TRANSL_FILE_STRING_FORMAT = new CfgValue<>(
-            ConfigHandler.getCurrentWorkingDir().resolve("lang").resolve("%s.properties").toString(),
-            ConfigHandler.getCurrentWorkingDir().resolve("lang").resolve("%s.properties").toString()
-    );
+    String TRANSL_FILE_STRING_FORMAT = Utils.getCurrentWorkingDir().resolve("lang").resolve("%s.properties").toString();
 
     // ################
     // Translation Keys

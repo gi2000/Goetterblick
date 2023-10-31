@@ -3,7 +3,6 @@ package utils.handler;
 import data.consts.ConstCfg;
 import data.consts.ConstScreen;
 import data.general.Tuple;
-import general.Start;
 import org.apache.commons.configuration2.Configuration;
 import org.apache.commons.configuration2.ConfigurationUtils;
 import org.apache.commons.configuration2.FileBasedConfiguration;
@@ -19,8 +18,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.invoke.MethodHandles;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.util.List;
@@ -30,7 +27,7 @@ public class ConfigHandler extends AbstractHandler
     private static final Logger LOG = LoggerHandler.getLogger(MethodHandles.lookup().lookupClass());
 
     private static       Configuration          MAIN_CFG_MAP;
-    private static final List<Tuple<String, ?>> ALL_DEFAULT_VALUES = Utils.toList
+    private static final List<Tuple<String, ?>> ALL_DEFAULT_CFG_VALUES = Utils.toList
             (
                     ConstCfg.PATH_DB_DIR,
                     ConstCfg.PATH_LANG_DIR,
@@ -40,48 +37,6 @@ public class ConfigHandler extends AbstractHandler
                     ConstScreen.DEFAULT_SCREEN_WIDTH,
                     ConstScreen.DEFAULT_TOGGLE_FULLSCREEN
             );
-
-
-    /**
-     * Gets the path of the directory / folder of the currently running jar.
-     *
-     * @return The path to the folder, where the running jar is inside.
-     */
-    public static Path getCurrentWorkingDir()
-    {
-        // Take a different approach to retrieving the source folder, if the program is not run inside a jar.
-        if (isNotRunningInJar())
-        {
-            return Path.of(System.getProperty("user.dir"));
-        }
-
-        try
-        {
-            return new File(Start.class.getProtectionDomain().getCodeSource().getLocation()
-                    .toURI()).getParentFile().toPath();
-        }
-        catch (URISyntaxException e)
-        {
-            throw new RuntimeException(e);
-        }
-    }
-
-    /**
-     * Checks if the program is currently running inside a jar or as code in a project.
-     *
-     * @return Whether the code is not running inside a jar.
-     */
-    public static boolean isNotRunningInJar()
-    {
-        // Retrieve this class from built code. If the file-path starts with "jar:file:" instead of "file:", it is run in jar.
-        URL url = ConfigHandler.class.getResource("ConfigHandler.class");
-        if (url == null)
-        {
-            throw new RuntimeException("Couldn't find \"ConfigHandler.class\".");
-        }
-
-        return !url.toString().startsWith("jar:");
-    }
 
     /**
      * Returns the configurations loaded when the app was started.
@@ -126,7 +81,7 @@ public class ConfigHandler extends AbstractHandler
     {
         Configuration cfg = new PropertyListConfiguration();
 
-        for (Tuple<String, ?> tuple : ALL_DEFAULT_VALUES)
+        for (Tuple<String, ?> tuple : ALL_DEFAULT_CFG_VALUES)
         {
             cfg.addProperty(tuple.getVal1(), tuple.getVal2());
         }

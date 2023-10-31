@@ -74,8 +74,7 @@ public class TranslationHandler
     private static Properties getTranslationsFile()
     {
         // Retrieve current language file.
-        File f = Path.of(String.format(ConstTranslation.TRANSL_FILE_STRING_FORMAT.getReadValue(), Locale.getDefault().toLanguageTag()))
-                .toFile();
+        File f = Path.of(String.format(ConstTranslation.TRANSL_FILE_STRING_FORMAT, Locale.getDefault().toLanguageTag())).toFile();
         if (!f.exists())
         {
             LOG.error("Couldn't find file from path: " + f.toPath());
