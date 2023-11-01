@@ -35,7 +35,8 @@ public class ConfigHandler extends AbstractHandler
                     ConstScreen.DEFAULT_SCREEN_MIN_WIDTH,
                     ConstScreen.DEFAULT_SCREEN_HEIGHT,
                     ConstScreen.DEFAULT_SCREEN_WIDTH,
-                    ConstScreen.DEFAULT_TOGGLE_FULLSCREEN
+                    ConstScreen.DEFAULT_TOGGLE_FULLSCREEN,
+                    ConstScreen.DEFAULT_TOGGLE_DARKMODE
             );
 
     /**

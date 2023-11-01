@@ -9,10 +9,6 @@ public interface ConstScreen
     // General Properties
     // ##################
     String FXML_MAIN_TITLE = "Götterblick";
-
-    // ################################
-    // TODO Export later to a .cfg file
-    // ################################
     Tuple<String, Integer> DEFAULT_SCREEN_HEIGHT = new Tuple<>("ui.screens.height", 720);
     Tuple<String, Integer> DEFAULT_SCREEN_WIDTH  = new Tuple<>("ui.screens.width", 1080);
 
@@ -20,6 +16,8 @@ public interface ConstScreen
     Tuple<String, Integer> DEFAULT_SCREEN_MIN_WIDTH  = new Tuple<>("ui.screens.min-width", 720);
 
     Tuple<String, Boolean> DEFAULT_TOGGLE_FULLSCREEN = new Tuple<>("ui.screens.start-maximized", false);
+    Tuple<String, Boolean> DEFAULT_TOGGLE_DARKMODE = new Tuple<>("ui.screens.darkmode", true);
+
 
     // ############
     // Start-Module
