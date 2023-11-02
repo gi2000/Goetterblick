@@ -51,10 +51,15 @@ public class StartController implements IController
     private StartView  startView;
     private StartModel startModel;
 
+    // #######
+    // Methods
+    // #######
+
     @FXML
     @Override
     public void initialize()
     {
+
 
     }
 

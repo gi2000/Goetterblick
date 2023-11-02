@@ -1,5 +1,6 @@
 package general;
 
+import data.consts.ConstTranslation;
 import it.sauronsoftware.junique.AlreadyLockedException;
 import it.sauronsoftware.junique.JUnique;
 import javafx.application.Application;
@@ -8,6 +9,7 @@ import modules.general.facades.IModule;
 import org.slf4j.Logger;
 import utils.handler.LoggerHandler;
 import utils.handler.ModuleHandler;
+import utils.handler.TranslationHandler;
 
 import java.lang.invoke.MethodHandles;
 
@@ -33,6 +35,9 @@ public class Initialisation extends Application
     @Override
     public void start(Stage stage)
     {
+        // Load initial language
+        TranslationHandler.updateTranslations();
+
         // Get the starting module and load it.
         IModule startModule = ModuleHandler.getInstance("start");
         if (startModule == null)

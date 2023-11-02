@@ -1,6 +1,7 @@
 package modules.start;
 
 import data.annotations.Module;
+import data.consts.ConstCfg;
 import data.consts.ConstScreen;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -72,12 +73,12 @@ public class StartModule extends AbstractModule
     {
         Configuration cfg = ConfigHandler.getMainConfig();
 
+        // Retrieve all values from config and if there is none present, take the default value.
         int minWidth = cfg.getInt(ConstScreen.DEFAULT_SCREEN_MIN_WIDTH.getVal1(), ConstScreen.DEFAULT_SCREEN_MIN_WIDTH.getVal2());
         int minHeight = cfg.getInt(ConstScreen.DEFAULT_SCREEN_MIN_HEIGHT.getVal1(), ConstScreen.DEFAULT_SCREEN_MIN_HEIGHT.getVal2());
         int width = cfg.getInt(ConstScreen.DEFAULT_SCREEN_WIDTH.getVal1(), ConstScreen.DEFAULT_SCREEN_WIDTH.getVal2());
         int height = cfg.getInt(ConstScreen.DEFAULT_SCREEN_HEIGHT.getVal1(), ConstScreen.DEFAULT_SCREEN_HEIGHT.getVal2());
-        boolean startMaximized = cfg.getBoolean(ConstScreen.DEFAULT_TOGGLE_FULLSCREEN.getVal1(),
-                ConstScreen.DEFAULT_TOGGLE_FULLSCREEN.getVal2());
+        boolean startMaximized = cfg.getBoolean(ConstScreen.DEFAULT_START_MAXIMIZED.getVal1(), ConstScreen.DEFAULT_START_MAXIMIZED.getVal2());
 
         Stage stage = getStage();
         Scene scene = new Scene(getRoot(), width, height);

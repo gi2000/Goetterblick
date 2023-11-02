@@ -121,6 +121,26 @@ public abstract class Utils
     }
 
     /**
+     * Joins the given segments together as a path separated by dots.
+     * @param segments The path segments of the full path.
+     * @return The joined segments as one path separated by dots.
+     */
+    public static String joinSegms(String...segments) {
+        return String.join(".",segments);
+    }
+
+    /**
+     * Joins all strings together in a path with the system dependent symbol.
+     *
+     * @param paths The paths to connect as one.
+     * @return The fully connected path string.
+     */
+    public static String joinPath(String... paths)
+    {
+        return String.join(s(), paths);
+    }
+
+    /**
      * Returns the operating system dependent file separator.
      *
      * @return The OS specific file separator.

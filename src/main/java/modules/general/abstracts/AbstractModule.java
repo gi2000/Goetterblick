@@ -1,5 +1,6 @@
 package modules.general.abstracts;
 
+import data.consts.ConstCfg;
 import data.consts.ConstScreen;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

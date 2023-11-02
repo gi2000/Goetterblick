@@ -1,26 +1,36 @@
 package utils.handler;
 
 import data.consts.ConstTranslation;
+import data.consts.ConstCfg;
+import org.apache.commons.configuration2.Configuration;
+import org.apache.commons.configuration2.FileBasedConfiguration;
+import org.apache.commons.configuration2.PropertiesConfiguration;
+import org.apache.commons.configuration2.builder.FileBasedConfigurationBuilder;
+import org.apache.commons.configuration2.builder.fluent.Parameters;
+import org.apache.commons.configuration2.ex.ConfigurationException;
 import org.slf4j.Logger;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.lang.invoke.MethodHandles;
 import java.nio.file.Path;
 import java.util.Locale;
-import java.util.Properties;
 
 public class TranslationHandler
 {
 
-    private static final Logger     LOG          = LoggerHandler.getLogger(MethodHandles.lookup().lookupClass());
-    private static       Properties TRANSLATIONS = getTranslationsFile();
+    private static final Logger LOG = LoggerHandler.getLogger(MethodHandles.lookup().lookupClass());
+
+    private static Locale        CURR_LOCALE;
+    private static Configuration TRANSLATIONS;
 
     public static String getTransl(String key)
     {
-        return TRANSLATIONS.getProperty(key);
+        return TRANSLATIONS.getString(key);
+    }
+
+    public static Configuration getSubsetOfTransls(String key)
+    {
+        return TRANSLATIONS.subset(key);
     }
 
     /**
@@ -28,7 +38,10 @@ public class TranslationHandler
      */
     public static void updateTranslations()
     {
-        TRANSLATIONS = getTranslationsFile();
+        TRANSLATIONS = loadLanguage(ConfigHandler.getMainConfig().getString(ConstTranslation.DEFAULT_CFG_STARTUP_LANGUAGE.getVal1(),
+                                                                            ConstTranslation.DEFAULT_CFG_STARTUP_LANGUAGE.getVal2()));
+        LOG.debug("System Locale: " + Locale.getDefault().getDisplayLanguage() + " (" + Locale.getDefault().toLanguageTag() +
+                  ") - Current Translations: " + CURR_LOCALE.getDisplayLanguage() + " (" + CURR_LOCALE.toLanguageTag() + ")");
     }
 
     // ###############
@@ -38,21 +51,22 @@ public class TranslationHandler
     /**
      * Loads the given language with f. ex. "en" and "GB" as the locale tag.
      *
-     * @param lang    The first part of the locale tag, f. ex. "en".
-     * @param variant The second part of the locale tag, f. ex. "GB".
+     * @param langTag The language tag of the locale tag, f. ex. "en-US".
      */
-    private static void loadLanguage(String lang, String variant)
+    private static Configuration loadLanguage(String langTag)
     {
-        Locale locale = new Locale(lang, variant);
-        Locale.setDefault(locale);
+        setCurrLocale(Locale.forLanguageTag(langTag));
 
         // Load the translation file for the currently set locale
-        Properties props = getTranslationsFile();
+        Configuration cfg = getTranslationsFile();
+
         // If no translation file was found named after the language and variant, then just select the default language (German).
-        if (props == null && TRANSLATIONS == null)
+        if (cfg == null && TRANSLATIONS == null)
         {
-            TRANSLATIONS = loadDefaultLanguage();
+            return loadDefaultLanguage();
         }
+
+        return cfg;
     }
 
     /**
@@ -60,9 +74,9 @@ public class TranslationHandler
      *
      * @return Returns the German translations.
      */
-    private static Properties loadDefaultLanguage()
+    private static Configuration loadDefaultLanguage()
     {
-        Locale.setDefault(new Locale("de", "DE"));
+        setCurrLocale(new Locale("de", "DE"));
         return getTranslationsFile();
     }
 
@@ -71,29 +85,45 @@ public class TranslationHandler
      *
      * @return The properties file of the current default locale.
      */
-    private static Properties getTranslationsFile()
+    private static Configuration getTranslationsFile()
     {
         // Retrieve current language file.
-        File f = Path.of(String.format(ConstTranslation.TRANSL_FILE_STRING_FORMAT, Locale.getDefault().toLanguageTag())).toFile();
+        File f = Path.of(String.format(ConstTranslation.TRANSL_FILE_STRING_FORMAT, CURR_LOCALE.toLanguageTag())).toFile();
         if (!f.exists())
         {
             LOG.error("Couldn't find file from path: " + f.toPath());
             return null;
         }
 
-        // Load the contents of the file into a properties object.
-        Properties props = new Properties();
-        try (InputStream in = new FileInputStream(f))
+        Parameters params = new Parameters();
+        Configuration out;
+
+        // Creates a builder that can create a new configuration based on a file.
+        FileBasedConfigurationBuilder<FileBasedConfiguration> builder = new FileBasedConfigurationBuilder<FileBasedConfiguration>
+                (PropertiesConfiguration.class).configure(params.fileBased().setFile(f));
+
+        try
         {
-            props.load(in);
+            // Read the language file - The config contains all properties read from the file
+            out = builder.getConfiguration();
         }
-        catch (IOException e)
+        catch (ConfigurationException e)
         {
             LOG.error("Couldn't load file from path: " + f.toPath(), e);
             return null;
         }
 
-        LOG.debug("Loaded language \"" + Locale.getDefault().toLanguageTag() + "\" from file: " + f.toPath());
-        return props;
+        LOG.debug("Loaded language (" + CURR_LOCALE.toLanguageTag() + ") from file: " + f.toPath());
+        return out;
+    }
+
+    /**
+     * Sets the new locale for translation evaluation.
+     *
+     * @param currLocale The current, new locale.
+     */
+    public static void setCurrLocale(Locale currLocale)
+    {
+        TranslationHandler.CURR_LOCALE = currLocale;
     }
 }

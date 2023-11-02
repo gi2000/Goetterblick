@@ -1,7 +1,7 @@
 package utils.handler;
 
+import data.annotations.DefaultCfgValue;
 import data.consts.ConstCfg;
-import data.consts.ConstScreen;
 import data.general.Tuple;
 import org.apache.commons.configuration2.Configuration;
 import org.apache.commons.configuration2.ConfigurationUtils;
@@ -11,33 +11,30 @@ import org.apache.commons.configuration2.builder.FileBasedConfigurationBuilder;
 import org.apache.commons.configuration2.builder.fluent.Parameters;
 import org.apache.commons.configuration2.ex.ConfigurationException;
 import org.apache.commons.configuration2.plist.PropertyListConfiguration;
+import org.reflections.Reflections;
+import org.reflections.scanners.Scanners;
+import org.reflections.util.ConfigurationBuilder;
 import org.slf4j.Logger;
-import utils.general.Utils;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.invoke.MethodHandles;
+import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class ConfigHandler extends AbstractHandler
 {
     private static final Logger LOG = LoggerHandler.getLogger(MethodHandles.lookup().lookupClass());
 
     private static       Configuration          MAIN_CFG_MAP;
-    private static final List<Tuple<String, ?>> ALL_DEFAULT_CFG_VALUES = Utils.toList
-            (
-                    ConstCfg.PATH_DB_DIR,
-                    ConstCfg.PATH_LANG_DIR,
-                    ConstScreen.DEFAULT_SCREEN_MIN_HEIGHT,
-                    ConstScreen.DEFAULT_SCREEN_MIN_WIDTH,
-                    ConstScreen.DEFAULT_SCREEN_HEIGHT,
-                    ConstScreen.DEFAULT_SCREEN_WIDTH,
-                    ConstScreen.DEFAULT_TOGGLE_FULLSCREEN,
-                    ConstScreen.DEFAULT_TOGGLE_DARKMODE
-            );
+    private static final List<Tuple<String, ?>> ALL_DEFAULT_CFG_VALUES = retrieveAllDefaultCfgValues();
 
     /**
      * Returns the configurations loaded when the app was started.
@@ -162,10 +159,13 @@ public class ConfigHandler extends AbstractHandler
         File f = path.toFile();
         try
         {
+            // Create directories without using returned boolean.
+            f.getParentFile().mkdirs();
+
             // Try to create file and directories to file.
-            if (!f.getParentFile().mkdirs() && !f.createNewFile())
+            if (!f.createNewFile())
             {
-                LOG.error("Couldn't create new file and / or directories to given file path: " + path);
+                LOG.error("Couldn't create new file of given file path: " + path);
                 return false;
             }
         }
@@ -177,5 +177,48 @@ public class ConfigHandler extends AbstractHandler
 
         LOG.debug("Created every folder and config file itself from path: " + path);
         return true;
+    }
+
+    /**
+     * Retrieves all default config values that are annotated with the {@code DefaultCfgValue}-annotation.
+     *
+     * @return A list containing all default config values. The first value is always the key, the second the default value of the key.
+     */
+    private static List<Tuple<String, ?>> retrieveAllDefaultCfgValues()
+    {
+        // Find all class variables with the annotation "modules".
+        Reflections reflections = new Reflections(
+                new ConfigurationBuilder()
+                        .forPackages("data", "consts")
+                        .setScanners(Scanners.FieldsAnnotated)
+        );
+        Set<Field> types = reflections.getFieldsAnnotatedWith(DefaultCfgValue.class);
+
+        // Of these filter all class variables out, that aren't a Tuple<String, ?>.
+       return types.stream()
+                    .map(field ->
+                     {
+                         try
+                         {
+                             // Try to get the value from the field
+                             Object obj = field.get(null);
+                             if (obj instanceof Tuple) {
+                                 // Try casting it to a Tuple<String, ?> and if it throws an error, just return null.
+                                 @SuppressWarnings("unchecked")
+                                 Tuple<String, ?> testCast = (Tuple<String, ?>) obj;
+                                 return testCast;
+                             }
+                         }
+                         catch (IllegalAccessException | ClassCastException e)
+                         {
+                             LOG.error("Couldn't cast the following variable to a \"Tuple<String, ?>\": "+field.getName() +
+                                       " (Class: )"+field.getDeclaringClass().getName() ,e);
+                         }
+
+                         return null;
+                     })
+                    .filter(Objects::nonNull)
+                    .sorted(Comparator.comparing(Tuple::getVal1))
+                    .collect(Collectors.toList());
     }
 }
