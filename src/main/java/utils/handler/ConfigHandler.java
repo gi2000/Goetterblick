@@ -1,7 +1,7 @@
 package utils.handler;
 
 import data.annotations.DefaultCfgValue;
-import data.consts.ConstCfg;
+import data.consts.general.ConstCfg;
 import data.general.Tuple;
 import org.apache.commons.configuration2.Configuration;
 import org.apache.commons.configuration2.ConfigurationUtils;
@@ -195,30 +195,31 @@ public class ConfigHandler extends AbstractHandler
         Set<Field> types = reflections.getFieldsAnnotatedWith(DefaultCfgValue.class);
 
         // Of these filter all class variables out, that aren't a Tuple<String, ?>.
-       return types.stream()
-                    .map(field ->
-                     {
-                         try
-                         {
-                             // Try to get the value from the field
-                             Object obj = field.get(null);
-                             if (obj instanceof Tuple) {
-                                 // Try casting it to a Tuple<String, ?> and if it throws an error, just return null.
-                                 @SuppressWarnings("unchecked")
-                                 Tuple<String, ?> testCast = (Tuple<String, ?>) obj;
-                                 return testCast;
-                             }
-                         }
-                         catch (IllegalAccessException | ClassCastException e)
-                         {
-                             LOG.error("Couldn't cast the following variable to a \"Tuple<String, ?>\": "+field.getName() +
-                                       " (Class: )"+field.getDeclaringClass().getName() ,e);
-                         }
+        return types.stream()
+                .map(field ->
+                {
+                    try
+                    {
+                        // Try to get the value from the field
+                        Object obj = field.get(null);
+                        if (obj instanceof Tuple)
+                        {
+                            // Try casting it to a Tuple<String, ?> and if it throws an error, just return null.
+                            @SuppressWarnings("unchecked")
+                            Tuple<String, ?> testCast = (Tuple<String, ?>) obj;
+                            return testCast;
+                        }
+                    }
+                    catch (IllegalAccessException | ClassCastException e)
+                    {
+                        LOG.error("Couldn't cast the following variable to a \"Tuple<String, ?>\": " + field.getName() +
+                                  " (Class: )" + field.getDeclaringClass().getName(), e);
+                    }
 
-                         return null;
-                     })
-                    .filter(Objects::nonNull)
-                    .sorted(Comparator.comparing(Tuple::getVal1))
-                    .collect(Collectors.toList());
+                    return null;
+                })
+                .filter(Objects::nonNull)
+                .sorted(Comparator.comparing(Tuple::getVal1))
+                .collect(Collectors.toList());
     }
 }

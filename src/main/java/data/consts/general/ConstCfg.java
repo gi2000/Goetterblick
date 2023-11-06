@@ -1,7 +1,8 @@
-package data.consts;
+package data.consts.general;
 
 import data.annotations.DefaultCfgValue;
 import data.general.Tuple;
+import data.translations.ui.TGeneral;
 import utils.general.Utils;
 
 import java.io.File;
@@ -18,7 +19,7 @@ public interface ConstCfg
 
     // --- Meta ---
     String SEGM_PATH = "path";
-    String SEGM_DIR = "dir";
+    String SEGM_DIR  = "dir";
 
     // ########################
     // Settings Key-Value-Pairs
@@ -27,10 +28,10 @@ public interface ConstCfg
     // --- Default directories ---
     @DefaultCfgValue
     Tuple<String, String> DEFAULT_PATH_DB_DIR   = new Tuple<>(Utils.joinSegms(SEGM_PATH, ConstDB.DB_DIR_NAME, SEGM_DIR),
-                                                              Utils.getCurrentWorkingDir().resolve(ConstDB.DB_DIR_NAME).toString());
+            Utils.getCurrentWorkingDir().resolve(ConstDB.DB_DIR_NAME).toString());
     @DefaultCfgValue
-    Tuple<String, String> DEFAULT_PATH_LANG_DIR = new Tuple<>(Utils.joinSegms(SEGM_PATH, ConstTranslation.TRANSL_DIR_NAME, SEGM_DIR),
-                                                              Utils.getCurrentWorkingDir().resolve(ConstTranslation.TRANSL_DIR_NAME).toString());
+    Tuple<String, String> DEFAULT_PATH_LANG_DIR = new Tuple<>(Utils.joinSegms(SEGM_PATH, TGeneral.DIR_NAME, SEGM_DIR),
+            Utils.getCurrentWorkingDir().resolve(TGeneral.DIR_NAME).toString());
 
 
 }

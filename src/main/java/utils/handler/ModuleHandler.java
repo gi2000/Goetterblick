@@ -1,8 +1,7 @@
 package utils.handler;
 
 import data.annotations.Module;
-import modules.general.abstracts.AbstractModule;
-import modules.general.facades.IModule;
+import modules.general.facades.IController;
 import org.reflections.Reflections;
 import org.slf4j.Logger;
 
@@ -22,12 +21,12 @@ public class ModuleHandler extends AbstractHandler
     private static final Logger LOG = LoggerHandler.getLogger(MethodHandles.lookup().lookupClass());
 
     /**
-     * Factory Pattern: Creates an instance of the given module name. The name corresponds with the @Module-Annotation name.
+     * Factory Pattern: Creates an instance of a controller with the given module name via the annotation.
      *
-     * @param moduleName The modules name / id, as written in their name-value in the @Module-Annotation.
-     * @return An instance of the given module.
+     * @param moduleName The modules name / id, as written in the name-value of Controller-Classes in the @Module-Annotation.
+     * @return An instance of the given controller for the module.
      */
-    public static IModule getInstance(String moduleName)
+    public static IController getInstance(String moduleName)
     {
         // Find all classes with the annotation "modules".
         Reflections reflections = new Reflections("modules");
@@ -37,7 +36,7 @@ public class ModuleHandler extends AbstractHandler
         // Of these filter all those out, that don't match the given name.
         Class<?> moduleClass = types.stream()
                 .filter(clazz -> clazz.getAnnotation(annotation).name().equalsIgnoreCase(moduleName))
-                .filter(AbstractModule.class::isAssignableFrom)
+                .filter(IController.class::isAssignableFrom)
                 .findAny().orElse(null);
 
         // If none match, return nothing.
@@ -51,12 +50,12 @@ public class ModuleHandler extends AbstractHandler
     }
 
     /**
-     * Retrieves all modules, that are supposed to be displayed in the home window.
+     * Retrieves all modules / their controllers, that are supposed to be displayed in the home window.
      *
-     * @return A list of all modules with isDisplayedInHome set to true.
+     * @return A list of all controllers with isDisplayedInHome set to true.
      */
     @Nonnull
-    public static List<IModule> getAllModules()
+    public static List<IController> getAllModules()
     {
         // Find all classes with the annotation "modules".
         Reflections reflections = new Reflections("modules");
@@ -66,7 +65,7 @@ public class ModuleHandler extends AbstractHandler
         // Of these filter all those out, that don't match the given name.
         return types.stream()
                 .filter(clazz -> clazz.getAnnotation(annotation).isDisplayedInHome())
-                .filter(AbstractModule.class::isAssignableFrom)
+                .filter(IController.class::isAssignableFrom)
                 .map(ModuleHandler::getInstanceOfClass)
                 .collect(Collectors.toList());
     }
@@ -75,9 +74,9 @@ public class ModuleHandler extends AbstractHandler
      * Takes the given class and creates an instance of it.
      *
      * @param moduleClass The class of which an instance should be created.
-     * @return The created instance of an IModule.
+     * @return The created instance of an IController.
      */
-    private static IModule getInstanceOfClass(Class<?> moduleClass)
+    private static IController getInstanceOfClass(Class<?> moduleClass)
     {
         // Find the one constructor, that is empty and with which an instance of this new module can be created.
         Constructor<?> emptyConstructor = null;
@@ -103,7 +102,7 @@ public class ModuleHandler extends AbstractHandler
         try
         {
             // Try to create a new instance with the empty constructor
-            return (IModule) emptyConstructor.newInstance();
+            return (IController) emptyConstructor.newInstance();
         }
         catch (InstantiationException | IllegalAccessException | InvocationTargetException e)
         {

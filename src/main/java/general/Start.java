@@ -1,8 +1,5 @@
 package general;
 
-import data.consts.ConstTranslation;
-import utils.handler.TranslationHandler;
-
 public class Start
 {
     public static void main(String[] args)

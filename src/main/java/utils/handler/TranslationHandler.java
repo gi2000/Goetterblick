@@ -1,7 +1,6 @@
 package utils.handler;
 
-import data.consts.ConstTranslation;
-import data.consts.ConstCfg;
+import data.translations.ui.TGeneral;
 import org.apache.commons.configuration2.Configuration;
 import org.apache.commons.configuration2.FileBasedConfiguration;
 import org.apache.commons.configuration2.PropertiesConfiguration;
@@ -12,6 +11,7 @@ import org.slf4j.Logger;
 
 import java.io.File;
 import java.lang.invoke.MethodHandles;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.util.Locale;
 
@@ -23,14 +23,33 @@ public class TranslationHandler
     private static Locale        CURR_LOCALE;
     private static Configuration TRANSLATIONS;
 
+    /**
+     * Gets the translation with the given translation key.
+     *
+     * @param key The translation key.
+     * @return The translation with the currently selected language.
+     */
     public static String getTransl(String key)
     {
         return TRANSLATIONS.getString(key);
     }
 
-    public static Configuration getSubsetOfTransls(String key)
+    /**
+     * Returns a subset of translations for the given prefix. For example, if the properties file contained 3 keys like this:<br>
+     * <br>
+     * <p>{@code a.test.prefix.a = translation 1}</p>
+     * <p>{@code a.test.prefix.b = translation 2}</p>
+     * <p>{@code other.test.prefix.c = translation 3}</p>
+     * <br>
+     * And this method was given the prefix "a.test.prefix" then a subset of this configuration, only containing the first 2 values,
+     * will be returned.
+     *
+     * @param prefix The prefix / segment of a path, that a subset is supposed to me made of.
+     * @return The subset configuration.
+     */
+    public static Configuration getSubsetOfTransls(String prefix)
     {
-        return TRANSLATIONS.subset(key);
+        return TRANSLATIONS.subset(prefix);
     }
 
     /**
@@ -38,10 +57,20 @@ public class TranslationHandler
      */
     public static void updateTranslations()
     {
-        TRANSLATIONS = loadLanguage(ConfigHandler.getMainConfig().getString(ConstTranslation.DEFAULT_CFG_STARTUP_LANGUAGE.getVal1(),
-                                                                            ConstTranslation.DEFAULT_CFG_STARTUP_LANGUAGE.getVal2()));
+        TRANSLATIONS = loadLanguage(ConfigHandler.getMainConfig().getString(TGeneral.DEFAULT_CFG_STARTUP_LANGUAGE.getVal1(),
+                TGeneral.DEFAULT_CFG_STARTUP_LANGUAGE.getVal2()));
         LOG.debug("System Locale: " + Locale.getDefault().getDisplayLanguage() + " (" + Locale.getDefault().toLanguageTag() +
                   ") - Current Translations: " + CURR_LOCALE.getDisplayLanguage() + " (" + CURR_LOCALE.toLanguageTag() + ")");
+    }
+
+    /**
+     * Gets the translation config for the currently selected language.
+     *
+     * @return The translation config containing all translations.
+     */
+    public static Configuration getTranslationsMap()
+    {
+        return TRANSLATIONS;
     }
 
     // ###############
@@ -88,7 +117,7 @@ public class TranslationHandler
     private static Configuration getTranslationsFile()
     {
         // Retrieve current language file.
-        File f = Path.of(String.format(ConstTranslation.TRANSL_FILE_STRING_FORMAT, CURR_LOCALE.toLanguageTag())).toFile();
+        File f = Path.of(String.format(TGeneral.FILE_FORMAT_STRING, CURR_LOCALE.toLanguageTag())).toFile();
         if (!f.exists())
         {
             LOG.error("Couldn't find file from path: " + f.toPath());
@@ -100,7 +129,8 @@ public class TranslationHandler
 
         // Creates a builder that can create a new configuration based on a file.
         FileBasedConfigurationBuilder<FileBasedConfiguration> builder = new FileBasedConfigurationBuilder<FileBasedConfiguration>
-                (PropertiesConfiguration.class).configure(params.fileBased().setFile(f));
+                (PropertiesConfiguration.class).configure(
+                params.fileBased().setEncoding(StandardCharsets.UTF_8.displayName()).setFile(f));
 
         try
         {
@@ -115,6 +145,16 @@ public class TranslationHandler
 
         LOG.debug("Loaded language (" + CURR_LOCALE.toLanguageTag() + ") from file: " + f.toPath());
         return out;
+    }
+
+    /**
+     * Gets the current locale for translations.
+     *
+     * @return The current locale.
+     */
+    public static Locale getCurrLocale()
+    {
+        return CURR_LOCALE;
     }
 
     /**

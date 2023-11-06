@@ -4,16 +4,15 @@ import general.Start;
 import javafx.scene.image.Image;
 import org.slf4j.Logger;
 import utils.handler.LoggerHandler;
+import utils.handler.TranslationHandler;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -22,6 +21,18 @@ import java.util.stream.Stream;
  */
 public abstract class Utils
 {
+    /**
+     * Returns the current date and time as a string object, already formated.
+     *
+     * @return The date and time currently.
+     */
+    public static String getCurrentDateAndTime()
+    {
+        SimpleDateFormat f = new SimpleDateFormat();
+        f.applyPattern("EEEE', 'dd.MM.yyyy '-' HH:mm:ss '('S'ms)'");
+        return f.format(new Date(System.currentTimeMillis()));
+    }
+
     /**
      * Loads the given Images with the given class as the root in the resource directory.
      *
@@ -122,11 +133,13 @@ public abstract class Utils
 
     /**
      * Joins the given segments together as a path separated by dots.
+     *
      * @param segments The path segments of the full path.
      * @return The joined segments as one path separated by dots.
      */
-    public static String joinSegms(String...segments) {
-        return String.join(".",segments);
+    public static String joinSegms(String... segments)
+    {
+        return String.join(".", segments);
     }
 
     /**
@@ -138,6 +151,28 @@ public abstract class Utils
     public static String joinPath(String... paths)
     {
         return String.join(s(), paths);
+    }
+
+    /**
+     * Joins all strings together in a path with the system dependent symbol. Use this method, if the files are inside a jar.
+     *
+     * @param paths The paths to connect as one, when accessing a file inside a jar.
+     * @return The fully connected path string from inside a jar.
+     */
+    public static String joinJarPath(String... paths)
+    {
+        return String.join("/", paths);
+    }
+
+    /**
+     * Capitalizes the first letter of the String with the currently selected translation locale.
+     *
+     * @param s The String of which the first character is to be capitalized.
+     * @return The same String but with the first character capitalized.
+     */
+    public static String cap(String s)
+    {
+        return s.substring(0, 1).toUpperCase(TranslationHandler.getCurrLocale()) + s.substring(1);
     }
 
     /**

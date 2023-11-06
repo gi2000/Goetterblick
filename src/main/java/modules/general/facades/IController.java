@@ -7,8 +7,9 @@ import javafx.fxml.FXML;
  */
 public interface IController
 {
+
     /**
-     * Prepares and initializes this controller. Here the model and view get prepared, too.
+     * The JavaFX initialisation method. Do not call it by yourself, the FXMLLoader should do it itself.
      */
     @FXML
     void initialize();
@@ -21,12 +22,12 @@ public interface IController
     boolean deconstruct();
 
     /**
-     * Switches the current module to the given one.
+     * Switches the current module / controller to the new, given one.
      *
-     * @param module The module to switch to.
+     * @param controller The module / controller to switch to.
      * @return Whether the switch was successful.
      */
-    boolean switchToModule(IModule module);
+    boolean switchToModule(IController controller);
 
     /**
      * The hook method to implement all resize changes, once the window resizes.
@@ -36,9 +37,23 @@ public interface IController
      */
     void resizeElements(double sizeFactor);
 
+    /**
+     * Creates a new instance of the model for the current module.
+     *
+     * @return The model holding all the data.
+     */
+    IModel createModel();
+
     // ###############
     // Getter & Setter
     // ###############
+
+    /**
+     * Sets the relevant model for this implementation of the MVC pattern.
+     *
+     * @param model The model, holding this screen's data.
+     */
+    void setModel(IModel model);
 
     /**
      * The relevant model for this implementation of the MVC pattern.
@@ -50,7 +65,21 @@ public interface IController
     /**
      * The relevant view for this implementation of the MVC pattern.
      *
+     * @param view The view for displaying the models data.
+     */
+    void setView(IView view);
+
+    /**
+     * The relevant view for this implementation of the MVC pattern.
+     *
      * @return The view, displaying this screen's data.
      */
     IView getView();
+
+    /**
+     * Retrieves the name of the associated module.
+     *
+     * @return The associated module name.
+     */
+    String getModuleName();
 }

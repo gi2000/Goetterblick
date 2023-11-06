@@ -1,21 +1,21 @@
 package data.enums;
 
-import data.consts.ConstDB;
-import data.consts.ConstTranslation;
+import data.consts.general.ConstDB;
+import data.translations.ui.TStartModule;
 
 /**
  * All DSA Versions, that are also displayed in the home screen and used f. ex. for retrieving each database.
  */
 public enum DSAVersion
 {
-    DSA1(ConstTranslation.MODULES_START_VERSIONS_DSA1, ConstDB.DB_FILE_DSA1),
-    DSA2(ConstTranslation.MODULES_START_VERSIONS_DSA2, ConstDB.DB_FILE_DSA2),
-    DSA3(ConstTranslation.MODULES_START_VERSIONS_DSA3, ConstDB.DB_FILE_DSA3),
-    DSA4(ConstTranslation.MODULES_START_VERSIONS_DSA4, ConstDB.DB_FILE_DSA4),
-    DSA4d1(ConstTranslation.MODULES_START_VERSIONS_DSA4d1, ConstDB.DB_FILE_DSA4d1),
-    DSA5(ConstTranslation.MODULES_START_VERSIONS_DSA5, ConstDB.DB_FILE_DSA5),
-    DSK(ConstTranslation.MODULES_START_VERSIONS_DSK, ConstDB.DB_FILE_DSK),
-    MYRANOR(ConstTranslation.MODULES_START_VERSIONS_MYR, ConstDB.DB_FILE_MYR);
+    DSA1(TStartModule.VERSIONS_DSA1_LABEL, ConstDB.DB_FILE_DSA1),
+    DSA2(TStartModule.VERSIONS_DSA2_LABEL, ConstDB.DB_FILE_DSA2),
+    DSA3(TStartModule.VERSIONS_DSA3_LABEL, ConstDB.DB_FILE_DSA3),
+    DSA4(TStartModule.VERSIONS_DSA4_LABEL, ConstDB.DB_FILE_DSA4),
+    DSA4d1(TStartModule.VERSIONS_DSA4D1_LABEL, ConstDB.DB_FILE_DSA4d1),
+    DSA5(TStartModule.VERSIONS_DSA5_LABEL, ConstDB.DB_FILE_DSA5),
+    DSK(TStartModule.VERSIONS_DSK_LABEL, ConstDB.DB_FILE_DSK),
+    MYRANOR(TStartModule.VERSIONS_MYR_LABEL, ConstDB.DB_FILE_MYR);
 
 
     private final String translKey;

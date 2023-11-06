@@ -1,19 +1,15 @@
 package general;
 
-import data.consts.ConstTranslation;
 import it.sauronsoftware.junique.AlreadyLockedException;
 import it.sauronsoftware.junique.JUnique;
 import javafx.application.Application;
-import javafx.stage.Stage;
-import modules.general.facades.IModule;
+import modules.start.StartView;
 import org.slf4j.Logger;
 import utils.handler.LoggerHandler;
-import utils.handler.ModuleHandler;
-import utils.handler.TranslationHandler;
 
 import java.lang.invoke.MethodHandles;
 
-public class Initialisation extends Application
+public class Initialisation
 {
     private static final Logger LOG = LoggerHandler.getLogger(MethodHandles.lookup().lookupClass());
 
@@ -23,32 +19,12 @@ public class Initialisation extends Application
         String appId = "Götterblick";
         if (!isAppAlreadyRunning(appId))
         {
-            launch(args);
+            Application.launch(StartView.class);
         }
         else
         {
             LOG.error("An instance of \"" + appId + "\" is already running. Shutting down this new instance.");
             System.exit(1);
-        }
-    }
-
-    @Override
-    public void start(Stage stage)
-    {
-        // Load initial language
-        TranslationHandler.updateTranslations();
-
-        // Get the starting module and load it.
-        IModule startModule = ModuleHandler.getInstance("start");
-        if (startModule == null)
-        {
-            throw new RuntimeException("Couldn't load an initial starting module.");
-        }
-
-        // Load up the module and display it.
-        if (startModule.initScreen(stage, "Home"))
-        {
-            startModule.displayScreen();
         }
     }
 

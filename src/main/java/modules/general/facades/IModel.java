@@ -1,5 +1,7 @@
 package modules.general.facades;
 
+import org.apache.commons.configuration2.Configuration;
+
 /**
  * The model facade of the MVC pattern, which holds and processes all data for the view to display. The model itself follows the
  * observer pattern: It itself offers observable values to the outside, while knowing nothing about the observers, who take and
@@ -16,7 +18,25 @@ public interface IModel
      *
      * @return Whether the initialization was successful.
      */
-    boolean initialize();
+    boolean initialize(String moduleName);
+
+    /**
+     * Deconstructs this model, if anything needs to be torn down for the next or previous module.
+     *
+     * @return Whether the deconstruction was successful.
+     */
+    boolean deconstruct();
+
+    // #################
+    // Getter and Setter
+    // #################
+
+    /**
+     * Retrieves the main settings.properties file and returns it as a configuration object.
+     *
+     * @return The main settings.properties
+     */
+    Configuration getMainCfg();
 
     /**
      * Returns the translation for the given translation key.
@@ -27,9 +47,16 @@ public interface IModel
     String getTransl(String translKey);
 
     /**
-     * Deconstructs this model, if anything needs to be torn down for the next or previous module.
+     * Sets the previously displayed module's name.
      *
-     * @return Whether the deconstruction was successful.
+     * @param module The previous module's name.
      */
-    boolean deconstruct();
+    void setPrevModule(String module);
+
+    /**
+     * Returns the previously displayed module's name.
+     *
+     * @return The previous module's name.
+     */
+    String getPrevModule();
 }
