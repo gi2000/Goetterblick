@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 <AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/20.0.1"
+            prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="modules.start.StartController">
     <children>
         <BorderPane layoutY="82.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"

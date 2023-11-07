@@ -34,7 +34,7 @@ public class ConfigHandler extends AbstractHandler
     private static final Logger LOG = LoggerHandler.getLogger(MethodHandles.lookup().lookupClass());
 
     private static       Configuration          MAIN_CFG_MAP;
-    private static final List<Tuple<String, ?>> ALL_DEFAULT_CFG_VALUES = retrieveAllDefaultCfgValues();
+    private static final List<Tuple<String, ?>> ALL_DEFAULT_CFG_VALUES = getAllDefaultCfgValues();
 
     /**
      * Returns the configurations loaded when the app was started.
@@ -100,8 +100,8 @@ public class ConfigHandler extends AbstractHandler
         Configuration out;
 
         // Creates a builder that can create a new configuration based on a file.
-        FileBasedConfigurationBuilder<FileBasedConfiguration> builder = new FileBasedConfigurationBuilder<FileBasedConfiguration>
-                (PropertiesConfiguration.class).configure(params.fileBased().setFile(path.toFile()));
+        FileBasedConfigurationBuilder<FileBasedConfiguration> builder =
+                new FileBasedConfigurationBuilder<FileBasedConfiguration>(PropertiesConfiguration.class).configure(params.fileBased().setFile(path.toFile()));
 
         try
         {
@@ -140,8 +140,7 @@ public class ConfigHandler extends AbstractHandler
         }
         catch (IOException e)
         {
-            LOG.error("IOException thrown when dumping the configuration into the new file at given path: " +
-                      path, e);
+            LOG.error("IOException thrown when dumping the configuration into the new file at given path: " + path, e);
             return;
         }
 
@@ -159,10 +158,13 @@ public class ConfigHandler extends AbstractHandler
         File f = path.toFile();
         try
         {
-            // Create directories without using returned boolean.
-            f.getParentFile().mkdirs();
-
             // Try to create file and directories to file.
+            if (!f.getParentFile().exists() && !f.getParentFile().mkdirs())
+            {
+                LOG.error("Couldn't create new directories of given path: " + path.getParent());
+                return false;
+            }
+
             if (!f.createNewFile())
             {
                 LOG.error("Couldn't create new file of given file path: " + path);
@@ -184,42 +186,36 @@ public class ConfigHandler extends AbstractHandler
      *
      * @return A list containing all default config values. The first value is always the key, the second the default value of the key.
      */
-    private static List<Tuple<String, ?>> retrieveAllDefaultCfgValues()
+    private static List<Tuple<String, ?>> getAllDefaultCfgValues()
     {
         // Find all class variables with the annotation "modules".
-        Reflections reflections = new Reflections(
-                new ConfigurationBuilder()
-                        .forPackages("data", "consts")
-                        .setScanners(Scanners.FieldsAnnotated)
-        );
+        Reflections reflections = new Reflections(new ConfigurationBuilder().forPackages("data", "consts").setScanners(Scanners.FieldsAnnotated));
         Set<Field> types = reflections.getFieldsAnnotatedWith(DefaultCfgValue.class);
 
         // Of these filter all class variables out, that aren't a Tuple<String, ?>.
         return types.stream()
-                .map(field ->
-                {
-                    try
-                    {
-                        // Try to get the value from the field
-                        Object obj = field.get(null);
-                        if (obj instanceof Tuple)
-                        {
-                            // Try casting it to a Tuple<String, ?> and if it throws an error, just return null.
-                            @SuppressWarnings("unchecked")
-                            Tuple<String, ?> testCast = (Tuple<String, ?>) obj;
-                            return testCast;
-                        }
-                    }
-                    catch (IllegalAccessException | ClassCastException e)
-                    {
-                        LOG.error("Couldn't cast the following variable to a \"Tuple<String, ?>\": " + field.getName() +
-                                  " (Class: )" + field.getDeclaringClass().getName(), e);
-                    }
+                    .map(field ->
+                         {
+                             try
+                             {
+                                 // Try to get the value from the field
+                                 Object obj = field.get(null);
+                                 if (obj instanceof Tuple)
+                                 {
+                                     // Try casting it to a Tuple<String, ?> and if it throws an error, just return null.
+                                     @SuppressWarnings("unchecked") Tuple<String, ?> testCast = (Tuple<String, ?>) obj;
+                                     return testCast;
+                                 }
+                             }
+                             catch (IllegalAccessException | ClassCastException e)
+                             {
+                                 LOG.error("Couldn't cast the following variable to a \"Tuple<String, ?>\": " + field.getName() + " (Class: )" +
+                                           field.getDeclaringClass().getName(), e);
+                             }
 
-                    return null;
-                })
-                .filter(Objects::nonNull)
-                .sorted(Comparator.comparing(Tuple::getVal1))
-                .collect(Collectors.toList());
+                             return null;
+                         })
+                    .filter(Objects::nonNull)
+                    .sorted(Comparator.comparing(Tuple::getVal1)).collect(Collectors.toList());
     }
 }

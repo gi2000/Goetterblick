@@ -136,10 +136,10 @@ public abstract class AbstractView extends Application implements IView
     {
         // Get all icon paths in descending order and loads them to the current icon cache
         getStage().getIcons().addAll(Utils.loadImagesFromResources(StartView.class,
-                ConstStartModule.FXML_START_ICON_512,
-                ConstStartModule.FXML_START_ICON_256,
-                ConstStartModule.FXML_START_ICON_128,
-                ConstStartModule.FXML_START_ICON_64));
+                                                                   ConstStartModule.FXML_START_ICON_512,
+                                                                   ConstStartModule.FXML_START_ICON_256,
+                                                                   ConstStartModule.FXML_START_ICON_128,
+                                                                   ConstStartModule.FXML_START_ICON_64));
     }
 
     /**
@@ -155,7 +155,7 @@ public abstract class AbstractView extends Application implements IView
         int width = cfg.getInt(ConstScreen.DEFAULT_SCREEN_WIDTH.getVal1(), ConstScreen.DEFAULT_SCREEN_WIDTH.getVal2());
         int height = cfg.getInt(ConstScreen.DEFAULT_SCREEN_HEIGHT.getVal1(), ConstScreen.DEFAULT_SCREEN_HEIGHT.getVal2());
         boolean startMaximized = cfg.getBoolean(ConstScreen.DEFAULT_START_MAXIMIZED.getVal1(),
-                ConstScreen.DEFAULT_START_MAXIMIZED.getVal2());
+                                                ConstScreen.DEFAULT_START_MAXIMIZED.getVal2());
 
         Stage stage = getStage();
         Scene scene = new Scene(getRoot(), width, height);
@@ -216,6 +216,13 @@ public abstract class AbstractView extends Application implements IView
             return;
         }
 
+        // Retrieve values from settings-config
+        Configuration cfg = getModel().getMainCfg();
+        Duration appearDuration = getDurationOfDouble(cfg.getDouble(ConstScreen.DEFAULT_TOOLTIP_APPEAR.getVal1(), ConstScreen.DEFAULT_TOOLTIP_APPEAR.getVal2()));
+        Duration displayDuration = getDurationOfDouble(cfg.getDouble(ConstScreen.DEFAULT_TOOLTIP_DISPLAY.getVal1(), ConstScreen.DEFAULT_TOOLTIP_DISPLAY.getVal2()));
+        Duration disappearDuration =
+                getDurationOfDouble(cfg.getDouble(ConstScreen.DEFAULT_TOOLTIP_DISAPPEAR.getVal1(), ConstScreen.DEFAULT_TOOLTIP_DISAPPEAR.getVal2()));
+
         // Iterate over each entry and set the tool tip text to the respective JavaFX element.
         for (Tuple<Control, String> element : elements)
         {
@@ -225,14 +232,43 @@ public abstract class AbstractView extends Application implements IView
                 continue;
             }
 
+            // Apply settings values to tooltip
             Tooltip tip = new Tooltip(element.getVal2());
-            tip.setShowDuration(Duration.seconds(10));
-            tip.setShowDelay(Duration.seconds(0.5));
+            tip.setShowDelay(appearDuration);
+            tip.setShowDuration(displayDuration);
+            tip.setHideDelay(disappearDuration);
             tip.setWrapText(true);
 
             element.getVal1().setTooltip(tip);
         }
     }
+
+    /**
+     * Creates a new duration object with the given time amount.
+     *
+     * @param val Either a negative value indicating indefinite display, a value 0 < x < 0.001 indicating a zero-second-long display or any other positive value.
+     * @return The duration with the given time.
+     */
+    private Duration getDurationOfDouble(double val)
+    {
+        Duration out;
+
+        if (val < 0.0)
+        {
+            out = Duration.INDEFINITE;
+        }
+        else if (val < 0.001)
+        {
+            out = Duration.ZERO;
+        }
+        else
+        {
+            out = Duration.seconds(val);
+        }
+
+        return out;
+    }
+
 
     /**
      * Assigns the given Labeled-Element the text retrieved from the translation files.
