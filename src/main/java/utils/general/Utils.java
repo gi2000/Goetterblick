@@ -1,7 +1,9 @@
 package utils.general;
 
+import data.general.Tuple;
 import general.Start;
 import javafx.scene.image.Image;
+import org.apache.commons.configuration2.Configuration;
 import org.slf4j.Logger;
 import utils.handler.LoggerHandler;
 import utils.handler.TranslationHandler;
@@ -162,6 +164,28 @@ public abstract class Utils
     public static String joinJarPath(String... paths)
     {
         return String.join("/", paths);
+    }
+
+    /**
+     * Retrieves the given tuple from the given config.
+     *
+     * @param cfg   The config or translation file holding the key-value pair.
+     * @param tuple The key-value pair with the value being the default fallback value.
+     * @param <T>   The class, which is supposed to be returned.
+     * @return The value from the config f. ex. a String, Double, Integer etc.
+     */
+    @SuppressWarnings("unchecked")
+    public static <T> T getVal(Configuration cfg, Tuple<String, T> tuple)
+    {
+        Object obj = cfg.get(tuple.getVal2().getClass(), tuple.getVal1());
+        T out = tuple.getVal2();
+
+        if (obj != null && obj.getClass() == tuple.getVal2().getClass())
+        {
+            out = (T) obj;
+        }
+
+        return out;
     }
 
     /**

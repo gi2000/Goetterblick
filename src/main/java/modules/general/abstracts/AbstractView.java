@@ -136,10 +136,10 @@ public abstract class AbstractView extends Application implements IView
     {
         // Get all icon paths in descending order and loads them to the current icon cache
         getStage().getIcons().addAll(Utils.loadImagesFromResources(StartView.class,
-                                                                   ConstStartModule.FXML_START_ICON_512,
-                                                                   ConstStartModule.FXML_START_ICON_256,
-                                                                   ConstStartModule.FXML_START_ICON_128,
-                                                                   ConstStartModule.FXML_START_ICON_64));
+                ConstStartModule.FXML_START_ICON_512,
+                ConstStartModule.FXML_START_ICON_256,
+                ConstStartModule.FXML_START_ICON_128,
+                ConstStartModule.FXML_START_ICON_64));
     }
 
     /**
@@ -155,7 +155,7 @@ public abstract class AbstractView extends Application implements IView
         int width = cfg.getInt(ConstScreen.DEFAULT_SCREEN_WIDTH.getVal1(), ConstScreen.DEFAULT_SCREEN_WIDTH.getVal2());
         int height = cfg.getInt(ConstScreen.DEFAULT_SCREEN_HEIGHT.getVal1(), ConstScreen.DEFAULT_SCREEN_HEIGHT.getVal2());
         boolean startMaximized = cfg.getBoolean(ConstScreen.DEFAULT_START_MAXIMIZED.getVal1(),
-                                                ConstScreen.DEFAULT_START_MAXIMIZED.getVal2());
+                ConstScreen.DEFAULT_START_MAXIMIZED.getVal2());
 
         Stage stage = getStage();
         Scene scene = new Scene(getRoot(), width, height);
@@ -216,12 +216,14 @@ public abstract class AbstractView extends Application implements IView
             return;
         }
 
-        // Retrieve values from settings-config
         Configuration cfg = getModel().getMainCfg();
-        Duration appearDuration = getDurationOfDouble(cfg.getDouble(ConstScreen.DEFAULT_TOOLTIP_APPEAR.getVal1(), ConstScreen.DEFAULT_TOOLTIP_APPEAR.getVal2()));
-        Duration displayDuration = getDurationOfDouble(cfg.getDouble(ConstScreen.DEFAULT_TOOLTIP_DISPLAY.getVal1(), ConstScreen.DEFAULT_TOOLTIP_DISPLAY.getVal2()));
-        Duration disappearDuration =
-                getDurationOfDouble(cfg.getDouble(ConstScreen.DEFAULT_TOOLTIP_DISAPPEAR.getVal1(), ConstScreen.DEFAULT_TOOLTIP_DISAPPEAR.getVal2()));
+
+        // Retrieve values from settings-config and turn them into a duration object
+        Duration appearDuration = getDurationOfDouble(cfg, ConstScreen.DEFAULT_TOOLTIP_APPEAR);
+        Duration displayDuration = getDurationOfDouble(cfg, ConstScreen.DEFAULT_TOOLTIP_DISPLAY);
+        Duration disappearDuration = getDurationOfDouble(cfg, ConstScreen.DEFAULT_TOOLTIP_DISAPPEAR);
+
+        double fontSize = Utils.getVal(cfg, ConstScreen.DEFAULT_TOOLTIP_FONT_SIZE);
 
         // Iterate over each entry and set the tool tip text to the respective JavaFX element.
         for (Tuple<Control, String> element : elements)
@@ -237,6 +239,7 @@ public abstract class AbstractView extends Application implements IView
             tip.setShowDelay(appearDuration);
             tip.setShowDuration(displayDuration);
             tip.setHideDelay(disappearDuration);
+            tip.setStyle(tip.getStyle() + "-fx-font-size: " + fontSize + "em;");
             tip.setWrapText(true);
 
             element.getVal1().setTooltip(tip);
@@ -246,11 +249,14 @@ public abstract class AbstractView extends Application implements IView
     /**
      * Creates a new duration object with the given time amount.
      *
-     * @param val Either a negative value indicating indefinite display, a value 0 < x < 0.001 indicating a zero-second-long display or any other positive value.
+     * @param tuple Either a negative value indicating indefinite display, a value 0 < x < 0.001 indicating a zero-second-long display
+     *              or any other positive value.
      * @return The duration with the given time.
      */
-    private Duration getDurationOfDouble(double val)
+    private Duration getDurationOfDouble(Configuration cfg, Tuple<String, Double> tuple)
     {
+        double val = Utils.getVal(cfg, tuple);
+
         Duration out;
 
         if (val < 0.0)

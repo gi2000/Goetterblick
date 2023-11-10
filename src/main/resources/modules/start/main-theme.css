@@ -39,6 +39,5 @@
 /* CSS for every tooltip */
 .tooltip
 {
-    -fx-font-size: 10pt;
 	-fx-border-radius: 5px;
 }
