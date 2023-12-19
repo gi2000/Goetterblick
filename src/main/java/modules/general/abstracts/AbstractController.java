@@ -18,6 +18,7 @@ public abstract class AbstractController implements IController
      */
     public AbstractController()
     {
+        setView(createView());
         setModel(createModel());
     }
 

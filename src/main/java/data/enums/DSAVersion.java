@@ -1,7 +1,7 @@
 package data.enums;
 
 import data.consts.general.ConstDB;
-import data.translations.ui.TStartModule;
+import data.translations.ui.modules.TStartModule;
 
 /**
  * All DSA Versions, that are also displayed in the home screen and used f. ex. for retrieving each database.

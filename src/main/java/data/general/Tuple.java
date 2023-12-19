@@ -1,5 +1,7 @@
 package data.general;
 
+import java.util.Map;
+
 /**
  * A pair of two values, coupled together as a tuple.
  *
@@ -21,6 +23,17 @@ public class Tuple<T, U>
     {
         setVal1(val1);
         setVal2(val2);
+    }
+
+    /**
+     * Creates a new pair / tuple with given map entry.
+     *
+     * @param entry The map entry to construct a tuple from.
+     */
+    public Tuple(Map.Entry<T, U> entry)
+    {
+        setVal1(entry.getKey());
+        setVal2(entry.getValue());
     }
 
     public T getVal1()

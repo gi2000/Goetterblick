@@ -4,8 +4,7 @@ import data.general.Tuple;
 import javafx.scene.Parent;
 import javafx.scene.control.Control;
 import javafx.stage.Stage;
-
-import java.net.URL;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 /**
  * The view of the MVC pattern, which <b>only</b> updates the visual side for the user. Paired with the corresponding {@code
@@ -88,11 +87,11 @@ public interface IView
     Stage getStage();
 
     /**
-     * Retrieves the URL for the given module image.
+     * Retrieves the FontIcon for the given module image.
      *
-     * @return The url to the module image for the display-area in the start window..
+     * @return The FontIcon to the module image for the display-area in the start window.
      */
-    URL getModuleImage();
+    FontIcon getModuleImage();
 
 
 }

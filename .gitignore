@@ -111,3 +111,6 @@ fabric.properties
 
 # Maven reduced pom xml
 dependency-reduced-pom.xml
+
+# Leave out config
+cfg

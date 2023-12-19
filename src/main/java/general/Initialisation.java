@@ -19,6 +19,10 @@ public class Initialisation
         String appId = "Götterblick";
         if (!isAppAlreadyRunning(appId))
         {
+            System.err.println(
+                    "The next warning is due to the fact that this Java Maven project is not setup as a java module. This could " +
+                    "cause issues later, but is most likely harmless. See this StackOverflow thread:");
+            System.err.println("https://stackoverflow.com/a/67854230");
             Application.launch(StartView.class);
         }
         else

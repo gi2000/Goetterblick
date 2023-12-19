@@ -44,6 +44,13 @@ public interface IController
      */
     IModel createModel();
 
+    /**
+     * Creates a new instance of the view for the current module.
+     *
+     * @return The view displaying all the model's data.
+     */
+    IView createView();
+
     // ###############
     // Getter & Setter
     // ###############
@@ -65,7 +72,7 @@ public interface IController
     /**
      * The relevant view for this implementation of the MVC pattern.
      *
-     * @param view The view for displaying the models data.
+     * @param view The view for displaying the model's data.
      */
     void setView(IView view);
 
@@ -82,4 +89,11 @@ public interface IController
      * @return The associated module name.
      */
     String getModuleName();
+
+    /**
+     * Retrieves the tooltip for the associated module button.
+     *
+     * @return The associated module button's tooltip.
+     */
+    String getModuleTooltip();
 }

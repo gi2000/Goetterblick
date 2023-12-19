@@ -12,22 +12,22 @@ import javafx.scene.control.Control;
 import javafx.scene.control.Labeled;
 import javafx.scene.control.Tooltip;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import modules.general.facades.IController;
 import modules.general.facades.IModel;
 import modules.general.facades.IView;
 import modules.start.StartView;
 import org.apache.commons.configuration2.Configuration;
+import org.kordamp.ikonli.javafx.FontIcon;
 import org.slf4j.Logger;
 import utils.general.Utils;
 import utils.handler.LoggerHandler;
-import utils.handler.ModuleHandler;
 import utils.handler.TranslationHandler;
 
 import java.io.IOException;
 import java.lang.invoke.MethodHandles;
 import java.net.URL;
 import java.util.List;
+import java.util.Set;
 
 public abstract class AbstractView extends Application implements IView
 {
@@ -36,29 +36,32 @@ public abstract class AbstractView extends Application implements IView
     private IController controller;
     private IModel      model;
 
-    protected static Stage  STAGE;
-    private          Parent root;
-    private          String screenTitle;
+    protected Stage  stage;
+    private   Parent root;
+    private   String screenTitle;
+
+    public AbstractView(IController controller)
+    {
+        if (controller == null)
+        {
+            throw new IllegalArgumentException("Controller was not initialized.");
+        }
+
+        this.controller = controller;
+        this.model = controller.getModel();
+
+        // Get the newly created model for the view and give the view itself to the controller.
+        controller.setView(this);
+    }
 
     @Override
     public void start(Stage stage)
     {
         // The name of the module to initially load.
-        STAGE = stage;
+        this.stage = stage;
 
         // Load initial language
         TranslationHandler.updateTranslations();
-
-        // Get the starting module and load it.
-        controller = ModuleHandler.getInstance("start");
-        if (controller == null)
-        {
-            throw new RuntimeException("Couldn't load an initial starting module.");
-        }
-
-        // Get the newly created model for the view and give the view itself to the controller.
-        model = controller.getModel();
-        controller.setView(this);
 
         // Load up the module and display it.
         initialize();
@@ -216,14 +219,6 @@ public abstract class AbstractView extends Application implements IView
             return;
         }
 
-        Configuration cfg = getModel().getMainCfg();
-
-        // Retrieve values from settings-config and turn them into a duration object
-        Duration appearDuration = getDurationOfDouble(cfg, ConstScreen.DEFAULT_TOOLTIP_APPEAR);
-        Duration displayDuration = getDurationOfDouble(cfg, ConstScreen.DEFAULT_TOOLTIP_DISPLAY);
-        Duration disappearDuration = getDurationOfDouble(cfg, ConstScreen.DEFAULT_TOOLTIP_DISAPPEAR);
-
-        double fontSize = Utils.getVal(cfg, ConstScreen.DEFAULT_TOOLTIP_FONT_SIZE);
 
         // Iterate over each entry and set the tool tip text to the respective JavaFX element.
         for (Tuple<Control, String> element : elements)
@@ -235,46 +230,10 @@ public abstract class AbstractView extends Application implements IView
             }
 
             // Apply settings values to tooltip
-            Tooltip tip = new Tooltip(element.getVal2());
-            tip.setShowDelay(appearDuration);
-            tip.setShowDuration(displayDuration);
-            tip.setHideDelay(disappearDuration);
-            tip.setStyle(tip.getStyle() + "-fx-font-size: " + fontSize + "em;");
-            tip.setWrapText(true);
-
-            element.getVal1().setTooltip(tip);
+            Tooltip tip = Utils.toToolTip(element.getVal2());
+            Utils.run(() -> element.getVal1().setTooltip(tip));
         }
     }
-
-    /**
-     * Creates a new duration object with the given time amount.
-     *
-     * @param tuple Either a negative value indicating indefinite display, a value 0 < x < 0.001 indicating a zero-second-long display
-     *              or any other positive value.
-     * @return The duration with the given time.
-     */
-    private Duration getDurationOfDouble(Configuration cfg, Tuple<String, Double> tuple)
-    {
-        double val = Utils.getVal(cfg, tuple);
-
-        Duration out;
-
-        if (val < 0.0)
-        {
-            out = Duration.INDEFINITE;
-        }
-        else if (val < 0.001)
-        {
-            out = Duration.ZERO;
-        }
-        else
-        {
-            out = Duration.seconds(val);
-        }
-
-        return out;
-    }
-
 
     /**
      * Assigns the given Labeled-Element the text retrieved from the translation files.
@@ -298,7 +257,7 @@ public abstract class AbstractView extends Application implements IView
                 continue;
             }
 
-            element.getVal1().setText(element.getVal2());
+            Utils.run(() -> element.getVal1().setText(element.getVal2()));
         }
     }
 
@@ -311,6 +270,17 @@ public abstract class AbstractView extends Application implements IView
     protected Node lookupID(String id)
     {
         return root.lookup("#" + id);
+    }
+
+    /**
+     * Looks up all the given buttons on the current page.
+     *
+     * @param selector The selector that is supposed to be looked up.
+     * @return The set of all selected elements.
+     */
+    protected Set<Node> lookupAll(String selector)
+    {
+        return root.lookupAll(selector);
     }
 
     // ################
@@ -372,7 +342,7 @@ public abstract class AbstractView extends Application implements IView
     @Override
     public Stage getStage()
     {
-        return STAGE;
+        return stage;
     }
 
     /**
@@ -387,8 +357,8 @@ public abstract class AbstractView extends Application implements IView
     }
 
     @Override
-    public URL getModuleImage()
+    public FontIcon getModuleImage()
     {
-        return getClass().getResource(ConstScreen.IMG_MODULE_PLACEHOLDER);
+        return new FontIcon("bi-slash-square");
     }
 }

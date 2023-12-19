@@ -1,6 +1,6 @@
 package utils.handler;
 
-import data.translations.ui.TGeneral;
+import data.translations.ui.general.TFiles;
 import org.apache.commons.configuration2.Configuration;
 import org.apache.commons.configuration2.FileBasedConfiguration;
 import org.apache.commons.configuration2.PropertiesConfiguration;
@@ -57,8 +57,8 @@ public class TranslationHandler
      */
     public static void updateTranslations()
     {
-        TRANSLATIONS = loadLanguage(ConfigHandler.getMainConfig().getString(TGeneral.DEFAULT_CFG_STARTUP_LANGUAGE.getVal1(),
-                TGeneral.DEFAULT_CFG_STARTUP_LANGUAGE.getVal2()));
+        TRANSLATIONS = loadLanguage(ConfigHandler.getMainConfig().getString(TFiles.DEFAULT_CFG_STARTUP_LANGUAGE.getVal1(),
+                TFiles.DEFAULT_CFG_STARTUP_LANGUAGE.getVal2()));
         LOG.debug("System Locale: " + Locale.getDefault().getDisplayLanguage() + " (" + Locale.getDefault().toLanguageTag() +
                   ") - Current Translations: " + CURR_LOCALE.getDisplayLanguage() + " (" + CURR_LOCALE.toLanguageTag() + ")");
     }
@@ -117,7 +117,7 @@ public class TranslationHandler
     private static Configuration getTranslationsFile()
     {
         // Retrieve current language file.
-        File f = Path.of(String.format(TGeneral.FILE_FORMAT_STRING, CURR_LOCALE.toLanguageTag())).toFile();
+        File f = Path.of(String.format(TFiles.FILE_FORMAT_STRING, CURR_LOCALE.toLanguageTag())).toFile();
         if (!f.exists())
         {
             LOG.error("Couldn't find file from path: " + f.toPath());

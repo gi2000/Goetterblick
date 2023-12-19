@@ -51,7 +51,7 @@ public interface ConstScreen
     Tuple<String, Double> DEFAULT_TOOLTIP_FONT_SIZE = new Tuple<>(Utils.joinSegms(SEGM_UI, SEGM_TOOLTIP, SEGM_FONT, "size-in-em"),
             0.75);
     @DefaultCfgValue
-    Tuple<String, Double> DEFAULT_TOOLTIP_APPEAR    = new Tuple<>(Utils.joinSegms(SEGM_UI, SEGM_TOOLTIP, "appear-delay"), 1.5);
+    Tuple<String, Double> DEFAULT_TOOLTIP_APPEAR    = new Tuple<>(Utils.joinSegms(SEGM_UI, SEGM_TOOLTIP, "appear-delay"), 1.0);
     @DefaultCfgValue
     Tuple<String, Double> DEFAULT_TOOLTIP_DISPLAY   = new Tuple<>(Utils.joinSegms(SEGM_UI, SEGM_TOOLTIP, "display-duration"), 7.5);
     @DefaultCfgValue

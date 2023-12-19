@@ -1,22 +1,17 @@
-package data.translations.ui;
+package data.translations.ui.modules;
 
 import utils.general.Utils;
 
 /**
  * The interface holding all translation keys for the Start Module UI.
  */
-public interface TStartModule
+public interface TStartModule extends TAbstractModule
 {
     // ####################
     // Config path segments
     // ####################
-    String SEGM_UI       = "ui";
-    String SEGM_MODULES  = "modules";
     String SEGM_START    = "start";
     String SEGM_VERSIONS = "versions";
-
-    String SEGM_LABEL   = "label";
-    String SEGM_TOOLTIP = "tooltip";
 
     // ################
     // Translation Keys

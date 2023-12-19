@@ -1,4 +1,4 @@
-package data.translations.ui;
+package data.translations.ui.general;
 
 import data.annotations.DefaultCfgValue;
 import data.general.Tuple;
@@ -6,7 +6,7 @@ import utils.general.Utils;
 
 import java.util.Locale;
 
-public interface TGeneral
+public interface TFiles
 {
     // ####################
     // Config path segments

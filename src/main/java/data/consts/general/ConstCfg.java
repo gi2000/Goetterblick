@@ -2,7 +2,7 @@ package data.consts.general;
 
 import data.annotations.DefaultCfgValue;
 import data.general.Tuple;
-import data.translations.ui.TGeneral;
+import data.translations.ui.general.TFiles;
 import utils.general.Utils;
 
 import java.io.File;
@@ -30,8 +30,8 @@ public interface ConstCfg
     Tuple<String, String> DEFAULT_PATH_DB_DIR   = new Tuple<>(Utils.joinSegms(SEGM_PATH, ConstDB.DB_DIR_NAME, SEGM_DIR),
             Utils.getCurrentWorkingDir().resolve(ConstDB.DB_DIR_NAME).toString());
     @DefaultCfgValue
-    Tuple<String, String> DEFAULT_PATH_LANG_DIR = new Tuple<>(Utils.joinSegms(SEGM_PATH, TGeneral.DIR_NAME, SEGM_DIR),
-            Utils.getCurrentWorkingDir().resolve(TGeneral.DIR_NAME).toString());
+    Tuple<String, String> DEFAULT_PATH_LANG_DIR = new Tuple<>(Utils.joinSegms(SEGM_PATH, TFiles.DIR_NAME, SEGM_DIR),
+            Utils.getCurrentWorkingDir().resolve(TFiles.DIR_NAME).toString());
 
 
 }

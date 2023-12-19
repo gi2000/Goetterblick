@@ -1,10 +1,17 @@
 package utils.general;
 
+import data.consts.general.ConstScreen;
 import data.general.Tuple;
 import general.Start;
+import javafx.application.Platform;
+import javafx.css.PseudoClass;
+import javafx.scene.Node;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
+import javafx.util.Duration;
 import org.apache.commons.configuration2.Configuration;
 import org.slf4j.Logger;
+import utils.handler.ConfigHandler;
 import utils.handler.LoggerHandler;
 import utils.handler.TranslationHandler;
 
@@ -42,7 +49,7 @@ public abstract class Utils
      * @param paths The images to look for.
      * @return A list of all images.
      */
-    public static List<Image> loadImagesFromResources(Class<?> c, String... paths)
+    public static <T> List<Image> loadImagesFromResources(Class<T> c, String... paths)
     {
         Logger log = LoggerHandler.getLogger(c);
         return Stream.of(paths)
@@ -200,6 +207,74 @@ public abstract class Utils
     }
 
     /**
+     * Executes the code with the JavaFX Thread. Use this method to run any front-end updates!
+     *
+     * @param r The code / runnable to execute in the JavaFX Thread.
+     */
+    public static void run(Runnable r)
+    {
+        Platform.runLater(r);
+    }
+
+    /**
+     * Creates a tooltip with the given text.
+     *
+     * @param text The text for the tooltip.
+     * @return The constructed Tooltip.
+     */
+    public static Tooltip toToolTip(String text)
+    {
+        Configuration cfg = ConfigHandler.getMainConfig();
+
+        // Retrieve values from settings-config and turn them into a duration object
+        Duration appearDuration = getDurationOfDouble(cfg, ConstScreen.DEFAULT_TOOLTIP_APPEAR);
+        Duration displayDuration = getDurationOfDouble(cfg, ConstScreen.DEFAULT_TOOLTIP_DISPLAY);
+        Duration disappearDuration = getDurationOfDouble(cfg, ConstScreen.DEFAULT_TOOLTIP_DISAPPEAR);
+
+        double fontSize = Utils.getVal(cfg, ConstScreen.DEFAULT_TOOLTIP_FONT_SIZE);
+
+        Tooltip tip = new Tooltip();
+        tip.setText(text);
+        tip.setWrapText(true);
+        tip.setShowDelay(appearDuration);
+        tip.setShowDuration(displayDuration);
+        tip.setHideDelay(disappearDuration);
+        tip.setStyle(tip.getStyle() + "-fx-font-size: " + fontSize + "em;");
+        tip.setPrefWidth(350);
+
+        return tip;
+    }
+
+    /**
+     * Creates a new duration object with the given time amount.
+     *
+     * @param tuple Either a negative value indicating indefinite display, a value 0 < x < 0.001 indicating a zero-second-long display
+     *              or any other positive value.
+     * @return The duration with the given time.
+     */
+    private static Duration getDurationOfDouble(Configuration cfg, Tuple<String, Double> tuple)
+    {
+        double val = Utils.getVal(cfg, tuple);
+
+        Duration out;
+
+        if (val < 0.0)
+        {
+            out = Duration.INDEFINITE;
+        }
+        else if (val < 0.001)
+        {
+            out = Duration.ZERO;
+        }
+        else
+        {
+            out = Duration.seconds(val);
+        }
+
+        return out;
+    }
+
+    /**
      * Returns the operating system dependent file separator.
      *
      * @return The OS specific file separator.
@@ -217,5 +292,27 @@ public abstract class Utils
     public static String n()
     {
         return System.lineSeparator();
+    }
+
+    /**
+     * Sets the given css class to the given node.
+     *
+     * @param n        The node to attach the css class to.
+     * @param cssClass The css class in question.
+     */
+    public static void addCssClass(Node n, String cssClass)
+    {
+        n.pseudoClassStateChanged(PseudoClass.getPseudoClass(cssClass), true);
+    }
+
+    /**
+     * Removes the given css class of the given node.
+     *
+     * @param n        The node to remove the css class from.
+     * @param cssClass The css class in question.
+     */
+    public static void removeCssClass(Node n, String cssClass)
+    {
+        n.pseudoClassStateChanged(PseudoClass.getPseudoClass(cssClass), false);
     }
 }
