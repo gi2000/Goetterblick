@@ -6,6 +6,12 @@ import utils.general.Utils;
 
 public interface ConstScreen
 {
+    // ###############
+    // Other Constants
+    // ###############
+
+    String FXML_CSS_MAIN = "main-theme.css";
+
     // #################
     // All purpose paths
     // #################

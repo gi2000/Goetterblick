@@ -29,16 +29,24 @@ public abstract class AbstractController implements IController
     }
 
     @Override
-    public boolean deconstruct()
+    public boolean deconstruct(boolean isModuleSwitch)
     {
-        getModel().setPrevModule(getModuleName());
-        return getModel().deconstruct() && getView().deconstruct();
+        // If this is a module switch, then deconstruct the model, too. Lazy loading allows for the second getModel().deconstruct()
+        // to not get executed, if isModuleSwitch is set to false.
+        return (!isModuleSwitch || getModel().deconstruct())
+               && getView().deconstruct();
     }
 
     @Override
     public boolean switchToModule(IController controller)
     {
-        return deconstruct();
+        getModel().setPrevModule(getModuleName());
+        return loadNewModule(controller) && deconstruct();
+    }
+
+    private boolean loadNewModule(IController controller)
+    {
+        return true;
     }
 
     // #################

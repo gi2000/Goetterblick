@@ -14,6 +14,15 @@ public class Tuple<T, U>
     private U val2;
 
     /**
+     * Creates a new, empty pair / tuple.
+     */
+    public Tuple()
+    {
+        setVal1(null);
+        setVal2(null);
+    }
+
+    /**
      * Creates a new pair / tuple with two given values.
      *
      * @param val1 The first value to save.

@@ -26,6 +26,7 @@ import utils.handler.TranslationHandler;
 import java.io.IOException;
 import java.lang.invoke.MethodHandles;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -196,11 +197,18 @@ public abstract class AbstractView extends Application implements IView
     protected boolean loadCSS()
     {
         // Apply css styles from external stylesheet
-        List<URL> cssPaths = getCSSPaths();
+        List<URL> cssPaths = new ArrayList<>();
+        cssPaths.add(getMainCSS());
+        cssPaths.addAll(getCSSPaths());
         getStage().getScene().getStylesheets().clear();
 
         for (URL cssURL : cssPaths)
         {
+            if (cssURL == null)
+            {
+                LOG.error("Couldn't find css of view: " + getClass().getName());
+                continue;
+            }
             // Turns the URL into a String representation
             String css = cssURL.toExternalForm();
             getStage().getScene().getStylesheets().add(css);
@@ -219,6 +227,16 @@ public abstract class AbstractView extends Application implements IView
             return;
         }
 
+        assignTooltipsToElements(Utils.toList(elements));
+    }
+
+    @Override
+    public final void assignTooltipsToElements(List<Tuple<Control, String>> elements)
+    {
+        if (elements == null)
+        {
+            return;
+        }
 
         // Iterate over each entry and set the tool tip text to the respective JavaFX element.
         for (Tuple<Control, String> element : elements)
@@ -240,8 +258,7 @@ public abstract class AbstractView extends Application implements IView
      *
      * @param elements The list of tuples: Val1 = Element in JavaFX, that needs to be labeled, Val2 = Translation
      */
-    @SafeVarargs
-    protected final void assignTranslLabel(Tuple<Labeled, String>... elements)
+    protected final void assignTranslLabel(List<Tuple<Labeled, String>> elements)
     {
         if (elements == null)
         {
@@ -360,5 +377,10 @@ public abstract class AbstractView extends Application implements IView
     public FontIcon getModuleImage()
     {
         return new FontIcon("bi-slash-square");
+    }
+
+    protected URL getMainCSS()
+    {
+        return AbstractView.class.getResource(ConstScreen.FXML_CSS_MAIN);
     }
 }

@@ -17,9 +17,11 @@ public interface IController
     /**
      * Tears everything down from the current module.
      *
+     * @param isModuleSwitch Whether the deconstruction is happening due to a module switch. If so, then also the model has to be
+     *                       deconstructed.
      * @return Whether the deconstruction was successful.
      */
-    boolean deconstruct();
+    boolean deconstruct(boolean isModuleSwitch);
 
     /**
      * Switches the current module / controller to the new, given one.

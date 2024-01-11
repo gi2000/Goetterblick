@@ -8,39 +8,58 @@ import data.translations.ui.modules.TStartModule;
  */
 public enum DSAVersion
 {
-    DSA1(TStartModule.VERSIONS_DSA1_LABEL, ConstDB.DB_FILE_DSA1),
-    DSA2(TStartModule.VERSIONS_DSA2_LABEL, ConstDB.DB_FILE_DSA2),
-    DSA3(TStartModule.VERSIONS_DSA3_LABEL, ConstDB.DB_FILE_DSA3),
-    DSA4(TStartModule.VERSIONS_DSA4_LABEL, ConstDB.DB_FILE_DSA4),
-    DSA4d1(TStartModule.VERSIONS_DSA4D1_LABEL, ConstDB.DB_FILE_DSA4d1),
-    DSA5(TStartModule.VERSIONS_DSA5_LABEL, ConstDB.DB_FILE_DSA5),
-    DSK(TStartModule.VERSIONS_DSK_LABEL, ConstDB.DB_FILE_DSK),
-    MYRANOR(TStartModule.VERSIONS_MYR_LABEL, ConstDB.DB_FILE_MYR);
+    DSA1(TStartModule.VERSIONS_DSA1_LABEL, TStartModule.VERSIONS_DSA1_TT, ConstDB.DB_FILE_DSA1, false),
+    DSA2(TStartModule.VERSIONS_DSA2_LABEL, TStartModule.VERSIONS_DSA2_TT, ConstDB.DB_FILE_DSA2, false),
+    DSA3(TStartModule.VERSIONS_DSA3_LABEL, TStartModule.VERSIONS_DSA3_TT, ConstDB.DB_FILE_DSA3, false),
+    DSA4(TStartModule.VERSIONS_DSA4_LABEL, TStartModule.VERSIONS_DSA4_TT, ConstDB.DB_FILE_DSA4, false),
+    DSA4d1(TStartModule.VERSIONS_DSA4D1_LABEL, TStartModule.VERSIONS_DSA4D1_TT, ConstDB.DB_FILE_DSA4d1, true),
+    DSA5(TStartModule.VERSIONS_DSA5_LABEL, TStartModule.VERSIONS_DSA5_TT, ConstDB.DB_FILE_DSA5, true),
+    DSK(TStartModule.VERSIONS_DSK_LABEL, TStartModule.VERSIONS_DSK_TT, ConstDB.DB_FILE_DSK, false),
+    MYRANOR(TStartModule.VERSIONS_MYR_LABEL, TStartModule.VERSIONS_MYR_TT, ConstDB.DB_FILE_MYR, false);
 
 
-    private final String translKey;
-    private final String dbName;
+    private final String  translLabelKey;
+    private final String  translToolTipKey;
+    private final String  dbName;
+    private final boolean isActive;
 
     /**
      * The main constructor with the translation key for the version and the database name file.
      *
-     * @param translKey The translation key, that is used in translation files to find the correct translation.
-     * @param dbName    The name of the database file.
+     * @param translLabelKey   The translation key for the text label, that is used in translation files to find the correlating
+     *                         translation.
+     * @param translToolTipKey The translation key for the tool tipp, that is used in translation files to find the correlating
+     *                         translation.
+     * @param dbName           The name of the database file.
+     * @param isActive         Whether the version is actively usable or not.
      */
-    DSAVersion(String translKey, String dbName)
+    DSAVersion(String translLabelKey, String translToolTipKey, String dbName, boolean isActive)
     {
-        this.translKey = translKey;
+        this.translLabelKey = translLabelKey;
+        this.translToolTipKey = translToolTipKey;
         this.dbName = dbName;
+        this.isActive = isActive;
     }
 
     /**
-     * Returns the translation key, that is used in translation files to find the correct translation.
+     * Returns the translation key for the label, that is used in translation files to find the correlating translation.
      *
      * @return The translation key.
      */
-    public String getTranslKey()
+    public String getTranslLabelKey()
     {
-        return translKey;
+        return translLabelKey;
+    }
+
+    /**
+     * Returns the translation key for the tool tipp, that is used in translation files to find the correlating
+     * translation.
+     *
+     * @return The translation key.
+     */
+    public String getTranslToolTipKey()
+    {
+        return translToolTipKey;
     }
 
     /**
@@ -51,5 +70,15 @@ public enum DSAVersion
     public String getDbName()
     {
         return dbName;
+    }
+
+    /**
+     * If this TDE-Version is active / usable.
+     *
+     * @return Whether the version is active.
+     */
+    public boolean isActive()
+    {
+        return isActive;
     }
 }

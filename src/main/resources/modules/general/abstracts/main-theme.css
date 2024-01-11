@@ -10,8 +10,8 @@
 /* Import Martian Mono Bold */
 @font-face
 {
-    font-family: 'Martian Mono Cn Bd';
-    src: url("fonts/martian-mono/MartianMono-CnBd.ttf");
+    font-family: 'Martian Mono Cn Rg';
+    src: url("fonts/martian-mono/MartianMono-CnRg.ttf");
 }
 
 /* CSS for every element */
@@ -33,20 +33,15 @@
 }
 .button:hover
 {
-	-fx-background-color: rgba(0,0,0,5);
+	-fx-background-color: rgba(255, 200, 200, 0.05);
 }
 .button:pressed
 {
-	-fx-background-color: rgba(0,0,0,20);
+	-fx-background-color: rgba(255, 215, 215, 0.1);
 }
 
 /* CSS for every tooltip */
 .tooltip
 {
 	-fx-border-radius: 5px;
-}
-
-:module-icons {
-	-fx-icon-color: #ffffff;
-	-fx-icon-size: 96px;
 }
