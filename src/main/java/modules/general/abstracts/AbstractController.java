@@ -41,7 +41,7 @@ public abstract class AbstractController implements IController
     public boolean switchToModule(IController controller)
     {
         getModel().setPrevModule(getModuleName());
-        return loadNewModule(controller) && deconstruct();
+        return loadNewModule(controller);
     }
 
     private boolean loadNewModule(IController controller)
@@ -60,6 +60,7 @@ public abstract class AbstractController implements IController
 
     public void setModel(IModel model)
     {
+
         this.model = model;
     }
 

@@ -123,6 +123,7 @@ public class StartView extends AbstractView
         // Assign tooltips and labels
         assignTooltipsToElements(tooltips);
         assignTranslLabel(labels);
+        updateStartingVersionButton();
     }
 
     /**
@@ -182,7 +183,7 @@ public class StartView extends AbstractView
             {
                 // Retrieve the icon and mark it as a module icon for the css
                 FontIcon icon = view.getModuleImage();
-                Utils.addCssClass(icon, "module-icons");
+                Utils.addCssClass(icon, ConstStartModule.CSS_MODULES_FONT_ICON);
                 finalRelatedButton.setGraphic(icon);
             });
         }
@@ -191,19 +192,22 @@ public class StartView extends AbstractView
         assignTranslLabel(labels);
     }
 
+    /**
+     * Initializes the version buttons' events.
+     */
     private void initVersionButtonEvents()
     {
-        for (Button b : versionButtonMap.values())
-        {
-            b.setOnAction((event) -> selectVersion(b));
-        }
+        Utils.makeRadioButtonOnSelection(ConstStartModule.CSS_VERSIONS_SELECTED_VERSION, versionButtonMap.values());
     }
 
+    /**
+     * Initializes the module buttons' events.
+     */
     private void initModuleButtonEvents()
     {
         for (Button b : versionButtonMap.values())
         {
-            b.setOnAction((event) -> getController().switchToModule(modulesButtonMap.get(b)));
+            b.setOnAction((event) -> startController.switchToModule(modulesButtonMap.get(b)));
         }
     }
 
@@ -211,18 +215,17 @@ public class StartView extends AbstractView
     // Helping Methods
     // ###############
 
-    private void selectVersion(Button button)
+    /**
+     * Loads the version button, that is set in the config.
+     */
+    private void updateStartingVersionButton()
     {
-        startModel.setSelectedVersion(buttonVersionMap.get(button));
-        Utils.addCssClass(button, "selected-version");
+        DSAVersion selectedVersion = getModel().getMainCfg()
+                .get(DSAVersion.class, ConstStartModule.DSA_STARTING_VERSION.getVal1(),
+                        ConstStartModule.DSA_STARTING_VERSION.getVal2());
 
-        for (Button b : versionButtonMap.values())
-        {
-            if (b != button)
-            {
-                Utils.removeCssClass(b, "selected-version");
-            }
-        }
+        startModel.setSelectedVersion(selectedVersion);
+        Utils.addCssClass(versionButtonMap.get(selectedVersion), ConstStartModule.CSS_VERSIONS_SELECTED_VERSION);
     }
 
     // ###############
@@ -238,20 +241,7 @@ public class StartView extends AbstractView
     @Override
     public List<URL> getCSSPaths()
     {
-        return Utils.toList(ConstStartModule.FXML_START_CSS)
-                .stream()
-                .map(StartView.class::getResource)
-                .collect(Collectors.toList());
-    }
-
-    /**
-     * Retrieves the selected version button
-     *
-     * @return The version button selected.
-     */
-    private DSAVersion getSelectedVersionButton()
-    {
-        return startModel.getSelectedVersion();
+        return Utils.toList(ConstStartModule.FXML_START_CSS).stream().map(StartView.class::getResource).collect(Collectors.toList());
     }
 
     /**
@@ -263,14 +253,7 @@ public class StartView extends AbstractView
      */
     private RowConstraints getRowConstraints(double minHeight, double prefHeight)
     {
-        return new RowConstraints(
-                minHeight,
-                prefHeight,
-                Control.USE_COMPUTED_SIZE,
-                Priority.SOMETIMES,
-                VPos.CENTER,
-                true
-        );
+        return new RowConstraints(minHeight, prefHeight, Control.USE_COMPUTED_SIZE, Priority.SOMETIMES, VPos.CENTER, true);
     }
 
     /**
@@ -282,14 +265,7 @@ public class StartView extends AbstractView
      */
     private ColumnConstraints getColumnConstraints(double minWidth, double prefWidth)
     {
-        return new ColumnConstraints(
-                minWidth,
-                prefWidth,
-                Double.MAX_VALUE,
-                Priority.SOMETIMES,
-                HPos.LEFT,
-                true
-        );
+        return new ColumnConstraints(minWidth, prefWidth, Double.MAX_VALUE, Priority.SOMETIMES, HPos.LEFT, true);
     }
 
     /**

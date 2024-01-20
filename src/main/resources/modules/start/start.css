@@ -1,14 +1,14 @@
 @import "../general/abstracts/main-theme.css";
 
-:module-icons 
+.ikonli-font-icon:module-icons
 {
-	-fx-icon-color: #ffffff;
-	-fx-icon-size: 96px;
+    -fx-icon-color: #ffffff;
+    -fx-icon-size:  96px;
 }
 
-:selected-version 
+.button:selected-version
 {
-	-fx-background-color: rgba(255, 215, 215, 0.05);
-	-fx-underline: true;
-    -fx-font-family: "Martian Mono Cn Rg";
+    -fx-background-color: #3d334a;
+    -fx-underline:        true;
+    -fx-font-family:      "Martian Mono Cn Bd";
 }

@@ -6,6 +6,7 @@ import general.Start;
 import javafx.application.Platform;
 import javafx.css.PseudoClass;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.util.Duration;
@@ -96,7 +97,7 @@ public abstract class Utils
     @SafeVarargs
     public static <T> List<T> toList(T... elements)
     {
-        return new ArrayList<>(new ArrayList<>(Arrays.asList(elements)));
+        return new ArrayList<>(Arrays.asList(elements));
     }
 
     /**
@@ -314,5 +315,28 @@ public abstract class Utils
     public static void removeCssClass(Node n, String cssClass)
     {
         n.pseudoClassStateChanged(PseudoClass.getPseudoClass(cssClass), false);
+    }
+
+    /**
+     * Adds the radio-button-behaviour by adding or removing the given css-class. When one button is pressed, then for this button
+     * the css class will be added. For the others it will be removed
+     *
+     * @param cssClass The css class string to be added or removed.
+     * @param buttons  The buttons which are supposed to be in a radio button group.
+     */
+    public static void makeRadioButtonOnSelection(String cssClass, Collection<Button> buttons)
+    {
+        final List<Button> out = new ArrayList<>(buttons);
+        for (Button b : buttons)
+        {
+            b.setOnMouseClicked((event) ->
+            {
+                // Adds css class for the button that was pressed
+                addCssClass(b, cssClass);
+                // Removes css class for all other buttons
+                out.stream().filter((button) -> !b.equals(button)).forEach((button) -> removeCssClass(button, cssClass));
+            });
+        }
+
     }
 }
