@@ -48,3 +48,31 @@
 {
     -fx-border-radius: 5px;
 }
+
+/* Global CSS Selectors */
+
+/* For Textflows */
+:default-text
+{
+    -fx-fill: #ffffff;
+}
+
+:bold
+{
+    -fx-font-family: "Martian Mono Cn Bd";
+}
+
+:underlined
+{
+    -fx-underline: true;
+}
+
+:strikethrough
+{
+    -fx-strikethrough: true;
+}
+
+:red
+{
+    -fx-fill: #ff0000;
+}

@@ -307,6 +307,20 @@ public abstract class Utils
     }
 
     /**
+     * Sets the given css classes to the given node.
+     *
+     * @param n          The node to attach the css classes to.
+     * @param cssClasses The css classes in question.
+     */
+    public static void addCssClasses(Node n, String... cssClasses)
+    {
+        for (String cssClass : cssClasses)
+        {
+            n.pseudoClassStateChanged(PseudoClass.getPseudoClass(cssClass), true);
+        }
+    }
+
+    /**
      * Removes the given css class of the given node.
      *
      * @param n        The node to remove the css class from.
@@ -316,6 +330,21 @@ public abstract class Utils
     {
         n.pseudoClassStateChanged(PseudoClass.getPseudoClass(cssClass), false);
     }
+
+    /**
+     * Sets the given css classes to the given node.
+     *
+     * @param n          The node to remove the css classes from.
+     * @param cssClasses The css classes in question.
+     */
+    public static void removeCssClasses(Node n, String... cssClasses)
+    {
+        for (String cssClass : cssClasses)
+        {
+            n.pseudoClassStateChanged(PseudoClass.getPseudoClass(cssClass), false);
+        }
+    }
+
 
     /**
      * Adds the radio-button-behaviour by adding or removing the given css-class. When one button is pressed, then for this button
@@ -337,6 +366,28 @@ public abstract class Utils
                 out.stream().filter((button) -> !b.equals(button)).forEach((button) -> removeCssClass(button, cssClass));
             });
         }
+    }
 
+    /**
+     * A hashing function for two strings, that can switch place and still result in the same hash being returned.
+     *
+     * @param s1 The first string to be hashed.
+     * @param s2 The second string to be hashed.
+     * @return The hash of both strings, independent of their order.
+     * @see <a href="https://stackoverflow.com/a/17765914">https://stackoverflow.com/a/17765914</a>
+     */
+    public static long commutHash(String s1, String s2)
+    {
+        // Turn strings into hash / 32-bit ints
+        long initHash1 = s1.hashCode();
+        long initHash2 = s2.hashCode();
+
+        // Now shift one int "to the left" by 32 bits and add the other in "on the right half".
+        long hash1 = (initHash2 << 32) | initHash1;
+        // Have both of the possible hashes ready, so that it takes no additional if-clause on the return
+        long hash2 = (initHash1 << 32) | initHash2;
+
+        // Always have the bigger hash "on the right", when returning the final hash
+        return (initHash1 < initHash2) ? hash1 : hash2;
     }
 }

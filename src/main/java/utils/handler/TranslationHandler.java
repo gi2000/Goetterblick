@@ -47,7 +47,7 @@ public class TranslationHandler
      * @param prefix The prefix / segment of a path, that a subset is supposed to me made of.
      * @return The subset configuration.
      */
-    public static Configuration getSubsetOfTransls(String prefix)
+    public static Configuration getSubsetOfTranslations(String prefix)
     {
         return TRANSLATIONS.subset(prefix);
     }
@@ -128,9 +128,9 @@ public class TranslationHandler
         Configuration out;
 
         // Creates a builder that can create a new configuration based on a file.
-        FileBasedConfigurationBuilder<FileBasedConfiguration> builder = new FileBasedConfigurationBuilder<FileBasedConfiguration>
-                (PropertiesConfiguration.class).configure(
-                params.fileBased().setEncoding(StandardCharsets.UTF_8.displayName()).setFile(f));
+        FileBasedConfigurationBuilder<FileBasedConfiguration> builder =
+                new FileBasedConfigurationBuilder<FileBasedConfiguration>(PropertiesConfiguration.class)
+                        .configure(params.fileBased().setEncoding(StandardCharsets.UTF_8.displayName()).setFile(f));
 
         try
         {
