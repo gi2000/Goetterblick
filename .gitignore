@@ -114,3 +114,7 @@ dependency-reduced-pom.xml
 
 # Leave out config
 cfg
+
+# Leave out Pencil Export
+/src/site/pics/mockups/pencil/Export/
+/src/site/pics/mockups/pencil/Export-Plain/
