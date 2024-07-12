@@ -7,12 +7,16 @@ import modules.general.facades.IModel;
 import modules.general.facades.IView;
 import utils.handler.TranslationHandler;
 
+import java.net.URL;
+import java.util.List;
+
 @Module(name = "gm")
 public class GmController extends AbstractController
 {
-    public void resizeElements(double sizeFactor)
+    @Override
+    public boolean initElements()
     {
-
+        return false;
     }
 
     public IModel createModel()
@@ -22,7 +26,7 @@ public class GmController extends AbstractController
 
     public IView createView()
     {
-        return new GmView(this);
+        return new GmView(this, getModel(), getStage(), getRoot());
     }
 
     public String getModuleName()
@@ -33,5 +37,17 @@ public class GmController extends AbstractController
     public String getModuleTooltip()
     {
         return TranslationHandler.getTransl(TGmModule.MODULEBUTTON_TOOLTIP);
+    }
+
+    @Override
+    protected URL getFXMLPath()
+    {
+        return null;
+    }
+
+    @Override
+    protected List<URL> getCSSPaths()
+    {
+        return List.of();
     }
 }

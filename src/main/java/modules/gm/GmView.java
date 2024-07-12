@@ -1,34 +1,27 @@
 package modules.gm;
 
+import javafx.scene.Parent;
+import javafx.stage.Stage;
 import modules.general.abstracts.AbstractView;
 import modules.general.facades.IController;
+import modules.general.facades.IModel;
 import org.kordamp.ikonli.javafx.FontIcon;
-
-import java.net.URL;
-import java.util.List;
 
 public class GmView extends AbstractView
 {
-    public GmView(IController controller)
+
+    public GmView(IController controller, IModel model, Stage stage, Parent root)
     {
-        super(controller);
+        super(controller, model, stage, root);
     }
 
-    protected URL getFXMLPath()
-    {
-        return null;
-    }
-
-    protected List<URL> getCSSPaths()
-    {
-        return null;
-    }
-
-    public boolean initElements()
+    @Override
+    public boolean initialize()
     {
         return false;
     }
 
+    @Override
     public boolean deconstruct()
     {
         return false;

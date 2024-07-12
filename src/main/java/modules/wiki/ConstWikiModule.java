@@ -1,4 +1,4 @@
-package data.consts.modules;
+package modules.wiki;
 
 public interface ConstWikiModule
 {

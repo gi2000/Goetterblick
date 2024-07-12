@@ -1,4 +1,4 @@
-package data.consts.general;
+package data.consts;
 
 import data.annotations.DefaultCfgValue;
 import data.general.Tuple;

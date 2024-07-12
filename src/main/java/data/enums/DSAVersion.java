@@ -1,6 +1,6 @@
 package data.enums;
 
-import data.consts.general.ConstDB;
+import data.consts.ConstDB;
 import data.translations.ui.modules.TStartModule;
 
 /**

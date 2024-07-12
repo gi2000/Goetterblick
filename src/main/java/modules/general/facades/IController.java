@@ -1,6 +1,6 @@
 package modules.general.facades;
 
-import javafx.fxml.FXML;
+import javafx.stage.Stage;
 
 /**
  * The interface of a controller for the MVC pattern.
@@ -9,15 +9,22 @@ public interface IController
 {
 
     /**
-     * The JavaFX initialisation method. Do not call it by yourself, the FXMLLoader should do it itself.
+     * The initialization method, which loads all the assets for the scene.
      */
-    @FXML
-    void initialize();
+    boolean initScreen(Stage stage);
+
+    /**
+     * Initializes all given control elements, which the user can interact with.
+     *
+     * @return Whether the initialization was successful.
+     */
+    boolean initElements();
 
     /**
      * Tears everything down from the current module.
      *
-     * @param isModuleSwitch Whether the deconstruction is happening due to a module switch. If so, then also the model has to be
+     * @param isModuleSwitch Whether the deconstruction is happening due to a module switch. If so, then also the
+     *                       model has to be
      *                       deconstructed.
      * @return Whether the deconstruction was successful.
      */
@@ -30,14 +37,6 @@ public interface IController
      * @return Whether the switch was successful.
      */
     boolean switchToModule(IController controller);
-
-    /**
-     * The hook method to implement all resize changes, once the window resizes.
-     *
-     * @param sizeFactor The factor of how much the window was set to smaller or bigger. F. ex. -2.0 means 2x smaller and 3.0 means
-     *                   3x bigger.
-     */
-    void resizeElements(double sizeFactor);
 
     /**
      * Creates a new instance of the model for the current module.

@@ -7,12 +7,17 @@ import modules.general.facades.IModel;
 import modules.general.facades.IView;
 import utils.handler.TranslationHandler;
 
+import java.net.URL;
+import java.util.List;
+
 @Module(name = "map")
 public class MapController extends AbstractController
 {
-    public void resizeElements(double sizeFactor)
-    {
 
+    @Override
+    public boolean initElements()
+    {
+        return false;
     }
 
     public IModel createModel()
@@ -22,7 +27,7 @@ public class MapController extends AbstractController
 
     public IView createView()
     {
-        return new MapView(this);
+        return new MapView(this, getModel(), getStage(), getRoot());
     }
 
     public String getModuleName()
@@ -33,5 +38,17 @@ public class MapController extends AbstractController
     public String getModuleTooltip()
     {
         return TranslationHandler.getTransl(TMapModule.MODULEBUTTON_TOOLTIP);
+    }
+
+    @Override
+    protected URL getFXMLPath()
+    {
+        return null;
+    }
+
+    @Override
+    protected List<URL> getCSSPaths()
+    {
+        return List.of();
     }
 }

@@ -1,4 +1,4 @@
-package modules.chareditor;
+package modules.settings;
 
 import javafx.scene.Parent;
 import javafx.stage.Stage;
@@ -7,10 +7,9 @@ import modules.general.facades.IController;
 import modules.general.facades.IModel;
 import org.kordamp.ikonli.javafx.FontIcon;
 
-public class CharEditorView extends AbstractView
+public class SettingsView extends AbstractView
 {
-
-    public CharEditorView(IController controller, IModel model, Stage stage, Parent root)
+    public SettingsView(IController controller, IModel model, Stage stage, Parent root)
     {
         super(controller, model, stage, root);
     }
@@ -30,6 +29,6 @@ public class CharEditorView extends AbstractView
     @Override
     public FontIcon getModuleImage()
     {
-        return new FontIcon("bi-person");
+        return new FontIcon("bi-book");
     }
 }

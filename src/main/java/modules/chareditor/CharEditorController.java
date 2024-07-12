@@ -7,12 +7,16 @@ import modules.general.facades.IModel;
 import modules.general.facades.IView;
 import utils.handler.TranslationHandler;
 
+import java.net.URL;
+import java.util.List;
+
 @Module(name = "chareditor")
 public class CharEditorController extends AbstractController
 {
-    public void resizeElements(double sizeFactor)
+    @Override
+    public boolean initElements()
     {
-
+        return false;
     }
 
     public IModel createModel()
@@ -22,7 +26,7 @@ public class CharEditorController extends AbstractController
 
     public IView createView()
     {
-        return new CharEditorView(this);
+        return new CharEditorView(this, getModel(), getStage(), getRoot());
     }
 
     public String getModuleName()
@@ -33,5 +37,17 @@ public class CharEditorController extends AbstractController
     public String getModuleTooltip()
     {
         return TranslationHandler.getTransl(TCharEditorModule.MODULEBUTTON_TOOLTIP);
+    }
+
+    @Override
+    protected URL getFXMLPath()
+    {
+        return null;
+    }
+
+    @Override
+    protected List<URL> getCSSPaths()
+    {
+        return List.of();
     }
 }

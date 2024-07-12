@@ -1,4 +1,4 @@
-package data.consts.modules;
+package modules.start;
 
 import data.annotations.DefaultCfgValue;
 import data.enums.DSAVersion;

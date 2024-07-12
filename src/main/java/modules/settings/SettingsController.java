@@ -1,17 +1,15 @@
-package modules.wiki;
+package modules.settings;
 
 import data.annotations.Module;
-import data.translations.ui.modules.TWikiModule;
 import modules.general.abstracts.AbstractController;
 import modules.general.facades.IModel;
 import modules.general.facades.IView;
-import utils.handler.TranslationHandler;
 
 import java.net.URL;
 import java.util.List;
 
-@Module(name = "wiki")
-public class WikiController extends AbstractController
+@Module(name = "settings", isDisplayedInHome = false)
+public class SettingsController extends AbstractController
 {
     @Override
     public boolean initElements()
@@ -22,25 +20,25 @@ public class WikiController extends AbstractController
     @Override
     public IModel createModel()
     {
-        return new WikiModel();
+        return new SettingsModel();
     }
 
     @Override
     public IView createView()
     {
-        return new WikiView(this, getModel(), getStage(), getRoot());
+        return new SettingsView(this, getModel(), getStage(), getRoot());
     }
 
     @Override
     public String getModuleName()
     {
-        return TranslationHandler.getTransl(TWikiModule.MODULEBUTTON_LABEL);
+        return "";
     }
 
     @Override
     public String getModuleTooltip()
     {
-        return TranslationHandler.getTransl(TWikiModule.MODULEBUTTON_TOOLTIP);
+        return "";
     }
 
     @Override
@@ -54,5 +52,4 @@ public class WikiController extends AbstractController
     {
         return List.of();
     }
-
 }

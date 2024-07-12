@@ -3,13 +3,15 @@ package general;
 import it.sauronsoftware.junique.AlreadyLockedException;
 import it.sauronsoftware.junique.JUnique;
 import javafx.application.Application;
-import modules.start.StartView;
+import javafx.stage.Stage;
+import modules.general.facades.IController;
 import org.slf4j.Logger;
 import utils.handler.LoggerHandler;
+import utils.handler.ModuleHandler;
 
 import java.lang.invoke.MethodHandles;
 
-public class Initialisation
+public class Initialisation extends Application
 {
     private static final Logger LOG = LoggerHandler.getLogger(MethodHandles.lookup().lookupClass());
 
@@ -20,12 +22,12 @@ public class Initialisation
         if (!isAppAlreadyRunning(appId))
         {
             System.err.println(
-                    "The next warning is due to the fact that this Java Maven project is not setup as a java module. This could " +
-                    "cause issues later, but is most likely harmless. See this StackOverflow thread:");
+                    "The next warning is due to the fact that this Java Maven project is not setup as a java module. " +
+                            "This could " +
+                            "cause issues later, but is most likely harmless. See this StackOverflow thread:");
             System.err.println("https://stackoverflow.com/a/67854230");
-            Application.launch(StartView.class);
-        }
-        else
+            launch(args);
+        } else
         {
             LOG.error("An instance of \"" + appId + "\" is already running. Shutting down this new instance.");
             System.exit(1);
@@ -44,12 +46,25 @@ public class Initialisation
         {
             JUnique.acquireLock(appId);
             alreadyRunning = false;
-        }
-        catch (AlreadyLockedException e)
+        } catch (AlreadyLockedException e)
         {
             alreadyRunning = true;
         }
 
         return alreadyRunning;
+    }
+
+    @Override
+    public void start(Stage stage) throws Exception
+    {
+        IController contr = ModuleHandler.getInstance("start");
+        if (contr == null)
+        {
+            RuntimeException e = new RuntimeException("No start module found.");
+            LOG.error("No start module found.", e);
+            throw e;
+        }
+
+        contr.initScreen(stage);
     }
 }

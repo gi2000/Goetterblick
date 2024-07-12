@@ -1,4 +1,4 @@
-package data.consts.general;
+package data.consts;
 
 public interface ConstDB
 {

@@ -1,6 +1,6 @@
 package utils.general;
 
-import data.consts.general.ConstScreen;
+import data.consts.ConstScreen;
 import data.general.Tuple;
 import general.Start;
 import javafx.application.Platform;
@@ -53,40 +53,37 @@ public abstract class Utils
     public static <T> List<Image> loadImagesFromResources(Class<T> c, String... paths)
     {
         Logger log = LoggerHandler.getLogger(c);
-        return Stream.of(paths)
-                .map(imgPath ->
-                {
-                    URL out = c.getResource(imgPath);
+        return Stream.of(paths).map(imgPath ->
+                     {
+                         URL out = c.getResource(imgPath);
 
-                    // If file was not found, log the error.
-                    if (out == null)
-                    {
-                        log.error("Couldn't find image: " + imgPath);
-                    }
-                    else
-                    {
-                        log.debug("Added image: " + out);
-                    }
+                         // If file was not found, log the error.
+                         if (out == null)
+                         {
+                             log.error("Couldn't find image: " + imgPath);
+                         } else
+                         {
+                             log.debug("Added image: " + out);
+                         }
 
-                    return out;
-                })
-                // Filter out not-findable image
-                .filter(Objects::nonNull)
-                // Iterate over all image paths to load them
-                .map(imgURL ->
-                {
-                    Image img = null;
-                    try
-                    {
-                        img = new Image(imgURL.openStream());
-                    }
-                    catch (IOException e)
-                    {
-                        log.error("Couldn't load image.", e);
-                    }
+                         return out;
+                     })
+                     // Filter out not-findable image
+                     .filter(Objects::nonNull)
+                     // Iterate over all image paths to load them
+                     .map(imgURL ->
+                     {
+                         Image img = null;
+                         try
+                         {
+                             img = new Image(imgURL.openStream());
+                         } catch (IOException e)
+                         {
+                             log.error("Couldn't load image.", e);
+                         }
 
-                    return img;
-                }).collect(Collectors.toList());
+                         return img;
+                     }).collect(Collectors.toList());
     }
 
     /**
@@ -115,10 +112,9 @@ public abstract class Utils
 
         try
         {
-            return new File(Start.class.getProtectionDomain().getCodeSource().getLocation()
-                    .toURI()).getParentFile().toPath();
-        }
-        catch (URISyntaxException e)
+            return new File(Start.class.getProtectionDomain().getCodeSource().getLocation().toURI()).getParentFile()
+                                                                                                    .toPath();
+        } catch (URISyntaxException e)
         {
             throw new RuntimeException(e);
         }
@@ -131,7 +127,8 @@ public abstract class Utils
      */
     public static boolean isNotRunningInJar()
     {
-        // Retrieve this class from built code. If the file-path starts with "jar:file:" instead of "file:", it is run in jar.
+        // Retrieve this class from built code. If the file-path starts with "jar:file:" instead of "file:", it is
+        // run in jar.
         URL url = Utils.class.getResource("Utils.class");
         if (url == null)
         {
@@ -164,7 +161,8 @@ public abstract class Utils
     }
 
     /**
-     * Joins all strings together in a path with the system dependent symbol. Use this method, if the files are inside a jar.
+     * Joins all strings together in a path with the system dependent symbol. Use this method, if the files are
+     * inside a jar.
      *
      * @param paths The paths to connect as one, when accessing a file inside a jar.
      * @return The fully connected path string from inside a jar.
@@ -249,7 +247,8 @@ public abstract class Utils
     /**
      * Creates a new duration object with the given time amount.
      *
-     * @param tuple Either a negative value indicating indefinite display, a value 0 < x < 0.001 indicating a zero-second-long display
+     * @param tuple Either a negative value indicating indefinite display, a value 0 < x < 0.001 indicating a
+     *              zero-second-long display
      *              or any other positive value.
      * @return The duration with the given time.
      */
@@ -262,12 +261,10 @@ public abstract class Utils
         if (val < 0.0)
         {
             out = Duration.INDEFINITE;
-        }
-        else if (val < 0.001)
+        } else if (val < 0.001)
         {
             out = Duration.ZERO;
-        }
-        else
+        } else
         {
             out = Duration.seconds(val);
         }
@@ -347,7 +344,8 @@ public abstract class Utils
 
 
     /**
-     * Adds the radio-button-behaviour by adding or removing the given css-class. When one button is pressed, then for this button
+     * Adds the radio-button-behaviour by adding or removing the given css-class. When one button is pressed, then
+     * for this button
      * the css class will be added. For the others it will be removed
      *
      * @param cssClass The css class string to be added or removed.
@@ -363,7 +361,9 @@ public abstract class Utils
                 // Adds css class for the button that was pressed
                 addCssClass(b, cssClass);
                 // Removes css class for all other buttons
-                out.stream().filter((button) -> !b.equals(button)).forEach((button) -> removeCssClass(button, cssClass));
+                out.stream()
+                   .filter((button) -> !b.equals(button))
+                   .forEach((button) -> removeCssClass(button, cssClass));
             });
         }
     }

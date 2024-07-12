@@ -1,6 +1,5 @@
 package modules.start;
 
-import data.consts.modules.ConstStartModule;
 import data.enums.DSAVersion;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
