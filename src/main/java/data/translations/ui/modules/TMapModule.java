@@ -14,6 +14,6 @@ public interface TMapModule extends TAbstractModule
     // Translation Keys
     // ################
 
-    String MODULEBUTTON_LABEL   = Utils.joinSegms(SEGM_UI, SEGM_MODULES, SEGM_MAP, SEGM_MODULE_BUTTON, SEGM_LABEL);
-    String MODULEBUTTON_TOOLTIP = Utils.joinSegms(SEGM_UI, SEGM_MODULES, SEGM_MAP, SEGM_MODULE_BUTTON, SEGM_TOOLTIP);
+    String MODULEBUTTON_LABEL   = Utils.joinSegms(SEGM_UI, SEGM_MODULES, SEGM_MAP, SEGM_GENERAL, SEGM_LABEL);
+    String MODULEBUTTON_TOOLTIP = Utils.joinSegms(SEGM_UI, SEGM_MODULES, SEGM_MAP, SEGM_GENERAL, SEGM_TOOLTIP);
 }

@@ -188,7 +188,8 @@ public class StartController extends AbstractController
 
             // If the related button is not found, create it as a new module button.
             String buttonCssClass;
-            if (relatedButton == null)
+            boolean isMissing = relatedButton == null;
+            if (isMissing)
             {
                 GridPane grid = (GridPane) lookupID("paneModules");
 
@@ -211,9 +212,13 @@ public class StartController extends AbstractController
                 buttonCssClass = ConstStartModule.CSS_MODULES_FONT_ICON;
             }
 
-
+            // Only if the button wasn't manually beforehand in the FXML should labels be added. Tooltips are always needed.
             tooltips.add(new Tuple<>(relatedButton, TranslationHandler.getTransl(module.getTooltipTranslKey())));
-            labels.add(new Tuple<>(relatedButton, TranslationHandler.getTransl(module.getModuleButtonLabelKey())));
+            if (isMissing)
+            {
+                labels.add(new Tuple<>(relatedButton, TranslationHandler.getTransl(module.getModuleButtonLabelKey())));
+            }
+
             modulesButtonMap.put(relatedButton, module);
 
             // Then just apply the control

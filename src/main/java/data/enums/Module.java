@@ -73,7 +73,7 @@ public enum Module
     public String getTooltipTranslKey()
     {
 
-        return buildDefaultPath() + this.name().toLowerCase() + "." + TAbstractModule.SEGM_MODULE_BUTTON + ".tooltip";
+        return buildDefaultPath() + this.name().toLowerCase() + "." + TAbstractModule.SEGM_GENERAL + ".tooltip";
     }
 
     /**
@@ -83,7 +83,7 @@ public enum Module
      */
     public String getModuleButtonLabelKey()
     {
-        return buildDefaultPath() + this.name().toLowerCase() + "." + TAbstractModule.SEGM_MODULE_BUTTON + "." +
+        return buildDefaultPath() + this.name().toLowerCase() + "." + TAbstractModule.SEGM_GENERAL + "." +
                TAbstractModule.SEGM_LABEL;
     }
 

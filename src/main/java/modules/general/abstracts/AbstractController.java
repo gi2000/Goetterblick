@@ -57,17 +57,16 @@ public abstract class AbstractController implements IController
         String moduleName;
         if (module == Initialisation.STARTING_MODULE)
         {
-            moduleName =
-                    Utils.cap(TranslationHandler.getTransl(
-                            Module.buildDefaultPath() + module.name().toLowerCase() + "." + TAbstractModule.SEGM_GENERAL +
-                            "." + TAbstractModule.SEGM_LABEL));
+            moduleName = TranslationHandler.getTransl(
+                    Module.buildDefaultPath() + module.name().toLowerCase() + "." + TAbstractModule.SEGM_GENERAL + "." +
+                    TAbstractModule.SEGM_LABEL);
         }
         else
         {
-            moduleName = Utils.cap(TranslationHandler.getTransl(module.getModuleButtonLabelKey()));
+            moduleName = TranslationHandler.getTransl(module.getModuleButtonLabelKey());
         }
 
-        setModuleName(moduleName);
+        setModuleName(Utils.cap(moduleName));
         setScreenTitle(getModuleName());
         setView(createView());
         setModel(createModel());

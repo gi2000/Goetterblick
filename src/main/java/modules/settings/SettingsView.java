@@ -14,12 +14,12 @@ public class SettingsView extends AbstractView
     @Override
     public boolean initialize()
     {
-        return false;
+        return true;
     }
 
     @Override
     public boolean deconstruct()
     {
-        return false;
+        return true;
     }
 }
