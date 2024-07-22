@@ -1,6 +1,12 @@
 @import "../general/abstracts/main-theme.css";
 
-.ikonli-font-icon:module-icons
+:module-icon
+{
+    -fx-icon-color: #ffffff;
+    -fx-icon-size:  32px;
+}
+
+:big-module-icon
 {
     -fx-icon-color: #ffffff;
     -fx-icon-size:  96px;
@@ -12,4 +18,3 @@
     -fx-underline:        true;
     -fx-font-family:      "Martian Mono Cn Bd";
 }
-

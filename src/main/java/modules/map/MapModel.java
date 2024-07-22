@@ -4,7 +4,7 @@ import modules.general.abstracts.AbstractModel;
 
 public class MapModel extends AbstractModel
 {
-    public boolean initialize(String moduleName)
+    public boolean initialize()
     {
         return false;
     }

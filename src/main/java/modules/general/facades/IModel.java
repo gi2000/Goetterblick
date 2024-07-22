@@ -18,7 +18,7 @@ public interface IModel
      *
      * @return Whether the initialization was successful.
      */
-    boolean initialize(String moduleName);
+    boolean initialize();
 
     /**
      * Deconstructs this model, if anything needs to be torn down for the next or previous module.

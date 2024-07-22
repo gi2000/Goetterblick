@@ -1,41 +1,41 @@
 package modules.start;
 
-import data.annotations.Module;
 import data.enums.DSAVersion;
+import data.enums.Module;
 import data.general.Tuple;
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Control;
 import javafx.scene.control.Labeled;
 import javafx.scene.layout.*;
 import modules.general.abstracts.AbstractController;
-import modules.general.facades.IController;
 import modules.general.facades.IModel;
 import modules.general.facades.IView;
 import org.kordamp.ikonli.javafx.FontIcon;
 import org.slf4j.Logger;
 import utils.general.Utils;
 import utils.handler.LoggerHandler;
-import utils.handler.ModuleHandler;
+import utils.handler.TranslationHandler;
 
 import java.lang.invoke.MethodHandles;
-import java.net.URL;
 import java.util.*;
-import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-@Module(name = "start", isDisplayedInHome = false)
+/**
+ * The starting module, which loads up the default
+ */
 public class StartController extends AbstractController
 {
     private static final Logger LOG = LoggerHandler.getLogger(MethodHandles.lookup().lookupClass());
 
-    private final Map<DSAVersion, Button>  versionButtonMap = new HashMap<>();
-    private final Map<Button, DSAVersion>  buttonVersionMap = new HashMap<>();
-    private final Map<Button, IController> modulesButtonMap = new HashMap<>();
+    private final Map<DSAVersion, Button> versionButtonMap = new HashMap<>();
+    private final Map<Button, Module>     modulesButtonMap = new HashMap<>();
 
     // ###############
     // JavaFX Elements
@@ -58,12 +58,15 @@ public class StartController extends AbstractController
     private StartView  startView;
 
     @Override
-    public boolean initElements()
+    public void initElements()
     {
         startModel = (StartModel) getModel();
         startView = (StartView) getView();
 
-        return initAllVersionButtons() && initAllModuleButtons() && initStaticButtons();
+        if (initAllVersionButtons() && initAllModuleButtons())
+        {
+            initStaticButtons();
+        }
     }
 
     public IModel createModel()
@@ -73,8 +76,7 @@ public class StartController extends AbstractController
 
     public IView createView()
     {
-        return new StartView(this, getStartModel(), getStage(), getRoot(), versionButtonMap, buttonVersionMap,
-                modulesButtonMap, paneVersions, paneModules);
+        return new StartView(this, getStartModel(), versionButtonMap, modulesButtonMap, paneVersions, paneModules);
     }
 
     // ###################
@@ -84,22 +86,14 @@ public class StartController extends AbstractController
     /**
      * Initializes the other buttons, that have an effect on the scene. Like f. ex. the settings or legal button.
      */
-    public boolean initStaticButtons()
+    public void initStaticButtons()
     {
         buttonModuleSettings.setOnAction((event) ->
         {
             deconstruct(true);
-            IController contr = ModuleHandler.getInstance("settings");
-            LOG.info("Settings == null ? {}", contr == null);
-            if (contr == null)
-            {
-                return;
-            }
-
-            switchToModule(contr);
+            switchToModule(Module.SETTINGS);
         });
 
-        return true;
     }
 
     /**
@@ -148,14 +142,15 @@ public class StartController extends AbstractController
 
             // Finally add the button to the (new) column and row.
             paneVersions.add(tuple.getVal2(), amtVersionsInCurrentRow, paneVersions.getRowCount() - 1);
-
             versionButtonMap.put(version, tuple.getVal1());
-            buttonVersionMap.put(tuple.getVal1(), version);
+
+            // Init default changing behaviour
+            initVersionButtonBehaviour(tuple.getVal1());
         }
 
         // Assign tooltips and labels
-        getView().assignTooltipsToElements(tooltips);
-        getView().assignTranslLabels(labels);
+        assignTooltipsToElements(tooltips);
+        assignTranslLabels(labels);
         updateStartingVersionButton();
 
         return true;
@@ -170,35 +165,35 @@ public class StartController extends AbstractController
     {
         // Retrieve all module buttons
         Set<Node> allButtons = lookupAll(".button");
-        List<IController> allModules =
-                startModel.getAllModules().stream().sorted(Comparator.comparing(IController::getModuleName)).toList();
+        List<Module> allModules = Stream.of(Module.values()).sorted((o1, o2) -> o1.name().compareToIgnoreCase(o2.name())).toList();
 
         List<Tuple<Control, String>> tooltips = new ArrayList<>();
         List<Tuple<Labeled, String>> labels = new ArrayList<>();
 
         // Iterate over all controllers to then find the related module buttons, if they exist.
-        for (IController contr : allModules)
+        for (Module module : allModules)
         {
-            IView view = contr.getView();
-            String nameModule = getModuleAnnotationName(contr);
+            if (!module.isDisplayedInHome)
+            {
+                continue;
+            }
 
             // Find a button in the root fxml, that could match the related button
             Button relatedButton = allButtons.stream()
-                                             .map(node -> (Button) node)
-                                             .filter(button -> button.getId()
-                                                                     .toLowerCase()
-                                                                     .contains("buttonModule".toLowerCase()) &&
-                                                     button.getId().toLowerCase().contains(nameModule.toLowerCase()))
-                                             .findFirst()
-                                             .orElse(null);
+                    .map(node -> (Button) node)
+                    .filter(button -> button.getId().toLowerCase().contains("buttonModule".toLowerCase()) &&
+                                      button.getId().toLowerCase().contains(module.name().toLowerCase()))
+                    .findFirst()
+                    .orElse(null);
 
             // If the related button is not found, create it as a new module button.
+            String buttonCssClass;
             if (relatedButton == null)
             {
                 GridPane grid = (GridPane) lookupID("paneModules");
 
                 // Apply css constraints
-                Tuple<Button, AnchorPane> newModuleButton = getNewModuleButton();
+                Tuple<Button, AnchorPane> newModuleButton = getNewModuleButton(module);
                 RowConstraints constrRow = getRowConstraints(100, 200);
                 ColumnConstraints constr = getColumnConstraints(55, 100);
                 grid.getRowConstraints().setAll(constrRow);
@@ -206,26 +201,34 @@ public class StartController extends AbstractController
                 grid.getColumnConstraints().add(constr);
 
                 relatedButton = newModuleButton.getVal1();
-                LOG.info("Found new module: {}.", contr.getModuleName());
+                LOG.info("Found new module: {}.", module.name());
+
+                // Take the bigger icon fonts for the big module buttons
+                buttonCssClass = ConstStartModule.CSS_BIG_MODULES_FONT_ICON;
+            }
+            else
+            {
+                buttonCssClass = ConstStartModule.CSS_MODULES_FONT_ICON;
             }
 
-            tooltips.add(new Tuple<>(relatedButton, contr.getModuleTooltip()));
-            labels.add(new Tuple<>(relatedButton, contr.getModuleName()));
-            modulesButtonMap.put(relatedButton, contr);
+
+            tooltips.add(new Tuple<>(relatedButton, TranslationHandler.getTransl(module.getTooltipTranslKey())));
+            labels.add(new Tuple<>(relatedButton, TranslationHandler.getTransl(module.getModuleButtonLabelKey())));
+            modulesButtonMap.put(relatedButton, module);
 
             // Then just apply the control
             Button finalRelatedButton = relatedButton;
             Utils.run(() ->
             {
                 // Retrieve the icon and mark it as a module icon for the css
-                FontIcon icon = view.getModuleImage();
-                Utils.addCssClass(icon, ConstStartModule.CSS_MODULES_FONT_ICON);
+                FontIcon icon = module.moduleIcon;
+                Utils.addCssClass(icon, buttonCssClass);
                 finalRelatedButton.setGraphic(icon);
             });
         }
 
-        getView().assignTooltipsToElements(tooltips);
-        getView().assignTranslLabels(labels);
+        assignTooltipsToElements(tooltips);
+        assignTranslLabels(labels);
         return true;
     }
 
@@ -234,36 +237,37 @@ public class StartController extends AbstractController
      */
     private void updateStartingVersionButton()
     {
-        DSAVersion selectedVersion = getModel().getMainCfg()
-                                               .get(DSAVersion.class, ConstStartModule.DSA_STARTING_VERSION.getVal1(),
-                                                       ConstStartModule.DSA_STARTING_VERSION.getVal2());
+        DSAVersion startingVersion = getModel()
+                .getMainCfg()
+                .get(DSAVersion.class, ConstStartModule.DSA_STARTING_VERSION.getVal1(),
+                        ConstStartModule.DSA_STARTING_VERSION.getVal2());
 
-        startModel.setSelectedVersion(selectedVersion);
-        Utils.addCssClass(versionButtonMap.get(selectedVersion), ConstStartModule.CSS_VERSIONS_SELECTED_VERSION);
+        selectVersionButton(startingVersion);
     }
 
-    /**
-     * Looks up the given element.
-     *
-     * @param id The id of the element to look for.
-     * @return The element that was looked for in root.
-     */
-    protected Node lookupID(String id)
+    private void selectVersionButton(DSAVersion version)
     {
-        return root.lookup("#" + id);
+        // Retrive last selected version, if present, and remove the css class from it.
+        DSAVersion prevSelectedVersion = startModel.getSelectedVersion();
+        if (prevSelectedVersion != null)
+        {
+            Utils.removeCssClass(versionButtonMap.get(prevSelectedVersion), ConstStartModule.CSS_VERSIONS_SELECTED_VERSION);
+        }
+
+        // Update model and css add css.
+        startModel.setSelectedVersion(version);
+        Utils.addCssClass(versionButtonMap.get(version), ConstStartModule.CSS_VERSIONS_SELECTED_VERSION);
     }
 
-    /**
-     * Looks up all the given buttons on the current page.
-     *
-     * @param selector The selector that is supposed to be looked up.
-     * @return The set of all selected elements.
-     */
-    protected Set<Node> lookupAll(String selector)
+    private void initVersionButtonBehaviour(Button button)
     {
-        return root.lookupAll(selector);
+        button.setOnAction(event -> selectVersionButton(versionButtonMap.entrySet()
+                .stream()
+                .filter(entry -> entry.getValue().equals(button))
+                .map(Map.Entry::getKey)
+                .findFirst()
+                .orElse(null)));
     }
-
 
     // #################
     // Getter and Setter
@@ -299,12 +303,12 @@ public class StartController extends AbstractController
      *
      * @return The newly created module button coupled with the anchorpane it is stored in.
      */
-    private Tuple<Button, AnchorPane> getNewModuleButton()
+    private Tuple<Button, AnchorPane> getNewModuleButton(Module module)
     {
         Button moduleButton = new Button();
         AnchorPane ap = new AnchorPane(moduleButton);
 
-        moduleButton.setId("buttonModule" + Utils.cap(getClass().getDeclaredAnnotation(Module.class).name()));
+        moduleButton.setId("buttonModule" + Utils.cap(module.name()));
         setDefaultButtonSettings(moduleButton);
 
         return new Tuple<>(moduleButton, ap);
@@ -328,37 +332,6 @@ public class StartController extends AbstractController
         return new Tuple<>(bVersion, ap);
     }
 
-    /**
-     * Sets some default settings for the button, as f. ex. the text being wrapped, the cursor switching to a hand
-     * icon etc.
-     *
-     * @param b The button to change these settings for.
-     */
-    private void setDefaultButtonSettings(Button b)
-    {
-        b.setCursor(Cursor.HAND);
-        b.setWrapText(true);
-        b.setMnemonicParsing(false);
-        b.setContentDisplay(ContentDisplay.TOP);
-        b.setGraphicTextGap(15);
-
-        AnchorPane.setTopAnchor(b, 0.0);
-        AnchorPane.setLeftAnchor(b, 0.0);
-        AnchorPane.setBottomAnchor(b, 0.0);
-        AnchorPane.setRightAnchor(b, 0.0);
-    }
-
-    /**
-     * Gets the annoted module name of the given controller.
-     *
-     * @param controller The controller from which the annoted name is supposed to pulled.
-     * @return The name as a string.
-     */
-    private String getModuleAnnotationName(IController controller)
-    {
-        return controller.getClass().getDeclaredAnnotation(Module.class).name();
-    }
-
     @Override
     public String getModuleName()
     {
@@ -380,18 +353,29 @@ public class StartController extends AbstractController
         return (StartView) getView();
     }
 
-    @Override
-    public URL getFXMLPath()
+    /**
+     * Sets some default settings for the button, as f. ex. the text being wrapped, the cursor switching to a hand
+     * icon etc.
+     *
+     * @param b The button to change these settings for.
+     */
+    private void setDefaultButtonSettings(Button b)
     {
-        return StartController.class.getResource(ConstStartModule.FXML_START_WINDOW);
+        b.setCursor(Cursor.HAND);
+        b.setWrapText(true);
+        b.setMnemonicParsing(false);
+        b.setContentDisplay(ContentDisplay.TOP);
+        b.setGraphicTextGap(15);
+
+        AnchorPane.setTopAnchor(b, 0.0);
+        AnchorPane.setLeftAnchor(b, 0.0);
+        AnchorPane.setBottomAnchor(b, 0.0);
+        AnchorPane.setRightAnchor(b, 0.0);
     }
 
     @Override
-    public List<URL> getCSSPaths()
+    public Parent getRoot()
     {
-        return Utils.toList(ConstStartModule.FXML_START_CSS)
-                    .stream()
-                    .map(StartController.class::getResource)
-                    .collect(Collectors.toList());
+        return root;
     }
 }

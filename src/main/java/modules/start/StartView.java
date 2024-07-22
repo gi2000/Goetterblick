@@ -1,12 +1,10 @@
 package modules.start;
 
 import data.enums.DSAVersion;
-import javafx.scene.Parent;
+import data.enums.Module;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
 import modules.general.abstracts.AbstractView;
-import modules.general.facades.IController;
 import org.slf4j.Logger;
 import utils.general.Utils;
 import utils.handler.LoggerHandler;
@@ -21,9 +19,8 @@ public class StartView extends AbstractView
     private StartModel      startModel;
     private StartController startController;
 
-    private final Map<DSAVersion, Button>  versionButtonMap;
-    private final Map<Button, DSAVersion>  buttonVersionMap;
-    private final Map<Button, IController> modulesButtonMap;
+    private final Map<DSAVersion, Button> versionButtonMap;
+    private final Map<Button, Module>     modulesButtonMap;
 
     // ###############
     // JavaFX Elements
@@ -34,14 +31,12 @@ public class StartView extends AbstractView
 
     // ###############
 
-    public StartView(StartController controller, StartModel model, Stage scene, Parent root,
-                     Map<DSAVersion, Button> versionButtonMap, Map<Button, DSAVersion> buttonVersionMap,
-                     Map<Button, IController> modulesButtonMap, GridPane paneVersions, GridPane paneModules)
+    public StartView(StartController controller, StartModel model, Map<DSAVersion, Button> versionButtonMap,
+            Map<Button, Module> modulesButtonMap, GridPane paneVersions, GridPane paneModules)
 
     {
-        super(controller, model, scene, root);
+        super(controller, model);
         this.versionButtonMap = versionButtonMap;
-        this.buttonVersionMap = buttonVersionMap;
         this.modulesButtonMap = modulesButtonMap;
 
         this.paneVersions = paneVersions;

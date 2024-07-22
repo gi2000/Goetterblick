@@ -18,6 +18,7 @@ import utils.handler.TranslationHandler;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.invoke.MethodHandles;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Path;
@@ -31,6 +32,8 @@ import java.util.stream.Stream;
  */
 public abstract class Utils
 {
+    private static final Logger LOG = LoggerHandler.getLogger(MethodHandles.lookup().lookupClass());
+
     /**
      * Returns the current date and time as a string object, already formated.
      *
@@ -54,36 +57,38 @@ public abstract class Utils
     {
         Logger log = LoggerHandler.getLogger(c);
         return Stream.of(paths).map(imgPath ->
-                     {
-                         URL out = c.getResource(imgPath);
+                {
+                    URL out = c.getResource(imgPath);
 
-                         // If file was not found, log the error.
-                         if (out == null)
-                         {
-                             log.error("Couldn't find image: " + imgPath);
-                         } else
-                         {
-                             log.debug("Added image: " + out);
-                         }
+                    // If file was not found, log the error.
+                    if (out == null)
+                    {
+                        log.error("Couldn't find image: " + imgPath);
+                    }
+                    else
+                    {
+                        log.debug("Added image: " + out);
+                    }
 
-                         return out;
-                     })
-                     // Filter out not-findable image
-                     .filter(Objects::nonNull)
-                     // Iterate over all image paths to load them
-                     .map(imgURL ->
-                     {
-                         Image img = null;
-                         try
-                         {
-                             img = new Image(imgURL.openStream());
-                         } catch (IOException e)
-                         {
-                             log.error("Couldn't load image.", e);
-                         }
+                    return out;
+                })
+                // Filter out not-findable image
+                .filter(Objects::nonNull)
+                // Iterate over all image paths to load them
+                .map(imgURL ->
+                {
+                    Image img = null;
+                    try
+                    {
+                        img = new Image(imgURL.openStream());
+                    }
+                    catch (IOException e)
+                    {
+                        log.error("Couldn't load image.", e);
+                    }
 
-                         return img;
-                     }).collect(Collectors.toList());
+                    return img;
+                }).collect(Collectors.toList());
     }
 
     /**
@@ -113,8 +118,9 @@ public abstract class Utils
         try
         {
             return new File(Start.class.getProtectionDomain().getCodeSource().getLocation().toURI()).getParentFile()
-                                                                                                    .toPath();
-        } catch (URISyntaxException e)
+                    .toPath();
+        }
+        catch (URISyntaxException e)
         {
             throw new RuntimeException(e);
         }
@@ -261,10 +267,12 @@ public abstract class Utils
         if (val < 0.0)
         {
             out = Duration.INDEFINITE;
-        } else if (val < 0.001)
+        }
+        else if (val < 0.001)
         {
             out = Duration.ZERO;
-        } else
+        }
+        else
         {
             out = Duration.seconds(val);
         }
@@ -362,8 +370,8 @@ public abstract class Utils
                 addCssClass(b, cssClass);
                 // Removes css class for all other buttons
                 out.stream()
-                   .filter((button) -> !b.equals(button))
-                   .forEach((button) -> removeCssClass(button, cssClass));
+                        .filter((button) -> !b.equals(button))
+                        .forEach((button) -> removeCssClass(button, cssClass));
             });
         }
     }

@@ -1,14 +1,5 @@
 package modules.general.facades;
 
-import data.general.Tuple;
-import javafx.scene.Parent;
-import javafx.scene.control.Control;
-import javafx.scene.control.Labeled;
-import javafx.stage.Stage;
-import org.kordamp.ikonli.javafx.FontIcon;
-
-import java.util.List;
-
 /**
  * The view of the MVC pattern, which <b>only</b> updates the visual side for the user. Paired with the corresponding
  * {@code
@@ -32,22 +23,6 @@ public interface IView
     boolean initialize();
 
     /**
-     * Assigns all given control elements, which the user can interact with, their given tooltip text.
-     * Tooltip texts should always be pulled from the translation files.
-     *
-     * @param elements The tuples list containing as val1 the JavaFX element and as val2 the tool tip text for the
-     *                 JavaFX element.
-     */
-    void assignTooltipsToElements(List<Tuple<Control, String>> elements);
-
-    /**
-     * Assigns the given Labeled-Element the text retrieved from the translation files.
-     *
-     * @param elements The list of tuples: Val1 = Element in JavaFX, that needs to be labeled, Val2 = Translation
-     */
-    void assignTranslLabels(List<Tuple<Labeled, String>> elements);
-
-    /**
      * Deconstructs this view, if anything needs to be torn down for the next or previous module.
      *
      * @return Whether the deconstruction was successful.
@@ -57,13 +32,6 @@ public interface IView
     // ###################
     // Getters and Setters
     // ###################
-
-    /**
-     * Gets the root node for the stage.
-     *
-     * @return The root node containing all nested elements as children.
-     */
-    Parent getRoot();
 
     /**
      * Gets the controller of this view.
@@ -78,18 +46,4 @@ public interface IView
      * @return The model of the MVC pattern for this view.
      */
     IModel getModel();
-
-    /**
-     * Returns the main stage of this view.
-     *
-     * @return The stage in which all elements are displayed.
-     */
-    Stage getStage();
-
-    /**
-     * Retrieves the FontIcon for the given module image.
-     *
-     * @return The FontIcon to the module image for the display-area in the start window.
-     */
-    FontIcon getModuleImage();
 }

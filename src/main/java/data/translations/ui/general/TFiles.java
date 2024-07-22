@@ -21,5 +21,5 @@ public interface TFiles
     // #############
     @DefaultCfgValue
     Tuple<String, String> DEFAULT_CFG_STARTUP_LANGUAGE = new Tuple<>(Utils.joinSegms(SEGM_TRANSL, DIR_NAME, SEGM_STARTUP),
-            new Locale("de", "DE").toLanguageTag());
+            Locale.of("de", "DE").toLanguageTag());
 }

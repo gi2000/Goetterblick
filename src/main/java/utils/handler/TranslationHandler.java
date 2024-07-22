@@ -105,7 +105,7 @@ public class TranslationHandler
      */
     private static Configuration loadDefaultLanguage()
     {
-        setCurrLocale(new Locale("de", "DE"));
+        setCurrLocale(Locale.of("de", "DE"));
         return getTranslationsFile();
     }
 

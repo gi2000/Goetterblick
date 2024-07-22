@@ -10,7 +10,7 @@ public class SettingsModel extends AbstractModel
     private ListProperty<SettingEntry> settings = new SimpleListProperty<>();
 
     @Override
-    public boolean initialize(String moduleName)
+    public boolean initialize()
     {
         return false;
     }

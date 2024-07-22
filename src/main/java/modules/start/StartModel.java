@@ -4,10 +4,6 @@ import data.enums.DSAVersion;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import modules.general.abstracts.AbstractModel;
-import modules.general.facades.IController;
-import utils.handler.ModuleHandler;
-
-import java.util.List;
 
 
 /**
@@ -33,7 +29,7 @@ public class StartModel extends AbstractModel
     // ######################
 
     @Override
-    public boolean initialize(String moduleName)
+    public boolean initialize()
     {
         return true;
     }
@@ -47,16 +43,6 @@ public class StartModel extends AbstractModel
     // ########################
     // Simple Setter and Getter
     // ########################
-
-    /**
-     * Retrieves all module's IControllers.
-     *
-     * @return A list of all module's IController
-     */
-    public List<IController> getAllModules()
-    {
-        return ModuleHandler.getAllModules();
-    }
 
     /**
      * Returns the amount of version buttons per row in the start screen.
