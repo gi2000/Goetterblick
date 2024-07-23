@@ -73,7 +73,8 @@ public enum Module
     public String getTooltipTranslKey()
     {
 
-        return buildDefaultPath() + this.name().toLowerCase() + "." + TAbstractModule.SEGM_GENERAL + ".tooltip";
+        return buildDefaultPath() + this.name().toLowerCase() + "." + TAbstractModule.SEGM_GENERAL + "." +
+               TAbstractModule.SEGM_TOOLTIP;
     }
 
     /**

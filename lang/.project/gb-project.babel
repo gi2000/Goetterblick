@@ -108,7 +108,7 @@
 										<name>chareditor</name>
 										<children>
 											<folder_node>
-												<name>modulebutton</name>
+												<name>general</name>
 												<children>
 													<concept_node>
 														<name>label</name>
@@ -172,7 +172,7 @@
 										<name>gm</name>
 										<children>
 											<folder_node>
-												<name>modulebutton</name>
+												<name>general</name>
 												<children>
 													<concept_node>
 														<name>label</name>
@@ -236,7 +236,7 @@
 										<name>map</name>
 										<children>
 											<folder_node>
-												<name>modulebutton</name>
+												<name>general</name>
 												<children>
 													<concept_node>
 														<name>label</name>
@@ -851,7 +851,7 @@
 										<name>wiki</name>
 										<children>
 											<folder_node>
-												<name>modulebutton</name>
+												<name>general</name>
 												<children>
 													<concept_node>
 														<name>label</name>
