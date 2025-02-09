@@ -57,7 +57,7 @@ replay_pid*
 # since they will be recreated, and may cause churn.  Uncomment if using
 # auto-import.
 .idea/artifacts
-.idea/compiler.xml
+../.idea/compiler.xml
 .idea/jarRepositories.xml
 .idea/modules.xml
 .idea/*.iml
@@ -75,7 +75,7 @@ cmake-build-*/
 *.iws
 
 # IntelliJ
-out/
+java/out/
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/
@@ -105,16 +105,16 @@ fabric.properties
 # LibreOffice
 .~lock.*
 /target/classes/fonts/martian-mono/
-/src/site/documents/rulesets/dsa-4.1/~$dsa-4.1.xlsx
-/src/site/documents/sql-tables/.plan/~$Tableplan.ods
+/java/src/site/documents/rulesets/dsa-4.1/~$dsa-4.1.xlsx
+/java/src/site/documents/sql-tables/.plan/~$Tableplan.ods
 /target/
 
 # Maven reduced pom xml
 dependency-reduced-pom.xml
 
 # Leave out config
-cfg
+java/cfg
 
 # Leave out Pencil Export
-/src/site/pics/mockups/pencil/Export/*
-/src/site/pics/mockups/pencil/Export-Plain/*
+/java/src/site/pics/mockups/pencil/Export/*
+/java/src/site/pics/mockups/pencil/Export-Plain/*

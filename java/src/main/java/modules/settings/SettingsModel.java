@@ -7,7 +7,7 @@ import modules.general.abstracts.AbstractModel;
 
 public class SettingsModel extends AbstractModel
 {
-    private ListProperty<SettingEntry> settings = new SimpleListProperty<>();
+    private final ListProperty<SettingEntry> settings = new SimpleListProperty<>();
 
     @Override
     public boolean initialize()

@@ -12,6 +12,7 @@ import java.sql.SQLException;
 public class DBHandler extends AbstractHandler
 {
     private static final Logger LOG = LoggerHandler.getLogger(MethodHandles.lookup().lookupClass());
+    private static final String DB_FOLDER = "db";
 
     /**
      * Creates or opens the database at the given path location.
@@ -34,12 +35,7 @@ public class DBHandler extends AbstractHandler
      */
     public static boolean dbExists(Path path)
     {
-        if (path == null)
-        {
-            return false;
-        }
-
-        return path.toFile().exists();
+        return path != null && path.toFile().exists();
     }
 
     /**
@@ -51,31 +47,28 @@ public class DBHandler extends AbstractHandler
      */
     public static Connection createDB(Path path)
     {
-        if (path == null || path.toFile().exists())
+        if (path == null)
         {
             return null;
         }
 
-        Connection out = null;
-        LOG.info("Creating new db at location: " + path);
+        Connection out;
+        Path dbPath = Path.of("db").resolve(path);
 
         // Create the base folder structure of the main db folders.
-        Path homeDir = getMainDBDirPath();
+        Path homeDir = Utils.getCurrentWorkingDir().resolve(dbPath);
         if (!homeDir.toFile().exists())
         {
             // Check if the folders were created
-            if (!homeDir.toFile().mkdirs())
+            if (!homeDir.getParent().toFile().mkdirs())
             {
                 LOG.error("Couldn't create folders: " + homeDir);
             }
         }
 
-        // Now open the connection to the db, if the folders exist. This creates a new db, if it isn't already present.
-        if (homeDir.toFile().exists())
-        {
-            out = openDB(path);
-        }
-
+        // Now open the connection to the db. This creates a new db, if it isn't already present.
+        LOG.info("Creating new db at location: " + path);
+        out = openDB(dbPath, true);
         return out;
     }
 
@@ -86,37 +79,40 @@ public class DBHandler extends AbstractHandler
      *             directory and the database directory.
      * @return The opened connection to the given database.
      */
-    public static Connection openDB(Path path)
+    public static Connection openDB(Path path) {
+        return openDB(path, false);
+    }
+
+    /**
+     * Opens the given database, if it exists.
+     *
+     * @param path The path directly referencing the db file. Use {@code getMainDBDirPath()} to retrieve the current working
+     *             directory and the database directory.
+     * @return The opened connection to the given database.
+     */
+    private static Connection openDB(Path path, boolean isInitialCreation)
     {
         // Catch early errors like path being null or the file not existing.
-        if (path == null || !path.toFile().exists())
+        if (path == null || (!isInitialCreation && !Utils.getCurrentWorkingDir().resolve(path).toFile().exists()))
         {
             return null;
         }
 
-        Connection conn = null;
+        Connection con = null;
         try
         {
+            // Trying to instantiate the driver manually to avoid a weird bug.
+            Class.forName("org.sqlite.JDBC");
+
             // Establish "connection" to file via Java's Database connection framework.
-            conn = DriverManager.getConnection("jdbc:sqlite:" + path);
+            con = DriverManager.getConnection("jdbc:sqlite:" + path);
             LOG.debug("Opening db at location: " + path);
-        }
-        catch (SQLException e)
+        } catch (SQLException | ClassNotFoundException e)
         {
-            LOG.trace(e.getMessage());
+            LOG.error("Couldn't create database.", e);
         }
 
-        return conn;
-    }
-
-    /**
-     * The main path where all db files or folders are stored in. It's the current working directory, followed by the folder "db".
-     *
-     * @return The main db directory path.
-     */
-    public static Path getMainDBDirPath()
-    {
-        return Utils.getCurrentWorkingDir().resolve("db");
+        return con;
     }
 
     /**
@@ -126,6 +122,6 @@ public class DBHandler extends AbstractHandler
      */
     public static Path getPathToMetaDB()
     {
-        return getMainDBDirPath().resolve("meta.db");
+        return Utils.getCurrentWorkingDir().resolve(DB_FOLDER).resolve("meta.db");
     }
 }
