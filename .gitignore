@@ -1,5 +1,5 @@
 # old Java
-java/*
+java/
 
 # Godot 4+ specific ignores
 .godot/
