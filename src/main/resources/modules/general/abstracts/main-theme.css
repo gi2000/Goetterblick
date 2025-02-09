@@ -1,0 +1,78 @@
+/* Vectors and icons by SVG Repo: https://www.svgrepo.com */
+/* Martian Mono by Evil Martians: https://github.com/evilmartians/mono */
+
+/* Import Martian Mono Regular */
+@font-face
+{
+    font-family: 'Martian Mono Cn Lt';
+    src: url("fonts/martian-mono/MartianMono-CnLt.ttf");
+}
+
+/* Import Martian Mono Bold */
+@font-face
+{
+    font-family: 'Martian Mono Cn Bd';
+    src:         url("fonts/martian-mono/MartianMono-CnBd.ttf");
+}
+
+/* CSS for every element */
+.root
+{
+    -fx-font-size:  16pt;
+    -fx-font-family: "Martian Mono Cn Lt";
+    -fx-text-fill:  #ffffff;
+    -fx-background: #18141d;
+}
+
+/* CSS for every button */
+.button
+{
+    -fx-text-fill:        #ffffff;
+    -fx-border-color:     #ffffff;
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-border-radius:    5px;
+}
+
+.button:hover
+{
+    -fx-background-color: rgba(255, 200, 200, 0.05);
+}
+
+.button:pressed
+{
+    -fx-background-color: rgba(255, 215, 215, 0.1);
+}
+
+/* CSS for every tooltip */
+.tooltip
+{
+    -fx-border-radius: 5px;
+}
+
+/* Global CSS Selectors */
+
+/* For Textflows */
+:default-text
+{
+    -fx-fill: #ffffff;
+}
+
+:bold
+{
+    -fx-font-family: "Martian Mono Cn Bd";
+}
+
+:underlined
+{
+    -fx-underline: true;
+}
+
+:strikethrough
+{
+    -fx-strikethrough: true;
+}
+
+:red
+{
+    -fx-fill: #ff0000;
+}

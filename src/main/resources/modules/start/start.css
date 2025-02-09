@@ -1,0 +1,20 @@
+@import "../general/abstracts/main-theme.css";
+
+:module-icon
+{
+    -fx-icon-color: #ffffff;
+    -fx-icon-size:  32px;
+}
+
+:big-module-icon
+{
+    -fx-icon-color: #ffffff;
+    -fx-icon-size:  96px;
+}
+
+.button:selected-version
+{
+    -fx-background-color: #3d334a;
+    -fx-underline:        true;
+    -fx-font-family:      "Martian Mono Cn Bd";
+}
