@@ -1,9 +1,7 @@
-# old Java
-java/
-
 # Godot 4+ specific ignores
 .godot/
 /android/
+
 
 # Godot-specific ignores
 .import/
@@ -177,8 +175,10 @@ _NCrunch*
 .vs/
 [Pp]ackages/
 
-/java/
 /.idea/.gitignore
 /.idea/encodings.xml
 /.idea/indexLayout.xml
 /.idea/vcs.xml
+/.gitattributes
+/icon.svg.import
+/project.godot
