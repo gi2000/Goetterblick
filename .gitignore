@@ -60,7 +60,6 @@ x64/
 *.vssscc
 .builds
 *.pidb
-*.log
 *.svclog
 *.scc
 
@@ -175,17 +174,9 @@ _NCrunch*
 **/.idea/**/contentModel.xml
 **/.idea/**/modules.xml
 
-*.suo
-*.user
 .vs/
-[Bb]in/
-[Oo]bj/
-_UpgradeReport_Files/
 [Pp]ackages/
 
-Thumbs.db
-Desktop.ini
-.DS_Store
 /java/
 /.idea/.gitignore
 /.idea/encodings.xml
