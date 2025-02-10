@@ -180,6 +180,7 @@ _NCrunch*
 /.idea/vcs.xml
 /.gitattributes
 /icon.svg.import
+*.import
 
 # Docs and Mockups
 /docs/pics/mockups/pencil/Export/
