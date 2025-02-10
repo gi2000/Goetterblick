@@ -2,7 +2,6 @@
 .godot/
 /android/
 
-
 # Godot-specific ignores
 .import/
 export.cfg
@@ -181,3 +180,6 @@ _NCrunch*
 /.idea/vcs.xml
 /.gitattributes
 /icon.svg.import
+
+# Docs and Mockups
+/docs/pics/mockups/pencil/Export/
