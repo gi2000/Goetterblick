@@ -10,10 +10,17 @@ config_version=5
 
 [application]
 
-config/name="Goetterblick"
+config/name="Götterblick"
+config/version="0.0.1"
 run/main_scene="res://scenes/start_menu.tscn"
-config/features=PackedStringArray("4.3", "GL Compatibility")
-config/icon="res://icon.svg"
+config/features=PackedStringArray("4.3", "C#", "GL Compatibility")
+boot_splash/show_image=false
+config/icon="res://resources/icon/app/Icon-256x-Round.png"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
 
 [dotnet]
 
@@ -21,8 +28,8 @@ project/assembly_name="Goetterblick"
 
 [gui]
 
-theme/custom="res://src/dark_theme.tres"
-theme/custom_font="res://src/font/MartianMono-CnRg.ttf"
+theme/custom="res://resources/dark_theme.tres"
+theme/custom_font="res://resources/font/MartianMono-CnRg.ttf"
 
 [rendering]
 
