@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://dshrmdkp0rpyp"]
+[gd_scene load_steps=2 format=3 uid="uid://dshrmdkp0rpyp"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_v6pt5"]
 
 [node name="StartMenu" type="Control"]
 layout_mode = 3
@@ -7,3 +9,133 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0138889
+anchor_top = 0.0246914
+anchor_right = 0.986111
+anchor_bottom = 0.975309
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="ButtonSettings" type="Button" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 2
+text = "Settings"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+
+[node name="ButtonDsa1" type="Button" parent="Panel/VBoxContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_v6pt5")
+text = "DSA 1"
+
+[node name="ButtonDsa2" type="Button" parent="Panel/VBoxContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_v6pt5")
+text = "DSA 2"
+
+[node name="ButtonDsa3" type="Button" parent="Panel/VBoxContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_v6pt5")
+text = "DSA 3"
+
+[node name="ButtonDsa4" type="Button" parent="Panel/VBoxContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_v6pt5")
+text = "DSA 4"
+
+[node name="VBoxContainer2" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+
+[node name="ButtonDsa4dot1" type="Button" parent="Panel/VBoxContainer/VBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_v6pt5")
+text = "DSA 4.1"
+
+[node name="ButtonDsa5" type="Button" parent="Panel/VBoxContainer/VBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_v6pt5")
+text = "DSA 5"
+
+[node name="ButtonMyranor" type="Button" parent="Panel/VBoxContainer/VBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_v6pt5")
+text = "Myranor"
+
+[node name="ButtonDsk" type="Button" parent="Panel/VBoxContainer/VBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_v6pt5")
+text = "Die schwarze Katze"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[node name="ButtonChar" type="Button" parent="Panel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+text = "Charakter
+"
+
+[node name="ButtonGMScreen" type="Button" parent="Panel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+text = "Meisterschirm
+"
+
+[node name="ButtonMap" type="Button" parent="Panel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+text = "Karte
+"
+
+[node name="ButtonWiki" type="Button" parent="Panel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+text = "Wiki
+"
+
+[node name="Button2" type="Button" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+text = "Impressum"
