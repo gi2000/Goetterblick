@@ -183,3 +183,4 @@ _NCrunch*
 
 # Docs and Mockups
 /resources/docs/pics/mockups/pencil/Export/
+/resources/docs/**/*.import
