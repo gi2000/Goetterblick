@@ -25,67 +25,53 @@ metadata/_edit_use_anchors_ = true
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="TopBarMargin" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
 
-[node name="ButtonBack" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer/MarginContainer"]
+[node name="TopBar" type="HBoxContainer" parent="PanelContainer/VBoxContainer/TopBarMargin"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="ButtonBack" type="Button" parent="PanelContainer/VBoxContainer/TopBarMargin/TopBar"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-size_flags_horizontal = 2
+size_flags_horizontal = 0
 size_flags_vertical = 0
 icon = ExtResource("2_5u6hv")
 icon_alignment = 1
 expand_icon = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="Search" type="LineEdit" parent="PanelContainer/VBoxContainer/TopBarMargin/TopBar"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 4
-
-[node name="TabContainer" type="TabContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-current_tab = 0
-clip_tabs = false
-
-[node name="TabGeneral" type="PanelContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/TabContainer"]
-layout_mode = 2
-metadata/_tab_index = 0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/TabContainer/TabGeneral"]
-layout_mode = 2
-
-[node name="LineEdit" type="LineEdit" parent="PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/TabContainer/TabGeneral/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 6
 placeholder_text = "Suchen..."
 clear_button_enabled = true
 
-[node name="CheckButton" type="CheckButton" parent="PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/TabContainer/TabGeneral/VBoxContainer"]
+[node name="EmptySpace" type="MarginContainer" parent="PanelContainer/VBoxContainer/TopBarMargin/TopBar"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 12
+theme_override_constants/margin_right = 50
+
+[node name="OptionsMargin" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 100
+
+[node name="Options" type="VBoxContainer" parent="PanelContainer/VBoxContainer/OptionsMargin"]
+layout_mode = 2
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="ToggleLightmode" type="CheckButton" parent="PanelContainer/VBoxContainer/OptionsMargin/Options"]
+layout_mode = 2
+size_flags_vertical = 2
 button_pressed = true
 text = "Light Mode / Dark Mode"
 
-[node name="TabValues" type="PanelContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/TabContainer"]
-visible = false
-layout_mode = 2
-metadata/_tab_index = 1
-
-[node name="LineEdit" type="LineEdit" parent="PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/TabContainer/TabValues"]
-layout_mode = 2
-size_flags_vertical = 3
-placeholder_text = "Suchen..."
-clear_button_enabled = true
-
-[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_top = 70
-theme_override_constants/margin_right = 70
-
-[connection signal="button_up" from="PanelContainer/VBoxContainer/HBoxContainer/MarginContainer/ButtonBack" to="." method="OnBackButtonUp"]
+[connection signal="button_up" from="PanelContainer/VBoxContainer/TopBarMargin/TopBar/ButtonBack" to="." method="OnBackButtonUp"]
