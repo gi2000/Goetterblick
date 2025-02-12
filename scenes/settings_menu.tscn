@@ -1,0 +1,76 @@
+[gd_scene load_steps=3 format=3 uid="uid://gmfas111lift"]
+
+[ext_resource type="Script" path="res://scripts/menus/SettingsMenu.cs" id="1_thw1m"]
+[ext_resource type="Texture2D" uid="uid://l127ulcpy08q" path="res://resources/icon/bootstrap/arrow-left_white.svg" id="2_5u6hv"]
+
+[node name="SettingMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_thw1m")
+metadata/_edit_use_anchors_ = true
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+
+[node name="ButtonBack" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+icon = ExtResource("2_5u6hv")
+icon_alignment = 1
+expand_icon = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="TabContainer" type="TabContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+current_tab = 0
+clip_tabs = false
+
+[node name="TabGeneral" type="PanelContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="TabValues" type="PanelContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="LineEdit" type="LineEdit" parent="PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+placeholder_text = "Suchen..."
+clear_button_enabled = true
+
+[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 70
+theme_override_constants/margin_right = 70
+
+[connection signal="button_up" from="PanelContainer/VBoxContainer/HBoxContainer/MarginContainer/ButtonBack" to="." method="OnBackButtonUp"]

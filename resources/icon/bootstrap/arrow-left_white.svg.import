@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://p6mg1pb6ik3x"
-path="res://.godot/imported/einstellungen.png-d40b2971ff302d2d296d59cef4d85fa3.ctex"
+uid="uid://l127ulcpy08q"
+path="res://.godot/imported/arrow-left_white.svg-f22750e767be64c64ca3ae438ee552c6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/docs/pics/mockups/pencil/Export/pages/einstellungen.png"
-dest_files=["res://.godot/imported/einstellungen.png-d40b2971ff302d2d296d59cef4d85fa3.ctex"]
+source_file="res://resources/icon/bootstrap/arrow-left_white.svg"
+dest_files=["res://.godot/imported/arrow-left_white.svg-f22750e767be64c64ca3ae438ee552c6.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=16.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false
