@@ -1,4 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-compass" viewBox="0 0 16 16">
-  <path d="M8 16.016a7.5 7.5 0 0 0 1.962-14.74A1 1 0 0 0 9 0H7a1 1 0 0 0-.962 1.276A7.5 7.5 0 0 0 8 16.016m6.5-7.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0"/>
-  <path d="m6.94 7.44 4.95-2.83-2.83 4.95-4.949 2.83 2.828-4.95z"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <path d="M8,16.016C8.001,16.016 8.003,16.016 8.004,16.016C12.119,16.016 15.504,12.63 15.504,8.516C15.504,5.138 13.223,2.158 9.962,1.276C9.988,1.186 10.001,1.093 10.001,1C10.001,0.451 9.549,-0 9.001,-0L6.999,-0C6.451,-0 5.999,0.451 5.999,1C5.999,1.093 6.012,1.186 6.038,1.276C2.777,2.158 0.496,5.138 0.496,8.516C0.496,12.63 3.881,16.016 7.996,16.016C7.997,16.016 7.999,16.016 8,16.016M14.5,8.516C14.5,12.082 11.566,15.016 8,15.016C4.434,15.016 1.5,12.082 1.5,8.516C1.5,4.95 4.434,2.016 8,2.016C11.566,2.016 14.5,4.95 14.5,8.516" style="fill:white;fill-rule:nonzero;"/>
+    <path d="M6.94,7.44L11.89,4.61L9.06,9.56L4.111,12.39L6.939,7.44L6.94,7.44Z" style="fill:white;fill-rule:nonzero;"/>
 </svg>

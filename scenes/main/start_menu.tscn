@@ -1,8 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://dshrmdkp0rpyp"]
+[gd_scene load_steps=10 format=3 uid="uid://dshrmdkp0rpyp"]
 
 [ext_resource type="Script" path="res://scripts/menus/StartMenu.cs" id="1_ony1c"]
 [ext_resource type="Texture2D" uid="uid://bagfjrf3aoo0t" path="res://resources/icon/bootstrap/exit_white.svg" id="2_ochre"]
-[ext_resource type="Texture2D" uid="uid://cirkm1o4vl48n" path="res://resources/icon/bootstrap/gear_white.svg" id="3_q0mip"]
+[ext_resource type="Texture2D" uid="uid://cirkm1o4vl48n" path="res://resources/icon/bootstrap/gear.svg" id="3_q0mip"]
+[ext_resource type="Texture2D" uid="uid://bpoxk73c133q3" path="res://resources/icon/bootstrap/person.svg" id="4_1c4li"]
+[ext_resource type="Theme" uid="uid://cnl12ky5m6ka6" path="res://resources/theme/dark_theme_module_buttons.tres" id="4_fdbur"]
+[ext_resource type="Texture2D" uid="uid://1qa6qk4rso7x" path="res://resources/icon/bootstrap/map.svg" id="5_c87c2"]
+[ext_resource type="Texture2D" uid="uid://2dpp4jdby8f4" path="res://resources/icon/bootstrap/compass.svg" id="6_1aw04"]
+[ext_resource type="Texture2D" uid="uid://eih7ohlkiqux" path="res://resources/icon/bootstrap/book.svg" id="7_w5h3i"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_v6pt5"]
 resource_name = "DSA_Version"
@@ -181,29 +186,165 @@ theme_override_constants/separation = 10
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Charakter
-"
+theme = ExtResource("4_fdbur")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ButtonChar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ButtonChar/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ButtonChar/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("4_1c4li")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ButtonChar/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 24
+text = "Charakter"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ButtonGMScreen" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Meisterschirm
-"
+theme = ExtResource("4_fdbur")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ButtonGMScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ButtonGMScreen/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ButtonGMScreen/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("5_c87c2")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ButtonGMScreen/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 24
+text = "Meisterschrim"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ButtonMap" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Karte
-"
+theme = ExtResource("4_fdbur")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ButtonMap"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ButtonMap/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ButtonMap/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("6_1aw04")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ButtonMap/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 24
+text = "Karte"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ButtonWiki" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Wiki
-"
+theme = ExtResource("4_fdbur")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ButtonWiki"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ButtonWiki/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = -10
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ButtonWiki/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("7_w5h3i")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ButtonWiki/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 24
+text = "Wiki"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ButtonCredits" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(150, 50)

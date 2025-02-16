@@ -1,0 +1,249 @@
+[gd_scene load_steps=7 format=3 uid="uid://m16d7dy8io65"]
+
+[ext_resource type="Texture2D" uid="uid://l127ulcpy08q" path="res://resources/icon/bootstrap/arrow-left.svg" id="1_r83ka"]
+[ext_resource type="Texture2D" uid="uid://cirkm1o4vl48n" path="res://resources/icon/bootstrap/gear.svg" id="2_t4n2d"]
+[ext_resource type="Theme" uid="uid://cxdsoxhgc6uji" path="res://resources/theme/container_left.tres" id="3_dgomu"]
+[ext_resource type="Theme" uid="uid://csuqnt2rlrlka" path="res://resources/theme/container_right.tres" id="4_gd11b"]
+[ext_resource type="Theme" uid="uid://dmw7veewiifl3" path="res://resources/theme/container_center.tres" id="4_xsocm"]
+[ext_resource type="Texture2D" uid="uid://brtbcoo7mx5qm" path="res://resources/icon/bootstrap/add.svg" id="5_13ope"]
+
+[node name="ModuleWiki" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="TopBarMargin" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+
+[node name="TopBar" type="HBoxContainer" parent="PanelContainer/VBoxContainer/TopBarMargin"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="ButtonBack" type="Button" parent="PanelContainer/VBoxContainer/TopBarMargin/TopBar"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+icon = ExtResource("1_r83ka")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Search" type="LineEdit" parent="PanelContainer/VBoxContainer/TopBarMargin/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+placeholder_text = "Suchen..."
+clear_button_enabled = true
+
+[node name="ButtonSettings" type="Button" parent="PanelContainer/VBoxContainer/TopBarMargin/TopBar"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+icon = ExtResource("2_t4n2d")
+icon_alignment = 1
+expand_icon = true
+
+[node name="ContentMargin" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/ContentMargin"]
+layout_mode = 2
+theme_override_constants/separation = -1
+
+[node name="SortContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.5
+theme = ExtResource("3_dgomu")
+
+[node name="SortMargin" type="MarginContainer" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/SortContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/SortContainer/SortMargin"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/SortContainer/SortMargin/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Sortieren nach:"
+
+[node name="OptionButton" type="OptionButton" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/SortContainer/SortMargin/VBoxContainer"]
+layout_mode = 2
+selected = 0
+item_count = 2
+popup/item_0/text = "Alphabetisch"
+popup/item_1/text = "Erstellungsdatum"
+popup/item_1/id = 1
+
+[node name="Result Container" type="PanelContainer" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+theme = ExtResource("4_xsocm")
+
+[node name="ResultMargin" type="MarginContainer" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/Result Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/Result Container/ResultMargin"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/Result Container/ResultMargin/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+icon = ExtResource("5_13ope")
+icon_alignment = 1
+expand_icon = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/Result Container/ResultMargin/VBoxContainer"]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/Result Container/ResultMargin/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 1
+text = "Name"
+
+[node name="CategoryLabel" type="Label" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/Result Container/ResultMargin/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Kategorie"
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/Result Container/ResultMargin/VBoxContainer"]
+layout_mode = 2
+
+[node name="InspectionContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+theme = ExtResource("4_gd11b")
+
+[node name="InspectionMargin" type="MarginContainer" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/InspectionContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/InspectionContainer/InspectionMargin"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/InspectionContainer/InspectionMargin/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/InspectionContainer/InspectionMargin/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="DSA1" type="Button" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/InspectionContainer/InspectionMargin/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 12
+text = "DSA 1"
+
+[node name="DSA2" type="Button" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/InspectionContainer/InspectionMargin/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 12
+text = "DSA 2"
+
+[node name="DSA3" type="Button" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/InspectionContainer/InspectionMargin/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 12
+text = "DSA 3"
+
+[node name="DSA4" type="Button" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/InspectionContainer/InspectionMargin/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 12
+text = "DSA 4"
+
+[node name="DSA4dot1" type="Button" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/InspectionContainer/InspectionMargin/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 12
+text = "DSA 4.1"
+
+[node name="DSA5" type="Button" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/InspectionContainer/InspectionMargin/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 12
+text = "DSA5"
+
+[node name="Myranor" type="Button" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/InspectionContainer/InspectionMargin/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 12
+text = "Myranor"
+
+[node name="DSK" type="Button" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/InspectionContainer/InspectionMargin/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 12
+text = "DSK"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/InspectionContainer/InspectionMargin/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/InspectionContainer/InspectionMargin/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+bbcode_enabled = true
+fit_content = true

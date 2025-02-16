@@ -5,6 +5,7 @@ type="CompressedTexture2D"
 uid="uid://2dpp4jdby8f4"
 path="res://.godot/imported/compass.svg-52c5be023cbae888b67d7d227aefb98e.ctex"
 metadata={
+"has_editor_variant": true,
 "vram_texture": false
 }
 
@@ -32,6 +33,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
+svg/scale=32.0
 editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false
+editor/convert_colors_with_editor_theme=true

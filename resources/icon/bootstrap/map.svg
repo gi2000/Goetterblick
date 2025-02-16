@@ -1,3 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-map" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.5.5 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103M10 1.91l-4-.8v12.98l4 .8zm1 12.98 4-.8V1.11l-4 .8zm-6-.8V1.11l-4 .8v12.98z"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <path d="M15.817,0.113C15.933,0.208 16,0.35 16,0.5L16,14.5C16,14.737 15.831,14.943 15.598,14.99L10.598,15.99C10.533,16.003 10.467,16.003 10.402,15.99L5.5,15.01L0.598,15.99C0.566,15.996 0.533,16 0.5,16C0.226,16 0,15.774 0,15.5L0,1.5C0,1.263 0.169,1.057 0.402,1.01L5.402,0.01C5.467,-0.003 5.533,-0.003 5.598,0.01L10.5,0.99L15.402,0.01C15.549,-0.02 15.701,0.018 15.817,0.113M10,1.91L6,1.11L6,14.09L10,14.89L10,1.91ZM11,14.89L15,14.09L15,1.11L11,1.91L11,14.89ZM5,14.09L5,1.11L1,1.91L1,14.89L5,14.09Z" style="fill:white;"/>
 </svg>

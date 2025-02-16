@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://gmfas111lift"]
 
 [ext_resource type="Script" path="res://scripts/menus/SettingsMenu.cs" id="1_sijy6"]
-[ext_resource type="Texture2D" uid="uid://l127ulcpy08q" path="res://resources/icon/bootstrap/arrow-left_white.svg" id="2_v17go"]
+[ext_resource type="Texture2D" uid="uid://l127ulcpy08q" path="res://resources/icon/bootstrap/arrow-left.svg" id="2_v17go"]
 
 [node name="SettingMenu" type="Control"]
 layout_mode = 3
@@ -20,7 +20,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
 layout_mode = 2

@@ -2,16 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cirkm1o4vl48n"
-path="res://.godot/imported/gear_white.svg-544325621ce0187404061dad264702f6.ctex"
+uid="uid://c4mmaeer1fy0w"
+path="res://.godot/imported/floppy.svg-45c316543a17462489233c678fd832f7.ctex"
 metadata={
+"has_editor_variant": true,
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/icon/bootstrap/gear_white.svg"
-dest_files=["res://.godot/imported/gear_white.svg-544325621ce0187404061dad264702f6.ctex"]
+source_file="res://resources/icon/bootstrap/floppy.svg"
+dest_files=["res://.godot/imported/floppy.svg-45c316543a17462489233c678fd832f7.ctex"]
 
 [params]
 
@@ -34,4 +35,4 @@ process/size_limit=0
 detect_3d/compress_to=1
 svg/scale=16.0
 editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false
+editor/convert_colors_with_editor_theme=true
