@@ -12,10 +12,14 @@ config_version=5
 
 config/name="Götterblick"
 config/version="0.0.1"
-run/main_scene="res://scenes/start_menu.tscn"
+run/main_scene="res://scenes/main/start_menu.tscn"
 config/features=PackedStringArray("4.3", "C#", "GL Compatibility")
 boot_splash/show_image=false
 config/icon="res://resources/icon/app/Icon-256x-Round.png"
+
+[autoload]
+
+Startup="*res://scripts/general/Startup.cs"
 
 [display]
 
@@ -28,7 +32,7 @@ project/assembly_name="Goetterblick"
 
 [gui]
 
-theme/custom="res://resources/dark_theme.tres"
+theme/custom="res://resources/theme/dark_theme.tres"
 theme/custom_font="res://resources/font/MartianMono-CnRg.ttf"
 
 [rendering]

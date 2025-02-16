@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://dshrmdkp0rpyp"]
 
-[ext_resource type="Script" path="res://scripts/menus/StartMenu.cs" id="1_36csp"]
-[ext_resource type="Texture2D" uid="uid://bagfjrf3aoo0t" path="res://resources/icon/bootstrap/exit_white.svg" id="2_ygwo8"]
-[ext_resource type="Texture2D" uid="uid://cirkm1o4vl48n" path="res://resources/icon/bootstrap/gear_white.svg" id="3_cve02"]
+[ext_resource type="Script" path="res://scripts/menus/StartMenu.cs" id="1_ony1c"]
+[ext_resource type="Texture2D" uid="uid://bagfjrf3aoo0t" path="res://resources/icon/bootstrap/exit_white.svg" id="2_ochre"]
+[ext_resource type="Texture2D" uid="uid://cirkm1o4vl48n" path="res://resources/icon/bootstrap/gear_white.svg" id="3_q0mip"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_v6pt5"]
 resource_name = "DSA_Version"
@@ -14,7 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_36csp")
+script = ExtResource("1_ony1c")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -45,16 +45,21 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 0
-icon = ExtResource("2_ygwo8")
+icon = ExtResource("2_ochre")
 icon_alignment = 1
 expand_icon = true
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Götterblick"
 
 [node name="ButtonSettings" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 0
-icon = ExtResource("3_cve02")
+icon = ExtResource("3_q0mip")
 icon_alignment = 1
 expand_icon = true
 

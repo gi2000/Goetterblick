@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://gmfas111lift"]
 
-[ext_resource type="Script" path="res://scripts/menus/SettingsMenu.cs" id="1_thw1m"]
-[ext_resource type="Texture2D" uid="uid://l127ulcpy08q" path="res://resources/icon/bootstrap/arrow-left_white.svg" id="2_5u6hv"]
+[ext_resource type="Script" path="res://scripts/menus/SettingsMenu.cs" id="1_sijy6"]
+[ext_resource type="Texture2D" uid="uid://l127ulcpy08q" path="res://resources/icon/bootstrap/arrow-left_white.svg" id="2_v17go"]
 
 [node name="SettingMenu" type="Control"]
 layout_mode = 3
@@ -10,7 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_thw1m")
+script = ExtResource("1_sijy6")
 metadata/_edit_use_anchors_ = true
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
@@ -40,7 +40,7 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-icon = ExtResource("2_5u6hv")
+icon = ExtResource("2_v17go")
 icon_alignment = 1
 expand_icon = true
 
@@ -65,13 +65,15 @@ theme_override_constants/margin_right = 100
 
 [node name="Options" type="VBoxContainer" parent="PanelContainer/VBoxContainer/OptionsMargin"]
 layout_mode = 2
+size_flags_vertical = 0
 theme_override_constants/separation = 5
 alignment = 1
 
-[node name="ToggleLightmode" type="CheckButton" parent="PanelContainer/VBoxContainer/OptionsMargin/Options"]
+[node name="ToggleTheme" type="CheckButton" parent="PanelContainer/VBoxContainer/OptionsMargin/Options"]
 layout_mode = 2
-size_flags_vertical = 2
+size_flags_vertical = 0
 button_pressed = true
 text = "Light Mode / Dark Mode"
 
 [connection signal="button_up" from="PanelContainer/VBoxContainer/TopBarMargin/TopBar/ButtonBack" to="." method="OnBackButtonUp"]
+[connection signal="toggled" from="PanelContainer/VBoxContainer/OptionsMargin/Options/ToggleTheme" to="." method="OnToggleTheme"]
