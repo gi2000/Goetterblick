@@ -132,6 +132,7 @@ custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
 size_flags_horizontal = 3
 toggle_mode = true
+button_pressed = true
 button_group = SubResource("ButtonGroup_v6pt5")
 text = "DSA 4.1"
 
@@ -142,7 +143,6 @@ size_flags_horizontal = 3
 tooltip_text = "WIP
 coming soon!"
 focus_mode = 0
-disabled = true
 toggle_mode = true
 button_group = SubResource("ButtonGroup_v6pt5")
 text = "DSA 5"
