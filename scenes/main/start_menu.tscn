@@ -355,3 +355,4 @@ text = "Impressum"
 
 [connection signal="button_up" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/Button" to="." method="OnQuitButtonUp"]
 [connection signal="button_up" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/ButtonSettings" to="." method="OnSettingsButtonUp"]
+[connection signal="button_up" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ButtonWiki" to="." method="OnWikiButtonUp"]

@@ -1,11 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://m16d7dy8io65"]
+[gd_scene load_steps=10 format=3 uid="uid://m16d7dy8io65"]
 
+[ext_resource type="Script" path="res://scripts/menus/ModuleWiki.cs" id="1_au6ll"]
 [ext_resource type="Texture2D" uid="uid://l127ulcpy08q" path="res://resources/icon/bootstrap/arrow-left.svg" id="1_r83ka"]
 [ext_resource type="Texture2D" uid="uid://cirkm1o4vl48n" path="res://resources/icon/bootstrap/gear.svg" id="2_t4n2d"]
 [ext_resource type="Theme" uid="uid://cxdsoxhgc6uji" path="res://resources/theme/container_left.tres" id="3_dgomu"]
 [ext_resource type="Theme" uid="uid://csuqnt2rlrlka" path="res://resources/theme/container_right.tres" id="4_gd11b"]
 [ext_resource type="Theme" uid="uid://dmw7veewiifl3" path="res://resources/theme/container_center.tres" id="4_xsocm"]
 [ext_resource type="Texture2D" uid="uid://brtbcoo7mx5qm" path="res://resources/icon/bootstrap/add.svg" id="5_13ope"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k6f1x"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j21ge"]
 
 [node name="ModuleWiki" type="Control"]
 layout_mode = 3
@@ -14,6 +19,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_au6ll")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -103,6 +109,11 @@ popup/item_0/text = "Alphabetisch"
 popup/item_1/text = "Erstellungsdatum"
 popup/item_1/id = 1
 
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 1
+theme_override_styles/separator = SubResource("StyleBoxEmpty_k6f1x")
+
 [node name="Result Container" type="PanelContainer" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -144,6 +155,11 @@ text = "Kategorie"
 
 [node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/Result Container/ResultMargin/VBoxContainer"]
 layout_mode = 2
+
+[node name="VSeparator2" type="VSeparator" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 1
+theme_override_styles/separator = SubResource("StyleBoxEmpty_j21ge")
 
 [node name="InspectionContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer"]
 layout_mode = 2
@@ -247,3 +263,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 bbcode_enabled = true
 fit_content = true
+
+[connection signal="button_up" from="PanelContainer/VBoxContainer/TopBarMargin/TopBar/ButtonBack" to="." method="OnBackButtonUp"]
+[connection signal="button_up" from="PanelContainer/VBoxContainer/TopBarMargin/TopBar/ButtonSettings" to="." method="OnSettingsButtonUp"]
