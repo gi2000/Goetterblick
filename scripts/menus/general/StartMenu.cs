@@ -1,4 +1,6 @@
+using System;
 using Godot;
+using Goetterblick.scripts.general;
 
 namespace Goetterblick.scripts.menus;
 
@@ -14,11 +16,13 @@ public partial class StartMenu : Control
 
     private void OnSettingsButtonUp()
     {
+        Utils.AddLastScene(GetTree());
         GetTree().ChangeSceneToFile(_pathToSettingsMenu);
     }
 
     private void OnWikiButtonUp()
     {
+        Utils.AddLastScene(GetTree());
         GetTree().ChangeSceneToFile(_pathToWikiMenu);
     }
 }

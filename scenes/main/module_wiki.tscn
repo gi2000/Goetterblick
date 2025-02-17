@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://m16d7dy8io65"]
+[gd_scene load_steps=11 format=3 uid="uid://m16d7dy8io65"]
 
-[ext_resource type="Script" path="res://scripts/menus/ModuleWiki.cs" id="1_au6ll"]
+[ext_resource type="Script" path="res://scripts/menus/modules/ModuleWiki.cs" id="1_au6ll"]
 [ext_resource type="Texture2D" uid="uid://l127ulcpy08q" path="res://resources/icon/bootstrap/arrow-left.svg" id="1_r83ka"]
 [ext_resource type="Texture2D" uid="uid://cirkm1o4vl48n" path="res://resources/icon/bootstrap/gear.svg" id="2_t4n2d"]
 [ext_resource type="Theme" uid="uid://cxdsoxhgc6uji" path="res://resources/theme/container_left.tres" id="3_dgomu"]
+[ext_resource type="Script" path="res://scripts/general/node/BackButton.cs" id="3_orhrk"]
 [ext_resource type="Theme" uid="uid://csuqnt2rlrlka" path="res://resources/theme/container_right.tres" id="4_gd11b"]
 [ext_resource type="Theme" uid="uid://dmw7veewiifl3" path="res://resources/theme/container_center.tres" id="4_xsocm"]
 [ext_resource type="Texture2D" uid="uid://brtbcoo7mx5qm" path="res://resources/icon/bootstrap/add.svg" id="5_13ope"]
@@ -42,7 +43,7 @@ theme_override_constants/margin_right = 20
 layout_mode = 2
 theme_override_constants/separation = 30
 
-[node name="ButtonBack" type="Button" parent="PanelContainer/VBoxContainer/TopBarMargin/TopBar"]
+[node name="ButtonBack2" type="Button" parent="PanelContainer/VBoxContainer/TopBarMargin/TopBar"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -50,6 +51,7 @@ size_flags_vertical = 0
 icon = ExtResource("1_r83ka")
 icon_alignment = 1
 expand_icon = true
+script = ExtResource("3_orhrk")
 
 [node name="Search" type="LineEdit" parent="PanelContainer/VBoxContainer/TopBarMargin/TopBar"]
 layout_mode = 2
@@ -264,5 +266,5 @@ size_flags_vertical = 3
 bbcode_enabled = true
 fit_content = true
 
-[connection signal="button_up" from="PanelContainer/VBoxContainer/TopBarMargin/TopBar/ButtonBack" to="." method="OnBackButtonUp"]
+[connection signal="button_up" from="PanelContainer/VBoxContainer/TopBarMargin/TopBar/ButtonBack2" to="PanelContainer/VBoxContainer/TopBarMargin/TopBar/ButtonBack2" method="OnBackButtonUp"]
 [connection signal="button_up" from="PanelContainer/VBoxContainer/TopBarMargin/TopBar/ButtonSettings" to="." method="OnSettingsButtonUp"]

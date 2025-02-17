@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://gmfas111lift"]
+[gd_scene load_steps=4 format=3 uid="uid://gmfas111lift"]
 
-[ext_resource type="Script" path="res://scripts/menus/SettingsMenu.cs" id="1_sijy6"]
+[ext_resource type="Script" path="res://scripts/menus/general/SettingsMenu.cs" id="1_p6bjq"]
 [ext_resource type="Texture2D" uid="uid://l127ulcpy08q" path="res://resources/icon/bootstrap/arrow-left.svg" id="2_v17go"]
+[ext_resource type="Script" path="res://scripts/general/node/BackButton.cs" id="3_wmknp"]
 
 [node name="SettingMenu" type="Control"]
 layout_mode = 3
@@ -10,7 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_sijy6")
+script = ExtResource("1_p6bjq")
 metadata/_edit_use_anchors_ = true
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
@@ -42,6 +43,7 @@ size_flags_vertical = 0
 icon = ExtResource("2_v17go")
 icon_alignment = 1
 expand_icon = true
+script = ExtResource("3_wmknp")
 
 [node name="Search" type="LineEdit" parent="PanelContainer/VBoxContainer/TopBarMargin/TopBar"]
 layout_mode = 2
@@ -74,5 +76,5 @@ size_flags_vertical = 0
 button_pressed = true
 text = "Light Mode / Dark Mode"
 
-[connection signal="button_up" from="PanelContainer/VBoxContainer/TopBarMargin/TopBar/ButtonBack" to="." method="OnBackButtonUp"]
+[connection signal="button_up" from="PanelContainer/VBoxContainer/TopBarMargin/TopBar/ButtonBack" to="PanelContainer/VBoxContainer/TopBarMargin/TopBar/ButtonBack" method="OnBackButtonUp"]
 [connection signal="toggled" from="PanelContainer/VBoxContainer/OptionsMargin/Options/ToggleTheme" to="." method="OnToggleTheme"]

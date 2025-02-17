@@ -19,7 +19,7 @@ config/icon="res://resources/icon/app/Icon-256x-Round.png"
 
 [autoload]
 
-Startup="*res://scripts/general/Startup.cs"
+Startup="*res://scripts/general/node/Startup.cs"
 
 [display]
 

@@ -6,11 +6,13 @@ namespace Goetterblick.scripts.general;
 
 public class Utils
 {
-    public const string MainSettingsConfig = "user://settings.cfg";
+    public const LogLevel LogLevel = general.LogLevel.Debug;
     
+    public const string MainSettingsConfig = "user://settings.cfg";
+
     public const string PathToDarkTheme = "res://resources/theme/dark_theme.tres";
     public const string PathToLightTheme = "res://resources/theme/light_theme.tres";
-    
+
     public static readonly ConfigFile Config = new();
 
     // ###############
@@ -18,12 +20,14 @@ public class Utils
     // ###############
 
     public static readonly ConfigId DarkThemeId = new("general", "IsDarkTheme");
-    
+
+    private static readonly Stack<string> LastScenes = new();
+
     public static void SaveSetting(ConfigId id, Variant value)
     {
         // Create new ConfigFile object.
         LoadOrCreateConfig(Config);
-        
+
         Config.SetValue(id.Section, id.Key, value);
         Config.Save(MainSettingsConfig);
     }
@@ -50,7 +54,7 @@ public class Utils
     {
         return Config.GetValue(id.Section, id.Key, defaultValue);
     }
-    
+
     private static void LoadOrCreateConfig(ConfigFile config)
     {
         // Load data from a file.
@@ -71,5 +75,20 @@ public class Utils
         root.Show();
 
         Config.SetValue(DarkThemeId.Section, DarkThemeId.Key, isDarkTheme);
+    }
+    
+    public static void AddLastScene(SceneTree tree)
+    {
+        LastScenes.Push(tree.GetCurrentScene().GetSceneFilePath());
+    }
+
+    public static string PopLastScene()
+    {
+        return LastScenes.Pop();
+    }
+
+    public static string PeekLastScene()
+    {
+        return LastScenes.Count > 0 ? LastScenes.Peek() : null;
     }
 }
