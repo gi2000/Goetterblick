@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://m16d7dy8io65"]
+[gd_scene load_steps=9 format=3 uid="uid://m16d7dy8io65"]
 
 [ext_resource type="Script" path="res://scripts/menus/modules/ModuleWiki.cs" id="1_au6ll"]
 [ext_resource type="Texture2D" uid="uid://l127ulcpy08q" path="res://resources/icon/bootstrap/arrow-left.svg" id="1_r83ka"]
@@ -8,10 +8,6 @@
 [ext_resource type="Theme" uid="uid://csuqnt2rlrlka" path="res://resources/theme/container_right.tres" id="4_gd11b"]
 [ext_resource type="Theme" uid="uid://dmw7veewiifl3" path="res://resources/theme/container_center.tres" id="4_xsocm"]
 [ext_resource type="Texture2D" uid="uid://brtbcoo7mx5qm" path="res://resources/icon/bootstrap/add.svg" id="5_13ope"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k6f1x"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j21ge"]
 
 [node name="ModuleWiki" type="Control"]
 layout_mode = 3
@@ -81,13 +77,17 @@ theme_override_constants/margin_right = 0
 layout_mode = 2
 theme_override_constants/separation = -1
 
-[node name="SortContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer"]
+[node name="HSplitContainer" type="HSplitContainer" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/autohide = 0
+
+[node name="SortContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer"]
+layout_mode = 2
 size_flags_stretch_ratio = 1.5
 theme = ExtResource("3_dgomu")
 
-[node name="SortMargin" type="MarginContainer" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/SortContainer"]
+[node name="SortMargin" type="MarginContainer" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/SortContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 5
@@ -95,15 +95,15 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/SortContainer/SortMargin"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/SortContainer/SortMargin"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/SortContainer/SortMargin/VBoxContainer"]
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/SortContainer/SortMargin/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 14
 text = "Sortieren nach:"
 
-[node name="OptionButton" type="OptionButton" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/SortContainer/SortMargin/VBoxContainer"]
+[node name="OptionButton" type="OptionButton" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/SortContainer/SortMargin/VBoxContainer"]
 layout_mode = 2
 selected = 0
 item_count = 2
@@ -111,18 +111,17 @@ popup/item_0/text = "Alphabetisch"
 popup/item_1/text = "Erstellungsdatum"
 popup/item_1/id = 1
 
-[node name="VSeparator" type="VSeparator" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer"]
+[node name="HSplitContainer" type="HSplitContainer" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer"]
 layout_mode = 2
-theme_override_constants/separation = 1
-theme_override_styles/separator = SubResource("StyleBoxEmpty_k6f1x")
+size_flags_horizontal = 3
 
-[node name="Result Container" type="PanelContainer" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer"]
+[node name="Result Container" type="PanelContainer" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
 theme = ExtResource("4_xsocm")
 
-[node name="ResultMargin" type="MarginContainer" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/Result Container"]
+[node name="ResultMargin" type="MarginContainer" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/Result Container"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
@@ -131,45 +130,40 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/Result Container/ResultMargin"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/Result Container/ResultMargin"]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/Result Container/ResultMargin/VBoxContainer"]
+[node name="Button" type="Button" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/Result Container/ResultMargin/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 icon = ExtResource("5_13ope")
 icon_alignment = 1
 expand_icon = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/Result Container/ResultMargin/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/Result Container/ResultMargin/VBoxContainer"]
 layout_mode = 2
 
-[node name="NameLabel" type="Label" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/Result Container/ResultMargin/VBoxContainer/HBoxContainer"]
+[node name="NameLabel" type="Label" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/Result Container/ResultMargin/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 1
 text = "Name"
 
-[node name="CategoryLabel" type="Label" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/Result Container/ResultMargin/VBoxContainer/HBoxContainer"]
+[node name="CategoryLabel" type="Label" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/Result Container/ResultMargin/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
 text = "Kategorie"
 
-[node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/Result Container/ResultMargin/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/Result Container/ResultMargin/VBoxContainer"]
 layout_mode = 2
 
-[node name="VSeparator2" type="VSeparator" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 1
-theme_override_styles/separator = SubResource("StyleBoxEmpty_j21ge")
-
-[node name="InspectionContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer"]
+[node name="InspectionContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
 theme = ExtResource("4_gd11b")
 
-[node name="InspectionMargin" type="MarginContainer" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/InspectionContainer"]
+[node name="InspectionMargin" type="MarginContainer" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/InspectionContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
@@ -178,20 +172,20 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/InspectionContainer/InspectionMargin"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/InspectionContainer/InspectionMargin"]
 layout_mode = 2
 
-[node name="Title" type="Label" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/InspectionContainer/InspectionMargin/VBoxContainer"]
+[node name="Title" type="Label" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/InspectionContainer/InspectionMargin/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/InspectionContainer/InspectionMargin/VBoxContainer"]
+[node name="VersionsHFlow" type="HFlowContainer" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/InspectionContainer/InspectionMargin/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 0
+alignment = 1
 
-[node name="DSA1" type="Button" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/InspectionContainer/InspectionMargin/VBoxContainer/HBoxContainer"]
+[node name="DSA1" type="Button" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/InspectionContainer/InspectionMargin/VBoxContainer/VersionsHFlow"]
 custom_minimum_size = Vector2(50, 25)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -199,7 +193,7 @@ size_flags_vertical = 4
 theme_override_font_sizes/font_size = 12
 text = "DSA 1"
 
-[node name="DSA2" type="Button" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/InspectionContainer/InspectionMargin/VBoxContainer/HBoxContainer"]
+[node name="DSA2" type="Button" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/InspectionContainer/InspectionMargin/VBoxContainer/VersionsHFlow"]
 custom_minimum_size = Vector2(50, 25)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -207,7 +201,7 @@ size_flags_vertical = 4
 theme_override_font_sizes/font_size = 12
 text = "DSA 2"
 
-[node name="DSA3" type="Button" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/InspectionContainer/InspectionMargin/VBoxContainer/HBoxContainer"]
+[node name="DSA3" type="Button" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/InspectionContainer/InspectionMargin/VBoxContainer/VersionsHFlow"]
 custom_minimum_size = Vector2(50, 25)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -215,7 +209,7 @@ size_flags_vertical = 4
 theme_override_font_sizes/font_size = 12
 text = "DSA 3"
 
-[node name="DSA4" type="Button" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/InspectionContainer/InspectionMargin/VBoxContainer/HBoxContainer"]
+[node name="DSA4" type="Button" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/InspectionContainer/InspectionMargin/VBoxContainer/VersionsHFlow"]
 custom_minimum_size = Vector2(50, 25)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -223,7 +217,7 @@ size_flags_vertical = 4
 theme_override_font_sizes/font_size = 12
 text = "DSA 4"
 
-[node name="DSA4dot1" type="Button" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/InspectionContainer/InspectionMargin/VBoxContainer/HBoxContainer"]
+[node name="DSA4dot1" type="Button" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/InspectionContainer/InspectionMargin/VBoxContainer/VersionsHFlow"]
 custom_minimum_size = Vector2(50, 25)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -231,7 +225,7 @@ size_flags_vertical = 4
 theme_override_font_sizes/font_size = 12
 text = "DSA 4.1"
 
-[node name="DSA5" type="Button" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/InspectionContainer/InspectionMargin/VBoxContainer/HBoxContainer"]
+[node name="DSA5" type="Button" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/InspectionContainer/InspectionMargin/VBoxContainer/VersionsHFlow"]
 custom_minimum_size = Vector2(50, 25)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -239,7 +233,7 @@ size_flags_vertical = 4
 theme_override_font_sizes/font_size = 12
 text = "DSA5"
 
-[node name="Myranor" type="Button" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/InspectionContainer/InspectionMargin/VBoxContainer/HBoxContainer"]
+[node name="Myranor" type="Button" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/InspectionContainer/InspectionMargin/VBoxContainer/VersionsHFlow"]
 custom_minimum_size = Vector2(50, 25)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -247,7 +241,7 @@ size_flags_vertical = 4
 theme_override_font_sizes/font_size = 12
 text = "Myranor"
 
-[node name="DSK" type="Button" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/InspectionContainer/InspectionMargin/VBoxContainer/HBoxContainer"]
+[node name="DSK" type="Button" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/InspectionContainer/InspectionMargin/VBoxContainer/VersionsHFlow"]
 custom_minimum_size = Vector2(50, 25)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -255,11 +249,11 @@ size_flags_vertical = 4
 theme_override_font_sizes/font_size = 12
 text = "DSK"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/InspectionContainer/InspectionMargin/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/InspectionContainer/InspectionMargin/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/InspectionContainer/InspectionMargin/VBoxContainer/ScrollContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/InspectionContainer/InspectionMargin/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

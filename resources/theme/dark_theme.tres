@@ -321,6 +321,7 @@ HScrollBar/styles/grabber = SubResource("StyleBoxFlat_m5v2a")
 HScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_f8jxh")
 HScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_f1n4f")
 HSeparator/styles/separator = SubResource("StyleBoxLine_8lj00")
+HSplitContainer/constants/separation = 0
 LineEdit/colors/font_color = Color(1, 1, 1, 1)
 LineEdit/colors/font_placeholder_color = Color(0.392157, 0.392157, 0.392157, 1)
 LineEdit/font_sizes/font_size = 29
