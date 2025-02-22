@@ -114,6 +114,7 @@ popup/item_1/id = 1
 [node name="HSplitContainer" type="HSplitContainer" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/autohide = 0
 
 [node name="Result Container" type="PanelContainer" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer"]
 layout_mode = 2
