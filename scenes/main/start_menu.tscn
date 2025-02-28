@@ -45,7 +45,7 @@ theme_override_constants/separation = 30
 [node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="BackButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 2
@@ -353,6 +353,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 8
 text = "Impressum"
 
-[connection signal="button_up" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/Button" to="." method="OnQuitButtonUp"]
+[connection signal="button_up" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/BackButton" to="." method="OnQuitButtonUp"]
 [connection signal="button_up" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/ButtonSettings" to="." method="OnSettingsButtonUp"]
 [connection signal="button_up" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ButtonWiki" to="." method="OnWikiButtonUp"]
