@@ -35,6 +35,11 @@ project/assembly_name="Goetterblick"
 theme/custom="res://resources/theme/dark_theme.tres"
 theme/custom_font="res://resources/font/MartianMono-CnRg.ttf"
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://resources/translations/gui.de.translation", "res://resources/translations/gui.en.translation")
+locale/fallback="de"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

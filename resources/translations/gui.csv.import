@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://rjr71kk1e4jq"
+
+[deps]
+
+files=["res://resources/translations/gui.de.translation", "res://resources/translations/gui.en.translation"]
+
+source_file="res://resources/translations/gui.csv"
+dest_files=["res://resources/translations/gui.de.translation", "res://resources/translations/gui.en.translation"]
+
+[params]
+
+compress=true
+delimiter=1

@@ -59,9 +59,9 @@ size_flags_vertical = 6
 placeholder_text = "Suchen..."
 clear_button_enabled = true
 script = ExtResource("4_sryn0")
-_pathToSearchContainer = NodePath("../../../ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/ResultContainer/ResultMargin/VBoxContainer/ScrollContainer/MarginContainer/SearchedElements")
+_pathToSearchContainer = Array[NodePath]([NodePath("../../../ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/ResultContainer/ResultMargin/VBoxContainer/ScrollContainer/MarginContainer/SearchedElements")])
 _pathToSearchOptions = NodePath("../../../ContentMargin/HBoxContainer/HSplitContainer/SortContainer/SortMargin/VBoxContainer/SearchOptionButton")
-_pathToCategories = NodePath("../../../ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/ResultContainer/ResultMargin/VBoxContainer/MarginContainer2/Categories")
+_pathToCategories = Array[NodePath]([NodePath("../../../ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/ResultContainer/ResultMargin/VBoxContainer/MarginContainer2/Categories")])
 
 [node name="ButtonSettings" type="Button" parent="PanelContainer/VBoxContainer/TopBarMargin/TopBar"]
 custom_minimum_size = Vector2(50, 50)
@@ -116,10 +116,10 @@ layout_mode = 2
 clip_text = true
 selected = 0
 item_count = 2
-popup/item_0/text = "Name"
+popup/item_0/text = "wiki.category.name"
 popup/item_0/id = 0
-popup/item_1/text = "Kategorie"
-popup/item_1/id = 5
+popup/item_1/text = "wiki.category.category"
+popup/item_1/id = 0
 
 [node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/SortContainer/SortMargin/VBoxContainer"]
 layout_mode = 2
@@ -186,18 +186,18 @@ theme_override_constants/margin_right = 5
 [node name="Categories" type="HBoxContainer" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/ResultContainer/ResultMargin/VBoxContainer/MarginContainer2"]
 layout_mode = 2
 
-[node name="NameLabel" type="Label" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/ResultContainer/ResultMargin/VBoxContainer/MarginContainer2/Categories"]
+[node name="Name" type="Label" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/ResultContainer/ResultMargin/VBoxContainer/MarginContainer2/Categories"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-text = "Name"
+text = "wiki.category.name"
 clip_text = true
 
-[node name="CategoryLabel" type="Label" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/ResultContainer/ResultMargin/VBoxContainer/MarginContainer2/Categories"]
+[node name="Category" type="Label" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/ResultContainer/ResultMargin/VBoxContainer/MarginContainer2/Categories"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-text = "Kategorie"
+text = "wiki.category.category"
 horizontal_alignment = 2
 clip_text = true
 
