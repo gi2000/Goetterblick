@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://gmfas111lift"]
 
-[ext_resource type="Script" path="res://scripts/menus/general/SettingsMenu.cs" id="1_p6bjq"]
+[ext_resource type="Script" uid="uid://bwu34brk72cis" path="res://scripts/menus/general/SettingsMenu.cs" id="1_p6bjq"]
 [ext_resource type="Texture2D" uid="uid://l127ulcpy08q" path="res://resources/icon/bootstrap/arrow-left.svg" id="2_v17go"]
-[ext_resource type="Script" path="res://scripts/general/node/BackButton.cs" id="3_wmknp"]
+[ext_resource type="Script" uid="uid://6mvbwca5cbnj" path="res://scripts/general/node/BackButton.cs" id="3_wmknp"]
 [ext_resource type="Texture2D" uid="uid://b0pjdqqr6505a" path="res://resources/icon/uxwing/germany-flag.svg" id="4_ew7jx"]
 
 [node name="SettingMenu" type="Control"]
@@ -84,6 +84,7 @@ selected = 0
 item_count = 1
 popup/item_0/text = "Deutsch"
 popup/item_0/icon = ExtResource("4_ew7jx")
+popup/item_0/id = 0
 
 [connection signal="button_up" from="PanelContainer/VBoxContainer/TopBarMargin/TopBar/ButtonBack" to="PanelContainer/VBoxContainer/TopBarMargin/TopBar/ButtonBack" method="OnBackButtonUp"]
 [connection signal="toggled" from="PanelContainer/VBoxContainer/OptionsMargin/Options/ToggleTheme" to="." method="OnToggleTheme"]

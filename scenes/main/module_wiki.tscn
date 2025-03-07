@@ -1,14 +1,16 @@
-[gd_scene load_steps=10 format=3 uid="uid://m16d7dy8io65"]
+[gd_scene load_steps=11 format=3 uid="uid://m16d7dy8io65"]
 
-[ext_resource type="Script" path="res://scripts/menus/modules/ModuleWiki.cs" id="1_au6ll"]
+[ext_resource type="Script" uid="uid://be2bjwkbx88ab" path="res://scripts/menus/modules/ModuleWiki.cs" id="1_au6ll"]
 [ext_resource type="Texture2D" uid="uid://l127ulcpy08q" path="res://resources/icon/bootstrap/arrow-left.svg" id="1_r83ka"]
 [ext_resource type="Texture2D" uid="uid://cirkm1o4vl48n" path="res://resources/icon/bootstrap/gear.svg" id="2_t4n2d"]
 [ext_resource type="Theme" uid="uid://cxdsoxhgc6uji" path="res://resources/theme/container_left.tres" id="3_dgomu"]
-[ext_resource type="Script" path="res://scripts/general/node/BackButton.cs" id="3_orhrk"]
+[ext_resource type="Script" uid="uid://6mvbwca5cbnj" path="res://scripts/general/node/BackButton.cs" id="3_orhrk"]
 [ext_resource type="Theme" uid="uid://csuqnt2rlrlka" path="res://resources/theme/container_right.tres" id="4_gd11b"]
-[ext_resource type="Script" path="res://scripts/general/node/SearchBar.cs" id="4_sryn0"]
+[ext_resource type="Script" uid="uid://bknnpwa2ckps0" path="res://scripts/general/node/SearchBar.cs" id="4_sryn0"]
 [ext_resource type="Theme" uid="uid://dmw7veewiifl3" path="res://resources/theme/container_center.tres" id="4_xsocm"]
 [ext_resource type="Texture2D" uid="uid://brtbcoo7mx5qm" path="res://resources/icon/bootstrap/add.svg" id="5_13ope"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cx5xe"]
 
 [node name="ModuleWiki" type="Control"]
 layout_mode = 3
@@ -58,6 +60,8 @@ placeholder_text = "Suchen..."
 clear_button_enabled = true
 script = ExtResource("4_sryn0")
 _pathToSearchContainer = NodePath("../../../ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/ResultContainer/ResultMargin/VBoxContainer/ScrollContainer/MarginContainer/SearchedElements")
+_pathToSearchOptions = NodePath("../../../ContentMargin/HBoxContainer/HSplitContainer/SortContainer/SortMargin/VBoxContainer/SearchOptionButton")
+_pathToCategories = NodePath("../../../ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/ResultContainer/ResultMargin/VBoxContainer/MarginContainer2/Categories")
 
 [node name="ButtonSettings" type="Button" parent="PanelContainer/VBoxContainer/TopBarMargin/TopBar"]
 custom_minimum_size = Vector2(50, 50)
@@ -101,18 +105,40 @@ theme_override_constants/margin_bottom = 5
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/SortContainer/SortMargin"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/SortContainer/SortMargin/VBoxContainer"]
+[node name="SearchLabel" type="Label" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/SortContainer/SortMargin/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Suchen nach:"
+clip_text = true
+
+[node name="SearchOptionButton" type="OptionButton" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/SortContainer/SortMargin/VBoxContainer"]
+layout_mode = 2
+clip_text = true
+selected = 0
+item_count = 2
+popup/item_0/text = "Name"
+popup/item_0/id = 0
+popup/item_1/text = "Kategorie"
+popup/item_1/id = 5
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/SortContainer/SortMargin/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+theme_override_styles/separator = SubResource("StyleBoxEmpty_cx5xe")
+
+[node name="SortLabel" type="Label" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/SortContainer/SortMargin/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 14
 text = "Sortieren nach:"
 clip_text = true
 
-[node name="OptionButton" type="OptionButton" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/SortContainer/SortMargin/VBoxContainer"]
+[node name="SortOptionButton" type="OptionButton" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/SortContainer/SortMargin/VBoxContainer"]
 layout_mode = 2
 clip_text = true
 selected = 0
 item_count = 2
 popup/item_0/text = "Alphabetisch"
+popup/item_0/id = 0
 popup/item_1/text = "Erstellungsdatum"
 popup/item_1/id = 1
 
@@ -157,19 +183,23 @@ layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_right = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/ResultContainer/ResultMargin/VBoxContainer/MarginContainer2"]
+[node name="Categories" type="HBoxContainer" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/ResultContainer/ResultMargin/VBoxContainer/MarginContainer2"]
 layout_mode = 2
 
-[node name="NameLabel" type="Label" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/ResultContainer/ResultMargin/VBoxContainer/MarginContainer2/HBoxContainer"]
+[node name="NameLabel" type="Label" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/ResultContainer/ResultMargin/VBoxContainer/MarginContainer2/Categories"]
 layout_mode = 2
-size_flags_horizontal = 2
+size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "Name"
+clip_text = true
 
-[node name="CategoryLabel" type="Label" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/ResultContainer/ResultMargin/VBoxContainer/MarginContainer2/HBoxContainer"]
+[node name="CategoryLabel" type="Label" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/ResultContainer/ResultMargin/VBoxContainer/MarginContainer2/Categories"]
 layout_mode = 2
-size_flags_horizontal = 10
+size_flags_horizontal = 3
+size_flags_vertical = 1
 text = "Kategorie"
+horizontal_alignment = 2
+clip_text = true
 
 [node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/ResultContainer/ResultMargin/VBoxContainer"]
 layout_mode = 2
@@ -217,6 +247,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "Apfel"
 vertical_alignment = 1
+clip_text = true
 
 [node name="Category" type="Label" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/ResultContainer/ResultMargin/VBoxContainer/ScrollContainer/MarginContainer/SearchedElements/Button/Margin/Box"]
 layout_mode = 2
@@ -225,6 +256,7 @@ size_flags_vertical = 1
 text = "Essen"
 horizontal_alignment = 2
 vertical_alignment = 1
+clip_text = true
 
 [node name="Button2" type="Button" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/ResultContainer/ResultMargin/VBoxContainer/ScrollContainer/MarginContainer/SearchedElements"]
 custom_minimum_size = Vector2(0, 30)
@@ -253,6 +285,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "Birne"
 vertical_alignment = 1
+clip_text = true
 
 [node name="Category" type="Label" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/ResultContainer/ResultMargin/VBoxContainer/ScrollContainer/MarginContainer/SearchedElements/Button2/Margin/Box"]
 layout_mode = 2
@@ -261,6 +294,7 @@ size_flags_vertical = 1
 text = "Essen"
 horizontal_alignment = 2
 vertical_alignment = 1
+clip_text = true
 
 [node name="Button3" type="Button" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/ResultContainer/ResultMargin/VBoxContainer/ScrollContainer/MarginContainer/SearchedElements"]
 custom_minimum_size = Vector2(0, 30)
@@ -289,6 +323,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "Apfelschwert"
 vertical_alignment = 1
+clip_text = true
 
 [node name="Category" type="Label" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/ResultContainer/ResultMargin/VBoxContainer/ScrollContainer/MarginContainer/SearchedElements/Button3/Margin/Box"]
 layout_mode = 2
@@ -297,6 +332,7 @@ size_flags_vertical = 1
 text = "Waffe"
 horizontal_alignment = 2
 vertical_alignment = 1
+clip_text = true
 
 [node name="InspectionContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer"]
 layout_mode = 2
@@ -404,3 +440,4 @@ fit_content = true
 [connection signal="button_up" from="PanelContainer/VBoxContainer/TopBarMargin/TopBar/ButtonBack2" to="PanelContainer/VBoxContainer/TopBarMargin/TopBar/ButtonBack2" method="OnBackButtonUp"]
 [connection signal="text_changed" from="PanelContainer/VBoxContainer/TopBarMargin/TopBar/Search" to="PanelContainer/VBoxContainer/TopBarMargin/TopBar/Search" method="OnSearchTextChanged"]
 [connection signal="button_up" from="PanelContainer/VBoxContainer/TopBarMargin/TopBar/ButtonSettings" to="." method="OnSettingsButtonUp"]
+[connection signal="item_selected" from="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/SortContainer/SortMargin/VBoxContainer/SearchOptionButton" to="PanelContainer/VBoxContainer/TopBarMargin/TopBar/Search" method="OnSearchOptionItemSelected"]
