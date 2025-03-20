@@ -1,6 +1,6 @@
 namespace Goetterblick.scripts.general.simple_objects;
 
-public enum SearchOption
+public enum SearchOptionType
 {
     NAME,
     CATEGORY

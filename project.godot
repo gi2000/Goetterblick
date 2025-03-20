@@ -19,7 +19,8 @@ config/icon="res://resources/icon/app/Icon-256x-Round.png"
 
 [autoload]
 
-Startup="*res://scripts/general/node/Startup.cs"
+Startup="*res://scripts/global/Startup.cs"
+EventBus="*res://scripts/global/EventBus.cs"
 
 [display]
 

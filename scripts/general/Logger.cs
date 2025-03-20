@@ -1,5 +1,6 @@
 ﻿using System;
 using Godot;
+using Goetterblick.scripts.general.simple_objects;
 
 namespace Goetterblick.scripts.general;
 

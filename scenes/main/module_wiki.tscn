@@ -1,16 +1,19 @@
-[gd_scene load_steps=11 format=3 uid="uid://m16d7dy8io65"]
+[gd_scene load_steps=13 format=3 uid="uid://m16d7dy8io65"]
 
-[ext_resource type="Script" uid="uid://be2bjwkbx88ab" path="res://scripts/menus/modules/ModuleWiki.cs" id="1_au6ll"]
+[ext_resource type="Script" uid="uid://baupe2wjg6oob" path="res://scripts/menus/modules/ModuleWiki.cs" id="1_au6ll"]
 [ext_resource type="Texture2D" uid="uid://l127ulcpy08q" path="res://resources/icon/bootstrap/arrow-left.svg" id="1_r83ka"]
 [ext_resource type="Texture2D" uid="uid://cirkm1o4vl48n" path="res://resources/icon/bootstrap/gear.svg" id="2_t4n2d"]
 [ext_resource type="Theme" uid="uid://cxdsoxhgc6uji" path="res://resources/theme/container_left.tres" id="3_dgomu"]
-[ext_resource type="Script" uid="uid://6mvbwca5cbnj" path="res://scripts/general/node/BackButton.cs" id="3_orhrk"]
+[ext_resource type="Script" uid="uid://d7eg5q32mcxq" path="res://scripts/general/node/BackButton.cs" id="3_orhrk"]
+[ext_resource type="PackedScene" uid="uid://bw2xh87cnpb0c" path="res://scenes/abstract/searchbar.tscn" id="4_2m7sm"]
 [ext_resource type="Theme" uid="uid://csuqnt2rlrlka" path="res://resources/theme/container_right.tres" id="4_gd11b"]
-[ext_resource type="Script" uid="uid://bknnpwa2ckps0" path="res://scripts/general/node/SearchBar.cs" id="4_sryn0"]
 [ext_resource type="Theme" uid="uid://dmw7veewiifl3" path="res://resources/theme/container_center.tres" id="4_xsocm"]
 [ext_resource type="Texture2D" uid="uid://brtbcoo7mx5qm" path="res://resources/icon/bootstrap/add.svg" id="5_13ope"]
+[ext_resource type="PackedScene" uid="uid://cuh6mseta442c" path="res://scenes/abstract/search_option_menu.tscn" id="7_2m7sm"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cx5xe"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2m7sm"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_2m7sm"]
 
 [node name="ModuleWiki" type="Control"]
 layout_mode = 3
@@ -52,15 +55,9 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("3_orhrk")
 
-[node name="Search" type="LineEdit" parent="PanelContainer/VBoxContainer/TopBarMargin/TopBar"]
+[node name="SearchBar" parent="PanelContainer/VBoxContainer/TopBarMargin/TopBar" instance=ExtResource("4_2m7sm")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 6
-placeholder_text = "Suchen..."
-clear_button_enabled = true
-script = ExtResource("4_sryn0")
-_pathToSearchContainer = Array[NodePath]([NodePath("../../../ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/ResultContainer/ResultMargin/VBoxContainer/ScrollContainer/MarginContainer/SearchedElements")])
-_pathToSearchOptions = NodePath("../../../ContentMargin/HBoxContainer/HSplitContainer/SortContainer/SortMargin/VBoxContainer/SearchOptionButton")
+_pathToElementsContainer = Array[NodePath]([NodePath("../../../ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/ResultContainer/ResultMargin/VBoxContainer/ScrollContainer/MarginContainer/SearchedElements")])
 _pathToCategories = Array[NodePath]([NodePath("../../../ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/ResultContainer/ResultMargin/VBoxContainer/MarginContainer2/Categories")])
 
 [node name="ButtonSettings" type="Button" parent="PanelContainer/VBoxContainer/TopBarMargin/TopBar"]
@@ -94,53 +91,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("3_dgomu")
 
-[node name="SortMargin" type="MarginContainer" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/SortContainer"]
+[node name="SearchOptionMenu" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/SortContainer" instance=ExtResource("7_2m7sm")]
 layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/SortContainer/SortMargin"]
-layout_mode = 2
-
-[node name="SearchLabel" type="Label" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/SortContainer/SortMargin/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 14
-text = "Suchen nach:"
-clip_text = true
-
-[node name="SearchOptionButton" type="OptionButton" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/SortContainer/SortMargin/VBoxContainer"]
-layout_mode = 2
-clip_text = true
-selected = 0
-item_count = 2
-popup/item_0/text = "wiki.category.name"
-popup/item_0/id = 0
-popup/item_1/text = "wiki.category.category"
-popup/item_1/id = 0
-
-[node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/SortContainer/SortMargin/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 20
-theme_override_styles/separator = SubResource("StyleBoxEmpty_cx5xe")
-
-[node name="SortLabel" type="Label" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/SortContainer/SortMargin/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 14
-text = "Sortieren nach:"
-clip_text = true
-
-[node name="SortOptionButton" type="OptionButton" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/SortContainer/SortMargin/VBoxContainer"]
-layout_mode = 2
-clip_text = true
-selected = 0
-item_count = 2
-popup/item_0/text = "Alphabetisch"
-popup/item_0/id = 0
-popup/item_1/text = "Erstellungsdatum"
-popup/item_1/id = 1
 
 [node name="HSplitContainer" type="HSplitContainer" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer"]
 layout_mode = 2
@@ -245,7 +197,8 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-text = "Apfel"
+size_flags_stretch_ratio = 4.0
+text = "placeholder.value.apple"
 vertical_alignment = 1
 clip_text = true
 
@@ -283,7 +236,8 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-text = "Birne"
+size_flags_stretch_ratio = 4.0
+text = "placeholder.value.pear"
 vertical_alignment = 1
 clip_text = true
 
@@ -321,7 +275,8 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-text = "Apfelschwert"
+size_flags_stretch_ratio = 4.0
+text = "placeholder.value.applesword"
 vertical_alignment = 1
 clip_text = true
 
@@ -368,6 +323,9 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 12
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2m7sm")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_2m7sm")
 text = "DSA 1"
 
 [node name="DSA2" type="Button" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/InspectionContainer/InspectionMargin/VBoxContainer/VersionsHFlow"]
@@ -376,6 +334,9 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 12
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2m7sm")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_2m7sm")
 text = "DSA 2"
 
 [node name="DSA3" type="Button" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/InspectionContainer/InspectionMargin/VBoxContainer/VersionsHFlow"]
@@ -384,6 +345,9 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 12
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2m7sm")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_2m7sm")
 text = "DSA 3"
 
 [node name="DSA4" type="Button" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/InspectionContainer/InspectionMargin/VBoxContainer/VersionsHFlow"]
@@ -392,6 +356,9 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 12
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2m7sm")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_2m7sm")
 text = "DSA 4"
 
 [node name="DSA4dot1" type="Button" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/InspectionContainer/InspectionMargin/VBoxContainer/VersionsHFlow"]
@@ -400,6 +367,9 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 12
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2m7sm")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_2m7sm")
 text = "DSA 4.1"
 
 [node name="DSA5" type="Button" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/InspectionContainer/InspectionMargin/VBoxContainer/VersionsHFlow"]
@@ -408,6 +378,9 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 12
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2m7sm")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_2m7sm")
 text = "DSA5"
 
 [node name="Myranor" type="Button" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/InspectionContainer/InspectionMargin/VBoxContainer/VersionsHFlow"]
@@ -416,6 +389,9 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 12
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2m7sm")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_2m7sm")
 text = "Myranor"
 
 [node name="DSK" type="Button" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/InspectionContainer/InspectionMargin/VBoxContainer/VersionsHFlow"]
@@ -424,6 +400,9 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 12
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2m7sm")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_2m7sm")
 text = "DSK"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/HSplitContainer/InspectionContainer/InspectionMargin/VBoxContainer"]
@@ -438,6 +417,4 @@ bbcode_enabled = true
 fit_content = true
 
 [connection signal="button_up" from="PanelContainer/VBoxContainer/TopBarMargin/TopBar/ButtonBack2" to="PanelContainer/VBoxContainer/TopBarMargin/TopBar/ButtonBack2" method="OnBackButtonUp"]
-[connection signal="text_changed" from="PanelContainer/VBoxContainer/TopBarMargin/TopBar/Search" to="PanelContainer/VBoxContainer/TopBarMargin/TopBar/Search" method="OnSearchTextChanged"]
 [connection signal="button_up" from="PanelContainer/VBoxContainer/TopBarMargin/TopBar/ButtonSettings" to="." method="OnSettingsButtonUp"]
-[connection signal="item_selected" from="PanelContainer/VBoxContainer/ContentMargin/HBoxContainer/HSplitContainer/SortContainer/SortMargin/VBoxContainer/SearchOptionButton" to="PanelContainer/VBoxContainer/TopBarMargin/TopBar/Search" method="OnSearchOptionItemSelected"]

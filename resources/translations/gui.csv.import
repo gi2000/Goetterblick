@@ -14,4 +14,4 @@ dest_files=["res://resources/translations/gui.de.translation", "res://resources/
 [params]
 
 compress=true
-delimiter=1
+delimiter=0
