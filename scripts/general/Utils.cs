@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using Godot;
+using Goetterblick.scripts.general.simple_objects;
 
 namespace Goetterblick.scripts.general;
 
 public class Utils
 {
-    public const LogLevel LogLevel = general.LogLevel.Debug;
+    public const LogLevel LogLevel = simple_objects.LogLevel.Debug;
     
     public const string MainSettingsConfig = "user://settings.cfg";
 

@@ -1,6 +1,6 @@
 using Godot;
-using System;
-using Goetterblick.scripts.general;
+
+namespace Goetterblick.scripts.general.node;
 
 public partial class BackButton : Button
 {

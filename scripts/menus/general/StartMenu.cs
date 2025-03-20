@@ -1,8 +1,7 @@
-using System;
 using Godot;
 using Goetterblick.scripts.general;
 
-namespace Goetterblick.scripts.menus;
+namespace Goetterblick.scripts.menus.general;
 
 public partial class StartMenu : Control
 {

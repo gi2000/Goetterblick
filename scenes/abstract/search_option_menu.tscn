@@ -1,0 +1,66 @@
+[gd_scene load_steps=4 format=3 uid="uid://cuh6mseta442c"]
+
+[ext_resource type="Script" uid="uid://ck6fj3i07gate" path="res://scripts/general/node/SearchOptionButton.cs" id="1_v1l18"]
+[ext_resource type="Script" uid="uid://bx3n1r1gsxnhu" path="res://scripts/general/node/SortOptionButton.cs" id="2_lwdaw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gve4u"]
+
+[node name="SearchOptionMenu" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SortMargin" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SortMargin"]
+layout_mode = 2
+
+[node name="SearchLabel" type="Label" parent="SortMargin/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Suchen nach:"
+clip_text = true
+
+[node name="SearchOptionButton" type="OptionButton" parent="SortMargin/VBoxContainer"]
+layout_mode = 2
+clip_text = true
+selected = 0
+item_count = 2
+popup/item_0/text = "wiki.category.name"
+popup/item_0/id = 0
+popup/item_1/text = "wiki.category.category"
+popup/item_1/id = 0
+script = ExtResource("1_v1l18")
+
+[node name="HSeparator" type="HSeparator" parent="SortMargin/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+theme_override_styles/separator = SubResource("StyleBoxEmpty_gve4u")
+
+[node name="SortLabel" type="Label" parent="SortMargin/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Sortieren nach:"
+clip_text = true
+
+[node name="SortOptionButton" type="OptionButton" parent="SortMargin/VBoxContainer"]
+layout_mode = 2
+clip_text = true
+selected = 0
+item_count = 2
+popup/item_0/text = "Alphabetical"
+popup/item_0/id = 0
+popup/item_1/text = "CreationDate"
+popup/item_1/id = 1
+script = ExtResource("2_lwdaw")
+
+[connection signal="item_selected" from="SortMargin/VBoxContainer/SearchOptionButton" to="SortMargin/VBoxContainer/SearchOptionButton" method="OnItemSelected"]
+[connection signal="item_selected" from="SortMargin/VBoxContainer/SortOptionButton" to="SortMargin/VBoxContainer/SortOptionButton" method="OnItemSelected"]

@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bw2xh87cnpb0c"]
+
+[ext_resource type="Script" uid="uid://c04ldf2r2r4sj" path="res://scripts/general/node/SearchBar.cs" id="1_kbq5p"]
+
+[node name="SearchBar" type="LineEdit"]
+size_flags_horizontal = 3
+size_flags_vertical = 6
+placeholder_text = "Suchen..."
+clear_button_enabled = true
+script = ExtResource("1_kbq5p")
+
+[connection signal="text_changed" from="." to="." method="OnSearchTextChanged"]

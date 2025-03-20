@@ -1,8 +1,7 @@
 using Godot;
-using System;
-using Godot.Collections;
 using Goetterblick.scripts.general;
-using Goetterblick.scripts.menus;
+
+namespace Goetterblick.scripts.global;
 
 public partial class Startup : Node
 {

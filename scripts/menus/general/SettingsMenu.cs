@@ -1,9 +1,7 @@
-using System;
 using Godot;
-using Godot.Collections;
 using Goetterblick.scripts.general;
 
-namespace Goetterblick.scripts.menus;
+namespace Goetterblick.scripts.menus.general;
 
 public partial class SettingsMenu : Control
 {

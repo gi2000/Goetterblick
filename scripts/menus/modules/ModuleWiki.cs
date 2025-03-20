@@ -1,7 +1,7 @@
 using Godot;
 using Goetterblick.scripts.general;
 
-namespace Goetterblick.scripts.menus;
+namespace Goetterblick.scripts.menus.modules;
 
 public partial class ModuleWiki : Control
 {

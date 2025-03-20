@@ -1,4 +1,4 @@
-﻿namespace Goetterblick.scripts.general;
+﻿namespace Goetterblick.scripts.general.simple_objects;
 
 public class ConfigId
 {
