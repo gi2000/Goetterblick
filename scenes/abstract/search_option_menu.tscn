@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cuh6mseta442c"]
 
-[ext_resource type="Script" uid="uid://ck6fj3i07gate" path="res://scripts/general/node/SearchOptionButton.cs" id="1_v1l18"]
-[ext_resource type="Script" uid="uid://bx3n1r1gsxnhu" path="res://scripts/general/node/SortOptionButton.cs" id="2_lwdaw"]
+[ext_resource type="Script" uid="uid://cqieqfsgm25f3" path="res://scripts/general/node/SearchOptionButton.cs" id="1_v1l18"]
+[ext_resource type="Script" uid="uid://matb0a7pb61" path="res://scripts/general/node/SortOptionButton.cs" id="2_lwdaw"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gve4u"]
 
